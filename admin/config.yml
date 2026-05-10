@@ -1,0 +1,104 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Netlify Identity for authentication
+publish_mode: editorial_workflow
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Homepage"
+        name: "homepage"
+        file: "content/homepage.json"
+        fields:
+          # Hero Section
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Pharmaceutical"}
+              - {label: "Title Highlight", name: "titleHighlight", widget: "string", default: "Operations Consulting"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "CTA Button Text", name: "ctaText", widget: "string", default: "Book a Discovery Call"}
+              - {label: "CTA Button Link", name: "ctaLink", widget: "string", default: "contact.html"}
+          
+          # Challenge Section
+          - label: "Challenge Section"
+            name: "challenge"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "The Challenge You Are Facing"}
+              - label: "Challenges"
+                name: "items"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
+          
+          # Services Section
+          - label: "Services Section"
+            name: "services"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "Three Ways We Help"}
+              - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Bridging strategy and execution in pharmaceutical operations"}
+              - label: "Services"
+                name: "items"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
+          
+          # Approach Section
+          - label: "Approach Section"
+            name: "approach"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "How We Work"}
+              - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Bridging the gap between strategic ambition and operational reality"}
+              - label: "Approach Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "text"}
+          
+          # CTA Section
+          - label: "Final CTA Section"
+            name: "cta"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Ready to Transform Your Operations?"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Button Text", name: "buttonText", widget: "string", default: "Get in Touch"}
+              - {label: "Button Link", name: "buttonLink", widget: "string", default: "contact.html"}
+          
+          # Footer
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - {label: "Copyright Text", name: "copyright", widget: "string", default: "© 2026 VANTYS. Pharmaceutical Business Operations Consulting."}
+              - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "content/settings.json"
+        fields:
+          - {label: "Site Title", name: "siteTitle", widget: "string"}
+          - label: "Colors"
+            name: "colors"
+            widget: "object"
+            fields:
+              - {label: "Navy", name: "navy", widget: "string", default: "#314969"}
+              - {label: "Coral", name: "coral", widget: "string", default: "#F07B4A"}
+              - {label: "Golden", name: "golden", widget: "string", default: "#F2AF4C"}
+              - {label: "Gray", name: "gray", widget: "string", default: "#697A92"}
+              - {label: "Warm Neutral", name: "warmNeutral", widget: "string", default: "#F5F3F0"}
