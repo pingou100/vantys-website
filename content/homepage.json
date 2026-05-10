@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "title": "Pharmaceutical",
+    "titleHighlight": "Operations Consulting",
+    "description": "Bridging strategy and execution. Combining deep industry experience with practical transformation to deliver measurable results in go-to-market models, healthcare partnerships, and commercial excellence.",
+    "ctaText": "Book a Discovery Call",
+    "ctaLink": "contact.html"
+  },
+  "challenge": {
+    "title": "The Challenge You Are Facing",
+    "items": [
+      {
+        "title": "Evolving Healthcare Professional Needs",
+        "description": "Healthcare professionals expect seamless, scientifically rigorous engagement across commercial and medical touchpoints. Traditional field-based models are delivering diminishing returns while HCPs demand more sophisticated, value-based partnerships."
+      },
+      {
+        "title": "Complex Healthcare Systems to Navigate",
+        "description": "Market access increasingly depends on demonstrating value to healthcare systems, not just individual prescribers. Payers, hospital networks, and integrated delivery systems control formulary decisions and clinical pathways."
+      },
+      {
+        "title": "Siloed Commercial and Medical Operations",
+        "description": "Most pharmaceutical organizations operate with fragmented teams, misaligned messaging, and disconnected data. Yet success requires orchestrating across commercial teams, medical affairs, market access, and external partners."
+      }
+    ]
+  },
+  "services": {
+    "title": "Three Ways We Help",
+    "subtitle": "Bridging strategy and execution in pharmaceutical operations",
+    "items": [
+      {
+        "title": "Integrated Commercial & Medical Operations Transformation",
+        "description": "Redesigning operating models to align Commercial and Medical Affairs around HCP needs. From integrated channel strategies to cross-functional governance, we build practical solutions that respect regulatory boundaries while eliminating unnecessary friction."
+      },
+      {
+        "title": "Healthcare System Navigation & Partnership Development",
+        "description": "Developing partnership models that create mutual value for healthcare systems and pharmaceutical companies. We help you identify the right stakeholders, understand local healthcare dynamics, and design collaboration frameworks that deliver results."
+      },
+      {
+        "title": "Digital & AI Implementation for Commercial Excellence",
+        "description": "Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing commercial operations. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
+      }
+    ]
+  },
+  "approach": {
+    "title": "How We Work",
+    "subtitle": "Bridging the gap between strategic ambition and operational reality",
+    "items": [
+      {
+        "title": "Pragmatic by Design",
+        "description": "We prioritize manageable change over disruptive overhauls. Transformation does not require replacing existing ecosystems. Our solutions work within your current infrastructure, respecting organizational realities while systematically eliminating friction points that prevent strategic objectives from materializing."
+      },
+      {
+        "title": "Execution That Delivers",
+        "description": "Strategic recommendations are worthless without implementation. We do not deliver reports that gather dust. Our engagements focus on working solutions: redesigned operating models that are actually adopted, governance structures that function in the real world, capability building that creates lasting organizational impact."
+      },
+      {
+        "title": "Measurable Outcomes",
+        "description": "Every engagement establishes clear success metrics upfront. Whether reducing time-to-market, improving cross-functional alignment, enhancing HCP engagement quality, or demonstrating ROI improvements, we define what success looks like and track progress transparently. Our clients quantify the value delivered."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Transform Your Operations?",
+    "description": "Let us discuss how we can help you connect strategy to execution.",
+    "buttonText": "Get in Touch",
+    "buttonLink": "contact.html"
+  },
+  "footer": {
+    "copyright": "© 2026 VANTYS. Pharmaceutical Business Operations Consulting.",
+    "linkedinUrl": "https://linkedin.com/in/your-profile"
+  }
+}
