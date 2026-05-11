@@ -84,6 +84,9 @@ const html = `<!DOCTYPE html>
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
         <div class="container">
             <h1>${heroTitle}</h1>
             <p>${markdownToHtml(content.hero.description)}</p>
@@ -93,6 +96,8 @@ const html = `<!DOCTYPE html>
 
     <!-- Challenge Section -->
     <section class="challenge" id="challenge">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
         <div class="container">
             <h2>${content.challenge.title}</h2>
             
@@ -108,6 +113,9 @@ const html = `<!DOCTYPE html>
 
     <!-- Services Section -->
     <section class="services" id="services">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
         <div class="container">
             <div class="section-header">
                 <h2>${content.services.title}</h2>
@@ -157,6 +165,9 @@ const html = `<!DOCTYPE html>
 
     <!-- Approach Section -->
     <section class="approach" id="approach">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
         <div class="container">
             <div class="section-header">
                 <h2>${content.approach.title}</h2>
@@ -198,6 +209,9 @@ const html = `<!DOCTYPE html>
 
     <!-- CTA Section -->
     <section class="cta-section">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
         <div class="container">
             <h2>${content.cta.title}</h2>
             <p>${markdownToHtml(content.cta.description)}</p>
