@@ -87,6 +87,7 @@ body {
     opacity: 0.10;
     top: -150px;
     right: -100px;
+    transform: rotate(-35deg);
     transform-origin: center;
 }
 
@@ -99,6 +100,7 @@ body {
     opacity: 0.12;
     top: -80px;
     right: 50px;
+    transform: rotate(28deg);
     transform-origin: center;
 }
 
@@ -111,6 +113,7 @@ body {
     opacity: 0.08;
     bottom: -50px;
     left: -80px;
+    transform: rotate(-15deg);
     transform-origin: center;
 }
 
@@ -129,6 +132,7 @@ body {
     opacity: 0.10;
     bottom: -120px;
     left: -100px;
+    transform: rotate(32deg);
     transform-origin: center;
 }
 
@@ -141,6 +145,7 @@ body {
     opacity: 0.12;
     bottom: -60px;
     left: 30px;
+    transform: rotate(-22deg);
     transform-origin: center;
 }
 
@@ -153,6 +158,7 @@ body {
     opacity: 0.10;
     top: 100px;
     right: -80px;
+    transform: rotate(38deg);
     transform-origin: center;
 }
 
@@ -171,6 +177,7 @@ body {
     opacity: 0.12;
     top: -100px;
     right: -120px;
+    transform: rotate(42deg);
     transform-origin: center;
 }
 
@@ -183,6 +190,7 @@ body {
     opacity: 0.10;
     top: -40px;
     right: 20px;
+    transform: rotate(-18deg);
     transform-origin: center;
 }
 
@@ -195,6 +203,7 @@ body {
     opacity: 0.10;
     bottom: -80px;
     right: -90px;
+    transform: rotate(25deg);
     transform-origin: center;
 }
 
@@ -213,6 +222,7 @@ body {
     opacity: 1;
     top: -100px;
     right: -100px;
+    transform: rotate(35deg);
     transform-origin: center;
 }
 
@@ -225,6 +235,7 @@ body {
     opacity: 0.10;
     bottom: -80px;
     left: -70px;
+    transform: rotate(-28deg);
     transform-origin: center;
 }
 
@@ -243,6 +254,7 @@ body {
     opacity: 0.10;
     bottom: -120px;
     right: -100px;
+    transform: rotate(40deg);
     transform-origin: center;
 }
 
@@ -255,6 +267,7 @@ body {
     opacity: 0.12;
     bottom: -60px;
     right: 40px;
+    transform: rotate(-16deg);
     transform-origin: center;
 }
 
@@ -267,6 +280,7 @@ body {
     opacity: 0.10;
     top: 80px;
     left: -60px;
+    transform: rotate(30deg);
     transform-origin: center;
 }
 
