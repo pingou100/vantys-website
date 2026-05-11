@@ -85,6 +85,18 @@ collections:
               - {label: "Copyright Text", name: "copyright", widget: "string", default: "© 2026 VANTYS. Pharmaceutical Business Operations Consulting."}
               - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
       
+      - label: "About Me Page"
+        name: "about"
+        file: "content/about-me.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", default: "About Me"}
+          - {label: "Profile Photo", name: "photo", widget: "image", default: "/images/SB_Olivier_Delannoy_1200x800.jpg"}
+          - label: "Content Paragraphs"
+            name: "paragraphs"
+            widget: "list"
+            fields:
+              - {label: "Paragraph Text", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+      
       - label: "Contact Page"
         name: "contact"
         file: "content/contact.json"
