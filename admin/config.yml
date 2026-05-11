@@ -94,6 +94,19 @@ collections:
           - {label: "Email", name: "email", widget: "string", default: "contact@vantys.com"}
           - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
           - {label: "Response Time Note", name: "responseNote", widget: "string", default: "We typically respond within 24 hours."}
+      
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "content/privacy-policy.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", default: "Privacy Policy"}
+          - {label: "Last Updated", name: "lastUpdated", widget: "string", default: "May 2026"}
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - {label: "Section Heading", name: "heading", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
 
   - name: "settings"
     label: "Site Settings"
