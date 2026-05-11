@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "VANTYS",
-    "titleHighlight": "Life Science Consulting ",
-    "description": "Bridging strategy and execution. Combining deep Life Science experience with practical business transformation to deliver measurable results in go-to-market models, healthcare partnerships, and business excellence.",
+    "title": "Vantys",
+    "titleHighlight": "Life Science Strategy, Executed ",
+    "description": "Delivering measurable results at the intersection of Life Science strategy and execution. By integrating innovative go-to-market models and differentiating healthcare partnerships, we help organisations build the operational agility needed to lead in increasingly complex business environments.",
     "ctaText": "Book a Discovery Call",
     "ctaLink": "contact.html"
   },
   "challenge": {
-    "title": "The Challenge You Are Facing",
+    "title": "The Challenges You Are Facing",
     "items": [
       {
-        "title": "Evolving Healthcare Professional Needs",
-        "description": "Healthcare professionals expect seamless, scientifically rigorous engagement across commercial and medical touchpoints. Traditional field-based models are delivering diminishing returns while HCPs demand more sophisticated, value-based partnerships."
+        "title": "Evolving Healthcare Professionals Needs",
+        "description": "While traditional field-based models face increasing challenges, HCP expectations have reached a new peak. Today’s professionals demand seamless, scientifically rigorous experiences and value-based partnerships the Life Science industry has yet to fully deliver."
       },
       {
         "title": "Complex Healthcare Systems to Navigate",
-        "description": "Market access increasingly depends on demonstrating value to healthcare systems, not just individual prescribers. Payers, hospital networks, and integrated delivery systems control formulary decisions and clinical pathways."
+        "description": "Market Access increasingly depends on demonstrating value to healthcare systems, not just individual prescribers. Payers, hospital networks, and integrated delivery systems drive healthcare and patient value through protocols, formularies and clinical pathways. Our approach must evolve to reflect the reality of the customers, not the constraints of our legacy models."
       },
       {
-        "title": "Siloed Commercial and Medical Operations",
-        "description": "Most pharmaceutical organizations operate with fragmented teams, misaligned messaging, and disconnected data. Yet success requires orchestrating across commercial teams, medical affairs, market access, and external partners."
+        "title": "Siloed Operations, broken Customer Experience",
+        "description": "Most pharmaceutical organisations operate with fragmented teams, misaligned customer engagement, and disconnected data. Yet success requires orchestration across commercial teams, medical affairs, market access, and external partners. Unified Experience is the goal; AI is the engine."
       }
     ]
   },
   "services": {
     "title": "Three Ways We Help",
-    "subtitle": "Bridging strategy and execution in pharmaceutical operations",
+    "subtitle": "Bridging Strategy and Execution",
     "items": [
       {
         "title": "Integrated Commercial & Medical Operations Transformation",
-        "description": "Redesigning operating models to align Commercial and Medical Affairs around HCP needs. From integrated channel strategies to cross-functional governance, we build practical solutions that respect regulatory boundaries while eliminating unnecessary friction."
+        "description": "Redesigning operating models to align Commercial and Medical Affairs around HCP needs. From integrated channel strategies to cross-functional governance, we build practical solutions that respect relevant boundaries while eliminating unnecessary friction."
       },
       {
         "title": "Healthcare System Navigation & Partnership Development",
-        "description": "Developing partnership models that create mutual value for healthcare systems and pharmaceutical companies. We help you identify the right stakeholders, understand local healthcare dynamics, and design collaboration frameworks that deliver results."
+        "description": "Developing partnership models that create mutual value for healthcare systems and Life Science companies. We help you identify the right stakeholders, understand local healthcare dynamics, and design collaboration frameworks that deliver results."
       },
       {
         "title": "Digital & AI Implementation for Business Excellence",
-        "description": "Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing commercial operations. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
+        "description": "Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing operations. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
       }
     ]
   },
   "approach": {
     "title": "How We Work",
-    "subtitle": "Bridging the gap between strategic ambition and operational reality",
+    "subtitle": "Delivering ambition through pragmatism",
     "items": [
       {
         "title": "Pragmatic by Design",
@@ -51,17 +51,17 @@
       },
       {
         "title": "Execution That Delivers",
-        "description": "Strategic recommendations are worthless without implementation. We do not deliver reports that gather dust. Our engagements focus on working solutions: redesigned operating models that are actually adopted, governance structures that function in the real world, capability building that creates lasting organizational impact."
+        "description": "Strategic recommendations are worthless without implementation. We do not deliver reports. Our engagements focus on working solutions: redesigned operating models that are actually adopted, governance structures that function in the real world, capability building that creates lasting organizational impact."
       },
       {
         "title": "Measurable Outcomes",
-        "description": "Every engagement establishes clear success metrics upfront. Whether reducing time-to-market, improving cross-functional alignment, enhancing HCP engagement quality, or demonstrating ROI improvements, we define what success looks like and track progress transparently. Our clients quantify the value delivered."
+        "description": "Every engagement establishes clear success metrics upfront. Whether reducing time-to-market, improving cross-functional alignment, enhancing HCP engagement quality, we define what success looks like and track progress transparently. Our clients quantify the value delivered."
       }
     ]
   },
   "cta": {
-    "title": "Ready to Transform Your Operations?",
-    "description": "Let us discuss how we can help you connect strategy to execution.",
+    "title": "Ready to transform your operations to achieve your ambitions ?",
+    "description": "Let us discuss how we can help you.",
     "buttonText": "Get in Touch",
     "buttonLink": "contact.html"
   },
