@@ -25,6 +25,16 @@ function markdownToHtml(text) {
 const contentPath = path.join(__dirname, 'content', 'homepage.json');
 const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
 
+// Build hero title - handle empty title gracefully
+let heroTitle = '';
+if (content.hero.title && content.hero.title.trim()) {
+    // Both title and highlight
+    heroTitle = `${content.hero.title} <strong>${content.hero.titleHighlight}</strong>`;
+} else {
+    // Only highlight (title is empty)
+    heroTitle = `<strong>${content.hero.titleHighlight}</strong>`;
+}
+
 // Generate the complete HTML from scratch using the template
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -67,7 +77,7 @@ const html = `<!DOCTYPE html>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>${content.hero.title} <strong>${content.hero.titleHighlight}</strong></h1>
+            <h1>${heroTitle}</h1>
             <p>${markdownToHtml(content.hero.description)}</p>
             <a href="${content.hero.ctaLink}" class="cta-button">${content.hero.ctaText}</a>
         </div>
