@@ -32,17 +32,82 @@ body {
 
 /* ========================================
    BREATHING ANIMATION - Subtle Organic Movement
+   Individual keyframes for each rotation angle
    ======================================== */
 
-@keyframes breathe {
-    0%, 100% {
-        transform: scale(1);
-        opacity: var(--shape-opacity-min);
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: var(--shape-opacity-max);
-    }
+/* Hero Shapes */
+@keyframes breathe-hero-1 {
+    0%, 100% { transform: scale(1) rotate(-35deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(-35deg); opacity: 0.12; }
+}
+
+@keyframes breathe-hero-2 {
+    0%, 100% { transform: scale(1) rotate(28deg); opacity: 0.12; }
+    50% { transform: scale(1.05) rotate(28deg); opacity: 0.15; }
+}
+
+@keyframes breathe-hero-3 {
+    0%, 100% { transform: scale(1) rotate(-15deg); opacity: 0.08; }
+    50% { transform: scale(1.05) rotate(-15deg); opacity: 0.11; }
+}
+
+/* Services Shapes */
+@keyframes breathe-services-1 {
+    0%, 100% { transform: scale(1) rotate(32deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(32deg); opacity: 0.13; }
+}
+
+@keyframes breathe-services-2 {
+    0%, 100% { transform: scale(1) rotate(-22deg); opacity: 0.12; }
+    50% { transform: scale(1.05) rotate(-22deg); opacity: 0.15; }
+}
+
+@keyframes breathe-services-3 {
+    0%, 100% { transform: scale(1) rotate(38deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(38deg); opacity: 0.13; }
+}
+
+/* Approach Shapes */
+@keyframes breathe-approach-1 {
+    0%, 100% { transform: scale(1) rotate(42deg); opacity: 0.12; }
+    50% { transform: scale(1.05) rotate(42deg); opacity: 0.15; }
+}
+
+@keyframes breathe-approach-2 {
+    0%, 100% { transform: scale(1) rotate(-18deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(-18deg); opacity: 0.13; }
+}
+
+@keyframes breathe-approach-3 {
+    0%, 100% { transform: scale(1) rotate(25deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(25deg); opacity: 0.13; }
+}
+
+/* Challenge Shapes */
+@keyframes breathe-challenge-1 {
+    0%, 100% { transform: scale(1) rotate(35deg); opacity: 0.04; }
+    50% { transform: scale(1.05) rotate(35deg); opacity: 0.06; }
+}
+
+@keyframes breathe-challenge-2 {
+    0%, 100% { transform: scale(1) rotate(-28deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(-28deg); opacity: 0.13; }
+}
+
+/* CTA Shapes */
+@keyframes breathe-cta-1 {
+    0%, 100% { transform: scale(1) rotate(40deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(40deg); opacity: 0.13; }
+}
+
+@keyframes breathe-cta-2 {
+    0%, 100% { transform: scale(1) rotate(-16deg); opacity: 0.12; }
+    50% { transform: scale(1.05) rotate(-16deg); opacity: 0.15; }
+}
+
+@keyframes breathe-cta-3 {
+    0%, 100% { transform: scale(1) rotate(30deg); opacity: 0.10; }
+    50% { transform: scale(1.05) rotate(30deg); opacity: 0.13; }
 }
 
 /* To disable animation, uncomment this line:
@@ -55,21 +120,8 @@ body {
     border-radius: 60px;
     pointer-events: none;
     z-index: 0;
-    animation: breathe 8s ease-in-out infinite;
     will-change: transform, opacity;
-}
-
-/* Stagger animation timing for organic feel */
-.bg-shape-1 {
-    animation-delay: 0s;
-}
-
-.bg-shape-2 {
-    animation-delay: 2.7s;
-}
-
-.bg-shape-3 {
-    animation-delay: 5.3s;
+    transform-origin: center;
 }
 
 /* Hero Section Shapes */
@@ -79,42 +131,30 @@ body {
 }
 
 .hero .bg-shape-1 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.12;
     width: 450px;
     height: 450px;
     background: var(--navy);
-    opacity: 0.10;
     top: -150px;
     right: -100px;
-    transform: rotate(-35deg);
-    transform-origin: center;
+    animation: breathe-hero-1 8s ease-in-out infinite;
 }
 
 .hero .bg-shape-2 {
-    --shape-opacity-min: 0.12;
-    --shape-opacity-max: 0.15;
     width: 350px;
     height: 350px;
     background: var(--light-blue);
-    opacity: 0.12;
     top: -80px;
     right: 50px;
-    transform: rotate(28deg);
-    transform-origin: center;
+    animation: breathe-hero-2 8s ease-in-out infinite 2.7s;
 }
 
 .hero .bg-shape-3 {
-    --shape-opacity-min: 0.08;
-    --shape-opacity-max: 0.11;
     width: 280px;
     height: 280px;
     background: var(--golden);
-    opacity: 0.08;
     bottom: -50px;
     left: -80px;
-    transform: rotate(-15deg);
-    transform-origin: center;
+    animation: breathe-hero-3 8s ease-in-out infinite 5.3s;
 }
 
 /* Services Section Shapes */
@@ -124,42 +164,30 @@ body {
 }
 
 .services .bg-shape-1 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 400px;
     height: 400px;
     background: var(--golden);
-    opacity: 0.10;
     bottom: -120px;
     left: -100px;
-    transform: rotate(32deg);
-    transform-origin: center;
+    animation: breathe-services-1 8s ease-in-out infinite;
 }
 
 .services .bg-shape-2 {
-    --shape-opacity-min: 0.12;
-    --shape-opacity-max: 0.15;
     width: 320px;
     height: 320px;
     background: var(--light-coral);
-    opacity: 0.12;
     bottom: -60px;
     left: 30px;
-    transform: rotate(-22deg);
-    transform-origin: center;
+    animation: breathe-services-2 8s ease-in-out infinite 2.7s;
 }
 
 .services .bg-shape-3 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 280px;
     height: 280px;
     background: var(--light-blue);
-    opacity: 0.10;
     top: 100px;
     right: -80px;
-    transform: rotate(38deg);
-    transform-origin: center;
+    animation: breathe-services-3 8s ease-in-out infinite 5.3s;
 }
 
 /* Approach Section Shapes - MOVED TO RIGHT SIDE */
@@ -169,42 +197,30 @@ body {
 }
 
 .approach .bg-shape-1 {
-    --shape-opacity-min: 0.12;
-    --shape-opacity-max: 0.15;
     width: 420px;
     height: 420px;
     background: var(--light-blue);
-    opacity: 0.12;
     top: -100px;
     right: -120px;
-    transform: rotate(42deg);
-    transform-origin: center;
+    animation: breathe-approach-1 8s ease-in-out infinite;
 }
 
 .approach .bg-shape-2 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 340px;
     height: 340px;
     background: var(--navy);
-    opacity: 0.10;
     top: -40px;
     right: 20px;
-    transform: rotate(-18deg);
-    transform-origin: center;
+    animation: breathe-approach-2 8s ease-in-out infinite 2.7s;
 }
 
 .approach .bg-shape-3 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 300px;
     height: 300px;
     background: var(--light-coral);
-    opacity: 0.10;
     bottom: -80px;
     right: -90px;
-    transform: rotate(25deg);
-    transform-origin: center;
+    animation: breathe-approach-3 8s ease-in-out infinite 5.3s;
 }
 
 /* Challenge Section Shapes (subtle on dark bg) */
@@ -214,29 +230,21 @@ body {
 }
 
 .challenge .bg-shape-1 {
-    --shape-opacity-min: 0.04;
-    --shape-opacity-max: 0.06;
     width: 380px;
     height: 380px;
     background: rgba(255, 255, 255, 0.04);
-    opacity: 1;
     top: -100px;
     right: -100px;
-    transform: rotate(35deg);
-    transform-origin: center;
+    animation: breathe-challenge-1 8s ease-in-out infinite;
 }
 
 .challenge .bg-shape-2 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 300px;
     height: 300px;
     background: var(--coral);
-    opacity: 0.10;
     bottom: -80px;
     left: -70px;
-    transform: rotate(-28deg);
-    transform-origin: center;
+    animation: breathe-challenge-2 8s ease-in-out infinite 2.7s;
 }
 
 /* CTA Section Shapes */
@@ -246,42 +254,30 @@ body {
 }
 
 .cta-section .bg-shape-1 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 400px;
     height: 400px;
     background: var(--navy);
-    opacity: 0.10;
     bottom: -120px;
     right: -100px;
-    transform: rotate(40deg);
-    transform-origin: center;
+    animation: breathe-cta-1 8s ease-in-out infinite;
 }
 
 .cta-section .bg-shape-2 {
-    --shape-opacity-min: 0.12;
-    --shape-opacity-max: 0.15;
     width: 320px;
     height: 320px;
     background: var(--light-coral);
-    opacity: 0.12;
     bottom: -60px;
     right: 40px;
-    transform: rotate(-16deg);
-    transform-origin: center;
+    animation: breathe-cta-2 8s ease-in-out infinite 2.7s;
 }
 
 .cta-section .bg-shape-3 {
-    --shape-opacity-min: 0.10;
-    --shape-opacity-max: 0.13;
     width: 250px;
     height: 250px;
     background: var(--golden);
-    opacity: 0.10;
     top: 80px;
     left: -60px;
-    transform: rotate(30deg);
-    transform-origin: center;
+    animation: breathe-cta-3 8s ease-in-out infinite 5.3s;
 }
 
 /* Sticky Header */
