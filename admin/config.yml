@@ -84,6 +84,16 @@ collections:
             fields:
               - {label: "Copyright Text", name: "copyright", widget: "string", default: "© 2026 VANTYS. Pharmaceutical Business Operations Consulting."}
               - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
+      
+      - label: "Contact Page"
+        name: "contact"
+        file: "content/contact.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", default: "Get In Touch"}
+          - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+          - {label: "Email", name: "email", widget: "string", default: "contact@vantys.com"}
+          - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
+          - {label: "Response Time Note", name: "responseNote", widget: "string", default: "We typically respond within 24 hours."}
 
   - name: "settings"
     label: "Site Settings"
