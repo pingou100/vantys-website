@@ -22,7 +22,7 @@ collections:
             fields:
               - {label: "Title", name: "title", widget: "string", default: "Pharmaceutical"}
               - {label: "Title Highlight", name: "titleHighlight", widget: "string", default: "Operations Consulting"}
-              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
               - {label: "CTA Button Text", name: "ctaText", widget: "string", default: "Book a Discovery Call"}
               - {label: "CTA Button Link", name: "ctaLink", widget: "string", default: "contact.html"}
           
@@ -37,7 +37,7 @@ collections:
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "text"}
+                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
           
           # Services Section
           - label: "Services Section"
@@ -51,7 +51,7 @@ collections:
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "text"}
+                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
           
           # Approach Section
           - label: "Approach Section"
@@ -65,7 +65,7 @@ collections:
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "text"}
+                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
           
           # CTA Section
           - label: "Final CTA Section"
@@ -73,7 +73,7 @@ collections:
             widget: "object"
             fields:
               - {label: "Title", name: "title", widget: "string", default: "Ready to Transform Your Operations?"}
-              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
               - {label: "Button Text", name: "buttonText", widget: "string", default: "Get in Touch"}
               - {label: "Button Link", name: "buttonLink", widget: "string", default: "contact.html"}
           
