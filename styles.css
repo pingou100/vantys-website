@@ -19,12 +19,191 @@ body {
     line-height: 1.6;
     background: var(--white);
     padding-top: 89px; /* Height of fixed header */
+    overflow-x: hidden; /* Prevent horizontal scroll from decorative shapes */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+/* Decorative Background Shapes */
+.bg-shape {
+    position: absolute;
+    border-radius: 60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Hero Section Shapes */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .bg-shape-1 {
+    width: 450px;
+    height: 450px;
+    background: var(--navy);
+    opacity: 0.08;
+    top: -150px;
+    right: -100px;
+    transform: rotate(-25deg);
+}
+
+.hero .bg-shape-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--coral);
+    opacity: 0.10;
+    top: -80px;
+    right: 50px;
+    transform: rotate(15deg);
+}
+
+.hero .bg-shape-3 {
+    width: 280px;
+    height: 280px;
+    background: var(--golden);
+    opacity: 0.06;
+    bottom: -50px;
+    left: -80px;
+    transform: rotate(-15deg);
+}
+
+/* Services Section Shapes */
+.services {
+    position: relative;
+    overflow: hidden;
+}
+
+.services .bg-shape-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--golden);
+    opacity: 0.08;
+    bottom: -120px;
+    left: -100px;
+    transform: rotate(20deg);
+}
+
+.services .bg-shape-2 {
+    width: 320px;
+    height: 320px;
+    background: var(--navy);
+    opacity: 0.06;
+    bottom: -60px;
+    left: 30px;
+    transform: rotate(-10deg);
+}
+
+.services .bg-shape-3 {
+    width: 280px;
+    height: 280px;
+    background: var(--gray);
+    opacity: 0.05;
+    top: 100px;
+    right: -80px;
+    transform: rotate(25deg);
+}
+
+/* Approach Section Shapes */
+.approach {
+    position: relative;
+    overflow: hidden;
+}
+
+.approach .bg-shape-1 {
+    width: 420px;
+    height: 420px;
+    background: var(--coral);
+    opacity: 0.10;
+    top: -100px;
+    left: -120px;
+    transform: rotate(-20deg);
+}
+
+.approach .bg-shape-2 {
+    width: 340px;
+    height: 340px;
+    background: var(--navy);
+    opacity: 0.08;
+    top: -40px;
+    left: 20px;
+    transform: rotate(10deg);
+}
+
+.approach .bg-shape-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--golden);
+    opacity: 0.06;
+    bottom: 50px;
+    right: -90px;
+    transform: rotate(-15deg);
+}
+
+/* Challenge Section Shapes (subtle on dark bg) */
+.challenge {
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge .bg-shape-1 {
+    width: 380px;
+    height: 380px;
+    background: rgba(255, 255, 255, 0.03);
+    opacity: 1;
+    top: -100px;
+    right: -100px;
+    transform: rotate(20deg);
+}
+
+.challenge .bg-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--coral);
+    opacity: 0.08;
+    bottom: -80px;
+    left: -70px;
+    transform: rotate(-15deg);
+}
+
+/* CTA Section Shapes */
+.cta-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section .bg-shape-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--navy);
+    opacity: 0.08;
+    bottom: -120px;
+    right: -100px;
+    transform: rotate(25deg);
+}
+
+.cta-section .bg-shape-2 {
+    width: 320px;
+    height: 320px;
+    background: var(--golden);
+    opacity: 0.10;
+    bottom: -60px;
+    right: 40px;
+    transform: rotate(-10deg);
+}
+
+.cta-section .bg-shape-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--coral);
+    opacity: 0.06;
+    top: 80px;
+    left: -60px;
+    transform: rotate(15deg);
 }
 
 /* Sticky Header */
@@ -123,6 +302,11 @@ nav {
         padding-top: 73px; /* Adjusted for mobile header height */
     }
 
+    /* Hide decorative shapes on mobile */
+    .bg-shape {
+        display: none !important;
+    }
+
     .mobile-menu-toggle {
         display: flex;
     }
@@ -186,6 +370,8 @@ nav {
     color: var(--navy);
     margin-bottom: 24px;
     line-height: 1.2;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 strong {
@@ -198,6 +384,8 @@ nav {
     color: var(--gray);
     margin-bottom: 40px;
     max-width: 700px;
+    position: relative;
+    z-index: 1;
 }
 
 .cta-button {
@@ -209,6 +397,8 @@ nav {
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s;
+    position: relative;
+    z-index: 1;
 }
 
 .cta-button:hover {
@@ -231,6 +421,8 @@ nav {
 .section-header {
     text-align: center;
     margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-header h2 {
@@ -251,6 +443,8 @@ nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 48px;
+    position: relative;
+    z-index: 1;
 }
 
 .service-card {
@@ -298,12 +492,16 @@ nav {
     font-weight: 300;
     margin-bottom: 48px;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .challenge-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .challenge-item {
@@ -336,6 +534,8 @@ nav {
     font-weight: 300;
     color: var(--navy);
     margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
 }
 
 .cta-section p {
@@ -345,6 +545,8 @@ nav {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* Footer */
