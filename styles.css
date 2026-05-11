@@ -11,6 +11,8 @@
     --gray: #697A92;
     --warm-neutral: #F5F3F0;
     --white: #FFFFFF;
+    --light-blue: #8BA5C1; /* Lighter blue from PPTX */
+    --light-coral: #F5B8A0; /* Lighter coral/peach from PPTX */
 }
 
 body {
@@ -46,7 +48,7 @@ body {
     width: 450px;
     height: 450px;
     background: var(--navy);
-    opacity: 0.08;
+    opacity: 0.10;
     top: -150px;
     right: -100px;
     transform: rotate(-25deg);
@@ -55,8 +57,8 @@ body {
 .hero .bg-shape-2 {
     width: 350px;
     height: 350px;
-    background: var(--coral);
-    opacity: 0.10;
+    background: var(--light-blue);
+    opacity: 0.12;
     top: -80px;
     right: 50px;
     transform: rotate(15deg);
@@ -66,7 +68,7 @@ body {
     width: 280px;
     height: 280px;
     background: var(--golden);
-    opacity: 0.06;
+    opacity: 0.08;
     bottom: -50px;
     left: -80px;
     transform: rotate(-15deg);
@@ -82,7 +84,7 @@ body {
     width: 400px;
     height: 400px;
     background: var(--golden);
-    opacity: 0.08;
+    opacity: 0.10;
     bottom: -120px;
     left: -100px;
     transform: rotate(20deg);
@@ -91,8 +93,8 @@ body {
 .services .bg-shape-2 {
     width: 320px;
     height: 320px;
-    background: var(--navy);
-    opacity: 0.06;
+    background: var(--light-coral);
+    opacity: 0.12;
     bottom: -60px;
     left: 30px;
     transform: rotate(-10deg);
@@ -101,14 +103,14 @@ body {
 .services .bg-shape-3 {
     width: 280px;
     height: 280px;
-    background: var(--gray);
-    opacity: 0.05;
+    background: var(--light-blue);
+    opacity: 0.10;
     top: 100px;
     right: -80px;
     transform: rotate(25deg);
 }
 
-/* Approach Section Shapes */
+/* Approach Section Shapes - MOVED TO RIGHT SIDE */
 .approach {
     position: relative;
     overflow: hidden;
@@ -117,31 +119,31 @@ body {
 .approach .bg-shape-1 {
     width: 420px;
     height: 420px;
-    background: var(--coral);
-    opacity: 0.10;
+    background: var(--light-blue);
+    opacity: 0.12;
     top: -100px;
-    left: -120px;
-    transform: rotate(-20deg);
+    right: -120px;
+    transform: rotate(20deg);
 }
 
 .approach .bg-shape-2 {
     width: 340px;
     height: 340px;
     background: var(--navy);
-    opacity: 0.08;
+    opacity: 0.10;
     top: -40px;
-    left: 20px;
-    transform: rotate(10deg);
+    right: 20px;
+    transform: rotate(-10deg);
 }
 
 .approach .bg-shape-3 {
     width: 300px;
     height: 300px;
-    background: var(--golden);
-    opacity: 0.06;
-    bottom: 50px;
+    background: var(--light-coral);
+    opacity: 0.10;
+    bottom: -80px;
     right: -90px;
-    transform: rotate(-15deg);
+    transform: rotate(15deg);
 }
 
 /* Challenge Section Shapes (subtle on dark bg) */
@@ -153,7 +155,7 @@ body {
 .challenge .bg-shape-1 {
     width: 380px;
     height: 380px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     opacity: 1;
     top: -100px;
     right: -100px;
@@ -164,7 +166,7 @@ body {
     width: 300px;
     height: 300px;
     background: var(--coral);
-    opacity: 0.08;
+    opacity: 0.10;
     bottom: -80px;
     left: -70px;
     transform: rotate(-15deg);
@@ -180,7 +182,7 @@ body {
     width: 400px;
     height: 400px;
     background: var(--navy);
-    opacity: 0.08;
+    opacity: 0.10;
     bottom: -120px;
     right: -100px;
     transform: rotate(25deg);
@@ -189,8 +191,8 @@ body {
 .cta-section .bg-shape-2 {
     width: 320px;
     height: 320px;
-    background: var(--golden);
-    opacity: 0.10;
+    background: var(--light-coral);
+    opacity: 0.12;
     bottom: -60px;
     right: 40px;
     transform: rotate(-10deg);
@@ -199,8 +201,8 @@ body {
 .cta-section .bg-shape-3 {
     width: 250px;
     height: 250px;
-    background: var(--coral);
-    opacity: 0.06;
+    background: var(--golden);
+    opacity: 0.10;
     top: 80px;
     left: -60px;
     transform: rotate(15deg);
