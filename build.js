@@ -208,8 +208,11 @@ const html = `<!DOCTYPE html>
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>${content.footer.copyright}</p>
-            <p><a href="${content.footer.linkedinUrl}">LinkedIn</a></p>
+            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
+            <p>
+                <a href="${content.footer.linkedinUrl}">LinkedIn</a> | 
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </p>
         </div>
     </footer>
 
