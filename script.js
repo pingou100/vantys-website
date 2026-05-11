@@ -17,6 +17,23 @@ if (mobileMenuToggle) {
     });
 }
 
+// Sticky header scroll effect
+const header = document.querySelector('header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Add shadow effect when scrolled
+    if (currentScroll > 10) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
+
 // Back to top button functionality
 const backToTopButton = document.getElementById('backToTop');
 
