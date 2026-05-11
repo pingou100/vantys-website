@@ -1,6 +1,26 @@
 const fs = require('fs');
 const path = require('path');
 
+// Simple markdown to HTML converter
+function markdownToHtml(text) {
+    if (!text) return '';
+    
+    // Convert markdown to HTML
+    let html = text
+        // Bold: **text** or __text__
+        .replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+        // Italic: *text* or _text_
+        .replace(/\*([^\*]+)\*/g, '<em>$1</em>')
+        .replace(/_([^_]+)_/g, '<em>$1</em>')
+        // Links: [text](url)
+        .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2">$1</a>')
+        // Line breaks
+        .replace(/\n/g, ' ');
+    
+    return html;
+}
+
 // Read the content JSON
 const contentPath = path.join(__dirname, 'content', 'homepage.json');
 const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
@@ -48,7 +68,7 @@ const html = `<!DOCTYPE html>
     <section class="hero">
         <div class="container">
             <h1>${content.hero.title} <strong>${content.hero.titleHighlight}</strong></h1>
-            <p>${content.hero.description}</p>
+            <p>${markdownToHtml(content.hero.description)}</p>
             <a href="${content.hero.ctaLink}" class="cta-button">${content.hero.ctaText}</a>
         </div>
     </section>
@@ -62,7 +82,7 @@ const html = `<!DOCTYPE html>
                 ${content.challenge.items.map(item => `
                 <div class="challenge-item">
                     <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                    <p>${markdownToHtml(item.description)}</p>
                 </div>`).join('\n                ')}
             </div>
         </div>
@@ -110,7 +130,7 @@ const html = `<!DOCTYPE html>
                         ${icons[index] || icons[0]}
                     </div>
                     <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                    <p>${markdownToHtml(item.description)}</p>
                 </div>`;
                 }).join('\n                ')}
             </div>
@@ -151,7 +171,7 @@ const html = `<!DOCTYPE html>
                         ${icons[index] || icons[0]}
                     </div>
                     <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                    <p>${markdownToHtml(item.description)}</p>
                 </div>`;
                 }).join('\n                ')}
             </div>
@@ -162,7 +182,7 @@ const html = `<!DOCTYPE html>
     <section class="cta-section">
         <div class="container">
             <h2>${content.cta.title}</h2>
-            <p>${content.cta.description}</p>
+            <p>${markdownToHtml(content.cta.description)}</p>
             <a href="${content.cta.buttonLink}" class="cta-button">${content.cta.buttonText}</a>
         </div>
     </section>
