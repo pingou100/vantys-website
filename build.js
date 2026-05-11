@@ -66,6 +66,14 @@ const html = `<!DOCTYPE html>
                 </svg>
                 <span class="logo">vantys</span>
             </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#approach">Approach</a></li>
