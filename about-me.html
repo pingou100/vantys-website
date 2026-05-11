@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - VANTYS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to About Me page */
+        .about-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-photo-container {
+            position: relative;
+        }
+        
+        .profile-photo {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(49, 73, 105, 0.15);
+        }
+        
+        .about-text h1 {
+            color: var(--navy);
+            font-size: 3em;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+        
+        .about-text h1 strong {
+            font-weight: 600;
+            color: var(--coral);
+        }
+        
+        .about-text .tagline {
+            color: var(--gray);
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .content-section {
+            padding: 60px 0;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section:nth-child(even) {
+            background: linear-gradient(135deg, var(--white) 0%, var(--warm-neutral) 100%);
+        }
+        
+        .content-section h2 {
+            color: var(--navy);
+            font-size: 2em;
+            margin-bottom: 24px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content-section p {
+            color: var(--gray);
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content-section strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+        
+        /* Animated shapes for About Hero */
+        .about-hero .bg-shape-1 {
+            width: 420px;
+            height: 340px;
+            background: var(--light-blue);
+            top: -120px;
+            right: -80px;
+            opacity: 0.10;
+            animation: breathe-hero-1 8s ease-in-out infinite;
+        }
+        
+        .about-hero .bg-shape-2 {
+            width: 280px;
+            height: 360px;
+            background: var(--golden);
+            bottom: -100px;
+            left: -60px;
+            opacity: 0.12;
+            animation: breathe-hero-2 8s ease-in-out infinite 2.7s;
+        }
+        
+        /* Animated shapes for content sections */
+        .content-section:nth-child(2) .bg-shape-1 {
+            width: 380px;
+            height: 300px;
+            background: var(--light-coral);
+            top: -80px;
+            right: -100px;
+            opacity: 0.10;
+            animation: breathe-services-1 8s ease-in-out infinite;
+        }
+        
+        .content-section:nth-child(3) .bg-shape-1 {
+            width: 340px;
+            height: 380px;
+            background: var(--navy);
+            bottom: -100px;
+            left: -80px;
+            opacity: 0.08;
+            animation: breathe-approach-1 8s ease-in-out infinite;
+        }
+        
+        .content-section:nth-child(4) .bg-shape-1 {
+            width: 400px;
+            height: 320px;
+            background: var(--golden);
+            top: -60px;
+            right: -90px;
+            opacity: 0.12;
+            animation: breathe-services-2 8s ease-in-out infinite;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .profile-photo-container {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .about-text h1 {
+                font-size: 2.2em;
+            }
+            
+            .about-text .tagline {
+                font-size: 1.1em;
+            }
+            
+            .content-section h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo-container">
+                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
+                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
+                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+                </svg>
+                <span class="logo">vantys</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="about-me.html" style="color: var(--coral); font-weight: 500;">About Me</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        
+        <div class="container">
+            <div class="about-content">
+                <div class="profile-photo-container">
+                    <img src="SB_Olivier_Delannoy_1200x800.jpg" alt="Olivier Delannoy" class="profile-photo">
+                </div>
+                <div class="about-text">
+                    <h1>About <strong>Me</strong></h1>
+                    <p class="tagline">Three decades. One constant: challenging what's next.</p>
+                    <p>A career spent at the strategic intersections—where commercial ambition meets operational reality, where innovation stops being a concept and becomes something deployed at scale, where pharma's traditional playbook meets the demands of a fundamentally different healthcare landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="content-section">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="container">
+            <p>Early days: building the data and analytics infrastructure that would power insight-driven strategies. Mid-career: pioneering omnichannel approaches when the industry was still figuring out what that even meant. Recently: working directly with health systems to redesign care pathways—moving beyond product conversations to genuine healthcare transformation.</p>
+            
+            <p>The pattern? Operating at the edge of what's emerging. Not chasing trends, but recognizing inflection points before they become obvious.</p>
+        </div>
+    </section>
+
+    <!-- What Matters Section -->
+    <section class="content-section">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="container">
+            <h2>What matters</h2>
+            <p>The gap between strategic intent and actual execution is where most transformation efforts stall. Brilliant vision, executive mandate, healthy budgets—none of it matters without the right commercial infrastructure, operating discipline, and capability foundations.</p>
+            
+            <p>Commercial ecosystems built across different markets, therapeutic areas, and levels of organizational maturity. Infrastructure that enables teams to execute with precision. Analytics frameworks that turn data into strategic advantage. Operating models designed for agility, not bureaucracy.</p>
+            
+            <p>Some bets paid off spectacularly. Others taught expensive lessons. All shaped a view of what's coming next.</p>
+        </div>
+    </section>
+
+    <!-- Why Vantys Section -->
+    <section class="content-section">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="container">
+            <h2>Why Vantys exists</h2>
+            <p>Pharma sits at another inflection point.</p>
+            
+            <p>Health systems demand true partnerships, not transactional relationships. Digital channels are multiplying beyond traditional engagement models. AI promises competitive advantage, but most organizations lack the strategic foundations—data architecture, cross-functional alignment, operational agility—to capture real value.</p>
+            
+            <p>These transitions have been navigated before, just with different enabling technologies. The difference between organizations that genuinely transform and those that just renovate the facade? It's visible from experience.</p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2>How it works</h2>
+            <p>No theoretical frameworks that look impressive but fail in practice. No transformation theatre.</p>
+            
+            <p>Identifying the specific strategic and operational gaps limiting impact. Building the capabilities required to close them. Ensuring organizations can sustain them independently.</p>
+            
+            <p><strong>Strategic. Pragmatic. Built to compound.</strong></p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="container">
+            <h2>Let's talk about what's next</h2>
+            <p>Ready to build the capabilities that move your organization forward?</p>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 VANTYS. Pharmaceutical Business Operations Consulting.</p>
+            <p><a href="https://linkedin.com/in/odelannoy">LinkedIn</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
