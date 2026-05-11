@@ -30,12 +30,46 @@ body {
     padding: 0 24px;
 }
 
+/* ========================================
+   BREATHING ANIMATION - Subtle Organic Movement
+   ======================================== */
+
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: var(--shape-opacity-min);
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: var(--shape-opacity-max);
+    }
+}
+
+/* To disable animation, uncomment this line:
+   .bg-shape { animation: none !important; }
+*/
+
 /* Decorative Background Shapes */
 .bg-shape {
     position: absolute;
     border-radius: 60px;
     pointer-events: none;
     z-index: 0;
+    animation: breathe 8s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+/* Stagger animation timing for organic feel */
+.bg-shape-1 {
+    animation-delay: 0s;
+}
+
+.bg-shape-2 {
+    animation-delay: 2.7s;
+}
+
+.bg-shape-3 {
+    animation-delay: 5.3s;
 }
 
 /* Hero Section Shapes */
@@ -45,33 +79,39 @@ body {
 }
 
 .hero .bg-shape-1 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.12;
     width: 450px;
     height: 450px;
     background: var(--navy);
     opacity: 0.10;
     top: -150px;
     right: -100px;
-    transform: rotate(-25deg);
+    transform-origin: center;
 }
 
 .hero .bg-shape-2 {
+    --shape-opacity-min: 0.12;
+    --shape-opacity-max: 0.15;
     width: 350px;
     height: 350px;
     background: var(--light-blue);
     opacity: 0.12;
     top: -80px;
     right: 50px;
-    transform: rotate(15deg);
+    transform-origin: center;
 }
 
 .hero .bg-shape-3 {
+    --shape-opacity-min: 0.08;
+    --shape-opacity-max: 0.11;
     width: 280px;
     height: 280px;
     background: var(--golden);
     opacity: 0.08;
     bottom: -50px;
     left: -80px;
-    transform: rotate(-15deg);
+    transform-origin: center;
 }
 
 /* Services Section Shapes */
@@ -81,33 +121,39 @@ body {
 }
 
 .services .bg-shape-1 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 400px;
     height: 400px;
     background: var(--golden);
     opacity: 0.10;
     bottom: -120px;
     left: -100px;
-    transform: rotate(20deg);
+    transform-origin: center;
 }
 
 .services .bg-shape-2 {
+    --shape-opacity-min: 0.12;
+    --shape-opacity-max: 0.15;
     width: 320px;
     height: 320px;
     background: var(--light-coral);
     opacity: 0.12;
     bottom: -60px;
     left: 30px;
-    transform: rotate(-10deg);
+    transform-origin: center;
 }
 
 .services .bg-shape-3 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 280px;
     height: 280px;
     background: var(--light-blue);
     opacity: 0.10;
     top: 100px;
     right: -80px;
-    transform: rotate(25deg);
+    transform-origin: center;
 }
 
 /* Approach Section Shapes - MOVED TO RIGHT SIDE */
@@ -117,33 +163,39 @@ body {
 }
 
 .approach .bg-shape-1 {
+    --shape-opacity-min: 0.12;
+    --shape-opacity-max: 0.15;
     width: 420px;
     height: 420px;
     background: var(--light-blue);
     opacity: 0.12;
     top: -100px;
     right: -120px;
-    transform: rotate(20deg);
+    transform-origin: center;
 }
 
 .approach .bg-shape-2 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 340px;
     height: 340px;
     background: var(--navy);
     opacity: 0.10;
     top: -40px;
     right: 20px;
-    transform: rotate(-10deg);
+    transform-origin: center;
 }
 
 .approach .bg-shape-3 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 300px;
     height: 300px;
     background: var(--light-coral);
     opacity: 0.10;
     bottom: -80px;
     right: -90px;
-    transform: rotate(15deg);
+    transform-origin: center;
 }
 
 /* Challenge Section Shapes (subtle on dark bg) */
@@ -153,23 +205,27 @@ body {
 }
 
 .challenge .bg-shape-1 {
+    --shape-opacity-min: 0.04;
+    --shape-opacity-max: 0.06;
     width: 380px;
     height: 380px;
     background: rgba(255, 255, 255, 0.04);
     opacity: 1;
     top: -100px;
     right: -100px;
-    transform: rotate(20deg);
+    transform-origin: center;
 }
 
 .challenge .bg-shape-2 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 300px;
     height: 300px;
     background: var(--coral);
     opacity: 0.10;
     bottom: -80px;
     left: -70px;
-    transform: rotate(-15deg);
+    transform-origin: center;
 }
 
 /* CTA Section Shapes */
@@ -179,33 +235,39 @@ body {
 }
 
 .cta-section .bg-shape-1 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 400px;
     height: 400px;
     background: var(--navy);
     opacity: 0.10;
     bottom: -120px;
     right: -100px;
-    transform: rotate(25deg);
+    transform-origin: center;
 }
 
 .cta-section .bg-shape-2 {
+    --shape-opacity-min: 0.12;
+    --shape-opacity-max: 0.15;
     width: 320px;
     height: 320px;
     background: var(--light-coral);
     opacity: 0.12;
     bottom: -60px;
     right: 40px;
-    transform: rotate(-10deg);
+    transform-origin: center;
 }
 
 .cta-section .bg-shape-3 {
+    --shape-opacity-min: 0.10;
+    --shape-opacity-max: 0.13;
     width: 250px;
     height: 250px;
     background: var(--golden);
     opacity: 0.10;
     top: 80px;
     left: -60px;
-    transform: rotate(15deg);
+    transform-origin: center;
 }
 
 /* Sticky Header */
