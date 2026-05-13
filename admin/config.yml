@@ -78,6 +78,22 @@ collections:
               - {label: "Copyright Text", name: "copyright", widget: "string"}
               - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
 
+      - label: "Case Studies Page"
+        name: "case-studies-index"
+        file: "content/case-studies-index.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", hint: "Main heading — the highlighted part is set separately below"}
+          - {label: "Title Highlight", name: "titleHighlight", widget: "string", hint: "The portion of the title shown in coral colour"}
+          - {label: "Subtitle", name: "subtitle", widget: "text", hint: "Short descriptor shown under the title"}
+          - label: "Bottom CTA"
+            name: "cta"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+              - {label: "Button Text", name: "buttonText", widget: "string"}
+              - {label: "Button Link", name: "buttonLink", widget: "string"}
+
       - label: "About Me Page"
         name: "about"
         file: "content/about-me.json"
@@ -131,24 +147,12 @@ collections:
       - {label: "Short Title", name: "shortTitle", widget: "string"}
       - {label: "Teaser", name: "teaser", widget: "text"}
       - {label: "Tags", name: "tags", widget: "list"}
-
       - label: "Pathway Illustration"
         name: "pathway"
         widget: "object"
-        hint: "Visual diagram shown between the hero and the body text"
         fields:
-          - label: "Custom SVG image"
-            name: "image"
-            widget: "image"
-            required: false
-            hint: "Upload a custom SVG (1200x400px, transparent background, navy #314969 + golden #F2AF4C). Leave empty to use the default generated illustration."
-          - label: "Image alt text"
-            name: "alt"
-            widget: "string"
-            required: false
-            default: "Programme transformation pathway"
-            hint: "Describe the diagram for accessibility"
-
+          - {label: "Custom SVG image", name: "image", widget: "image", required: false, hint: "Upload a custom SVG (1200x400px, transparent background, navy #314969 + golden #F2AF4C). Leave empty to use the default generated illustration."}
+          - {label: "Image alt text", name: "alt", widget: "string", required: false, default: "Programme transformation pathway"}
       - label: "The Challenge"
         name: "challenge"
         widget: "object"
@@ -178,9 +182,7 @@ collections:
             fields:
               - {label: "Number / Metric", name: "number", widget: "string"}
               - {label: "Label", name: "label", widget: "string"}
-          - label: "Outcome Detail Bullets"
-            name: "details"
-            widget: "list"
+          - {label: "Outcome Detail Bullets", name: "details", widget: "list"}
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"

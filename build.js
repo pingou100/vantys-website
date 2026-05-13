@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// ─── Markdown → HTML ──────────────────────────────────────────────────────
+// ─── Markdown → HTML ───────────────────────────────────────────────────────
 function markdownToHtml(text) {
     if (!text) return '';
     return text
@@ -15,10 +15,11 @@ function markdownToHtml(text) {
 }
 
 // ─── Read content JSON ──────────────────────────────────────────────────────
-const homepageContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
-const aboutContent    = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+const homepageContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
+const aboutContent      = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+const csIndexContent    = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'case-studies-index.json'), 'utf8'));
 
-// ─── Shared fragments ─────────────────────────────────────────────────────────
+// ─── Shared fragments ───────────────────────────────────────────────────────
 const LOGO_SVG = `<svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
     <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
@@ -150,7 +151,7 @@ ${footerHtml('')}
 </body>
 </html>`;
 
-// ─── PAGE: about-me.html ─────────────────────────────────────────────────────
+// ─── PAGE: about-me.html ────────────────────────────────────────────────────
 const aboutHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,7 +180,7 @@ ${footerHtml('')}
 </body>
 </html>`;
 
-// ─── CASE STUDIES ──────────────────────────────────────────────────────────
+// ─── CASE STUDIES ───────────────────────────────────────────────────────────
 const csCmsDir = path.join(__dirname, 'content', 'case-studies');
 const csOutDir = path.join(__dirname, 'case-studies');
 if (!fs.existsSync(csOutDir)) fs.mkdirSync(csOutDir);
@@ -189,7 +190,7 @@ const caseStudies = csFiles
     .map(f => JSON.parse(fs.readFileSync(path.join(csCmsDir, f), 'utf8')))
     .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
-// ─── Pathway block: custom image OR fallback hardcoded SVG ───────────────────
+// ─── Pathway block: custom image OR fallback SVG ────────────────────────────
 const FALLBACK_PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
     <title>Healthcare transformation pathway</title>
     <desc>Four programme pillars leading to measurable outcomes.</desc>
@@ -261,20 +262,11 @@ function pathwayBlock(cs) {
     const img = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
     const alt = (cs.pathway && cs.pathway.alt) || 'Programme transformation pathway';
     if (img) {
-        // Custom uploaded SVG — rendered as <img> so it's isolated and scales cleanly
-        return `<img
-            src="${img}"
-            alt="${alt}"
-            class="pathway-custom-img"
-            width="1200"
-            height="400"
-        />`;
+        return `<img src="${img}" alt="${alt}" class="pathway-custom-img" width="1200" height="400"/>`;
     }
-    // Fallback: hardcoded inline SVG
     return FALLBACK_PATHWAY_SVG;
 }
 
-// Approach step icons
 const STEP_ICONS = [
     `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="4" height="8" rx="1.5" fill="#314969" opacity="0.4"/><rect x="9" y="7" width="4" height="12" rx="1.5" fill="#314969" opacity="0.7"/><rect x="15" y="4" width="4" height="15" rx="1.5" fill="#314969"/><circle cx="18" cy="4" r="3.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="20.5" y1="6.5" x2="22" y2="8" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/></svg>`,
     `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M2 19 Q2 13 8 13 Q14 13 14 19" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M15 11 Q18 11 19 13" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="8" r="3" fill="none" stroke="#F2AF4C" stroke-width="1.5"/></svg>`,
@@ -282,25 +274,20 @@ const STEP_ICONS = [
     `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M4 20 Q4 13 11 13 Q18 13 18 20" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="8" y1="15" x2="14" y2="15" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="12.5" x2="11" y2="17.5" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/></svg>`,
 ];
 
-// ─── Build case study DETAIL page ─────────────────────────────────────────────
+// ─── Case study DETAIL page ─────────────────────────────────────────────────
 function buildDetailPage(cs) {
     const ARROW      = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const ARROW_LEFT = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-    const tagHtml     = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
-    const statsHtml   = (cs.outcomes.stats || []).map(s => `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`).join('');
-    const detailsHtml = (cs.outcomes.details || []).map(d => `<li>${typeof d === 'object' ? d.detail : d}</li>`).join('');
+    const tagHtml      = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
+    const statsHtml    = (cs.outcomes.stats || []).map(s => `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`).join('');
+    const detailsHtml  = (cs.outcomes.details || []).map(d => `<li>${typeof d === 'object' ? d.detail : d}</li>`).join('');
     const approachHtml = (cs.approach.items || []).map((item, i) =>
         `<li><div class="approach-icon">${STEP_ICONS[i] || STEP_ICONS[0]}</div><div><strong>${item.title}</strong><span>${item.description}</span></div></li>`
     ).join('');
-    const glanceHtml  = (cs.sidebar.atAGlance || []).map(x => `<li>${typeof x === 'object' ? x.item : x}</li>`).join('');
-    const capHtml     = (cs.sidebar.capabilities || []).map(x => `<li>${typeof x === 'object' ? x.capability : x}</li>`).join('');
-
-    // pathway: custom img gets extra style; fallback SVG uses its own sizing
+    const glanceHtml = (cs.sidebar.atAGlance || []).map(x => `<li>${typeof x === 'object' ? x.item : x}</li>`).join('');
+    const capHtml    = (cs.sidebar.capabilities || []).map(x => `<li>${typeof x === 'object' ? x.capability : x}</li>`).join('');
     const hasCustomImg = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
-    const pathwayImgStyle = hasCustomImg
-        ? `<style>.pathway-custom-img{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto}</style>`
-        : '';
+    const pathwayImgStyle = hasCustomImg ? `<style>.pathway-custom-img{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto}</style>` : '';
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -362,28 +349,21 @@ function buildDetailPage(cs) {
 <body>
 ${BACK_TO_TOP}
 ${navHtml('case-studies/', '../')}
-
 <section class="cs-detail-hero">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
     <div class="container">
-        <div class="breadcrumb">
-            <a href="../index.html">Home</a><span>/</span>
-            <a href="./">Case Studies</a><span>/</span>
-            ${cs.shortTitle}
-        </div>
+        <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="./">Case Studies</a><span>/</span>${cs.shortTitle}</div>
         <h1>${cs.title}</h1>
         <div class="cs-meta-bar">${tagHtml}</div>
     </div>
 </section>
-
 <section class="pathway-section">
     <div class="container">
         <h2>The <strong>Transformation Pathway</strong></h2>
         ${pathwayBlock(cs)}
     </div>
 </section>
-
 <section class="cs-body">
     <div class="container">
         <div class="cs-layout">
@@ -414,7 +394,6 @@ ${navHtml('case-studies/', '../')}
         </div>
     </div>
 </section>
-
 <div class="cs-nav-bar">
     <div class="container">
         <div style="display:flex;justify-content:space-between;align-items:center">
@@ -423,18 +402,24 @@ ${navHtml('case-studies/', '../')}
         </div>
     </div>
 </div>
-
 ${footerHtml('../')}
 <script src="../script.js"></script>
 </body>
 </html>`;
 }
 
-// ─── Build case studies LISTING page ─────────────────────────────────────────
+// ─── Case studies LISTING page ──────────────────────────────────────────────
 function buildListingPage(studies) {
     const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const featured = studies.find(s => s.featured);
     const rest = studies.filter(s => !s.featured);
+
+    // Build title: replace highlight portion in coral
+    const rawTitle = csIndexContent.title || 'From Strategy to Measurable Impact';
+    const highlight = csIndexContent.titleHighlight || '';
+    const listingTitle = highlight && rawTitle.includes(highlight)
+        ? rawTitle.replace(highlight, `<strong>${highlight}</strong>`)
+        : `<strong>${rawTitle}</strong>`;
 
     const featuredHtml = featured ? `
     <div class="cs-featured">
@@ -507,8 +492,8 @@ ${navHtml('case-studies/', '../')}
 <section class="cs-hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
-        <h1>From Strategy to <strong>Measurable Impact</strong></h1>
-        <p>How we help pharmaceutical and biotech companies bridge the gap between strategic ambition and operational results.</p>
+        <h1>${listingTitle}</h1>
+        <p>${csIndexContent.subtitle}</p>
     </div>
 </section>
 <section class="cs-section">
@@ -520,9 +505,9 @@ ${navHtml('case-studies/', '../')}
 <section class="cta-section">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
-        <h2>Ready to Transform Your Operations?</h2>
-        <p>Let us discuss how we can help you connect strategy to execution.</p>
-        <a href="../contact.html" class="cta-button">Get in Touch</a>
+        <h2>${csIndexContent.cta.title}</h2>
+        <p>${csIndexContent.cta.description}</p>
+        <a href="${csIndexContent.cta.buttonLink}" class="cta-button">${csIndexContent.cta.buttonText}</a>
     </div>
 </section>
 ${footerHtml('../')}
@@ -541,6 +526,7 @@ caseStudies.forEach(cs => {
 });
 
 fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
+
 console.log('✅ index.html');
 console.log('✅ about-me.html');
 console.log('✅ case-studies/index.html');
