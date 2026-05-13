@@ -2,6 +2,17 @@
   publish = "."
   command = "node build.js"
 
+# Let sub-paths work without the catch-all redirect eating them
+[[redirects]]
+  from = "/case-studies"
+  to = "/case-studies/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/case-studies/*"
+  to = "/case-studies/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

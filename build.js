@@ -1,41 +1,90 @@
 const fs = require('fs');
 const path = require('path');
 
-// Simple markdown to HTML converter
+// ─── Markdown → HTML (simple) ───────────────────────────────────────────────
 function markdownToHtml(text) {
     if (!text) return '';
-    
-    // Convert markdown to HTML
-    let html = text
-        // Bold: **text** or __text__
-        .replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>')
+    return text
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/__([^_]+)__/g, '<strong>$1</strong>')
-        // Italic: *text* or _text_
-        .replace(/\*([^\*]+)\*/g, '<em>$1</em>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
         .replace(/_([^_]+)_/g, '<em>$1</em>')
-        // Links: [text](url)
-        .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2">$1</a>')
-        // Paragraph breaks: double line breaks
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
         .replace(/\n\n/g, '</p><p>')
-        // Single line breaks
         .replace(/\n/g, '<br>');
-    
-    return html;
 }
 
-// Read the content JSONs
-const homepageContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
-const aboutContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+// ─── Read content JSON ───────────────────────────────────────────────────────
+const homepageContent  = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
+const aboutContent     = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
 
-// Build hero title - handle empty title gracefully
-let heroTitle = '';
-if (homepageContent.hero.title && homepageContent.hero.title.trim()) {
-    heroTitle = `${homepageContent.hero.title} <strong>${homepageContent.hero.titleHighlight}</strong>`;
-} else {
-    heroTitle = `<strong>${homepageContent.hero.titleHighlight}</strong>`;
+// ─── Shared HTML fragments ───────────────────────────────────────────────────
+const LOGO_SVG = `<svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+    <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
+    <rect x="16" y="6"  width="5" height="20" rx="2.5" fill="#F07B4A"/>
+    <rect x="23" y="6"  width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+</svg>`;
+
+const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>`;
+
+function navHtml(activeHref, prefix = '') {
+    const links = [
+        { href: `${prefix}index.html#services`,  label: 'Services' },
+        { href: `${prefix}index.html#approach`,  label: 'Approach' },
+        { href: `${prefix}case-studies/`,        label: 'Case Studies' },
+        { href: `${prefix}about-me.html`,        label: 'About Me' },
+        { href: `${prefix}contact.html`,         label: 'Contact' },
+    ];
+    const items = links.map(l =>
+        `<li><a href="${l.href}"${l.href === activeHref ? ' class="active"' : ''}>${l.label}</a></li>`
+    ).join('\n                ');
+    return `<header>
+    <nav class="container">
+        <div class="logo-container">
+            ${LOGO_SVG}
+            <a href="${prefix}index.html" style="text-decoration:none" class="logo">vantys</a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            ${items}
+        </ul>
+    </nav>
+</header>`;
 }
 
-// ===== GENERATE INDEX.HTML =====
+function footerHtml(prefix = '') {
+    return `<footer>
+    <div class="container">
+        <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
+        <p><a href="${homepageContent.footer.linkedinUrl}">LinkedIn</a> | <a href="${prefix}privacy-policy.html">Privacy Policy</a></p>
+    </div>
+</footer>`;
+}
+
+// ─── PAGE: index.html ────────────────────────────────────────────────────────
+let heroTitle = homepageContent.hero.title && homepageContent.hero.title.trim()
+    ? `${homepageContent.hero.title} <strong>${homepageContent.hero.titleHighlight}</strong>`
+    : `<strong>${homepageContent.hero.titleHighlight}</strong>`;
+
+const serviceIcons = [
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="lc"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rc"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rc)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.4"/><line x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.7"/><line x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle cx="80" cy="35" r="3" fill="#F07B4A"/></svg>`,
+];
+const approachIcons = [
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
+];
+
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,147 +95,68 @@ const indexHtml = `<!DOCTYPE html>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+${BACK_TO_TOP}
+${navHtml('', '')}
+
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h1>${heroTitle}</h1>
+        <p>${markdownToHtml(homepageContent.hero.description)}</p>
+        <a href="${homepageContent.hero.ctaLink}" class="cta-button">${homepageContent.hero.ctaText}</a>
     </div>
+</section>
 
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
-                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
-                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
-                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                </svg>
-                <span class="logo">vantys</span>
-            </div>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#approach">Approach</a></li>
-                <li><a href="about-me.html">About Me</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <h1>${heroTitle}</h1>
-            <p>${markdownToHtml(homepageContent.hero.description)}</p>
-            <a href="${homepageContent.hero.ctaLink}" class="cta-button">${homepageContent.hero.ctaText}</a>
+<section class="challenge" id="challenge">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
+    <div class="container">
+        <h2>${homepageContent.challenge.title}</h2>
+        <div class="challenge-grid">
+            ${homepageContent.challenge.items.map(item => `<div class="challenge-item"><h3>${item.title}</h3><p>${markdownToHtml(item.description)}</p></div>`).join('\n            ')}
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="challenge" id="challenge">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="container">
-            <h2>${homepageContent.challenge.title}</h2>
-            <div class="challenge-grid">
-                ${homepageContent.challenge.items.map(item => `
-                <div class="challenge-item">
-                    <h3>${item.title}</h3>
-                    <p>${markdownToHtml(item.description)}</p>
-                </div>`).join('')}
-            </div>
+<section class="services" id="services">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <div class="section-header"><h2>${homepageContent.services.title}</h2><p>${homepageContent.services.subtitle}</p></div>
+        <div class="services-grid">
+            ${homepageContent.services.items.map((item, i) => `<div class="service-card"><div class="icon-container">${serviceIcons[i] || serviceIcons[0]}</div><h3>${item.title}</h3><p>${markdownToHtml(item.description)}</p></div>`).join('\n            ')}
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="services" id="services">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2>${homepageContent.services.title}</h2>
-                <p>${homepageContent.services.subtitle}</p>
-            </div>
-            <div class="services-grid">
-                ${homepageContent.services.items.map((item, index) => {
-                    const icons = [
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="leftCircle"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rightCircle"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rightCircle)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.4"/><line x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.7"/><line x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle cx="80" cy="35" r="3" fill="#F07B4A"/></svg>`
-                    ];
-                    return `<div class="service-card"><div class="icon-container">${icons[index] || icons[0]}</div><h3>${item.title}</h3><p>${markdownToHtml(item.description)}</p></div>`;
-                }).join('')}
-            </div>
+<section class="approach" id="approach">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <div class="section-header"><h2>${homepageContent.approach.title}</h2><p>${homepageContent.approach.subtitle}</p></div>
+        <div class="services-grid">
+            ${homepageContent.approach.items.map((item, i) => `<div class="service-card"><div class="icon-container">${approachIcons[i] || approachIcons[0]}</div><h3>${item.title}</h3><p>${markdownToHtml(item.description)}</p></div>`).join('\n            ')}
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="approach" id="approach">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2>${homepageContent.approach.title}</h2>
-                <p>${homepageContent.approach.subtitle}</p>
-            </div>
-            <div class="services-grid">
-                ${homepageContent.approach.items.map((item, index) => {
-                    const icons = [
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-                        `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`
-                    ];
-                    return `<div class="service-card"><div class="icon-container">${icons[index] || icons[0]}</div><h3>${item.title}</h3><p>${markdownToHtml(item.description)}</p></div>`;
-                }).join('')}
-            </div>
-        </div>
-    </section>
+<section class="cta-section">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h2>${homepageContent.cta.title}</h2>
+        <p>${markdownToHtml(homepageContent.cta.description)}</p>
+        <a href="${homepageContent.cta.buttonLink}" class="cta-button">${homepageContent.cta.buttonText}</a>
+    </div>
+</section>
 
-    <section class="cta-section">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <h2>${homepageContent.cta.title}</h2>
-            <p>${markdownToHtml(homepageContent.cta.description)}</p>
-            <a href="${homepageContent.cta.buttonLink}" class="cta-button">${homepageContent.cta.buttonText}</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-            <p><a href="${homepageContent.footer.linkedinUrl}">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+${footerHtml('')}
+<script src="script.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => { if (!user) { window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; }); } });
+  }
+</script>
 </body>
 </html>`;
 
-// ===== GENERATE ABOUT-ME.HTML =====
+// ─── PAGE: about-me.html ─────────────────────────────────────────────────────
 const aboutHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,67 +166,389 @@ const aboutHtml = `<!DOCTYPE html>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+${BACK_TO_TOP}
+${navHtml('about-me.html', '')}
+
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container" style="max-width:1200px">
+        <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap">
+            <img src="${aboutContent.photo}" alt="${aboutContent.title}" style="flex:0 0 320px;width:320px;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1)">
+            <div style="flex:1;min-width:300px">
+                <h1 style="margin-bottom:30px">${aboutContent.title}</h1>
+                ${aboutContent.paragraphs.map(p => `<p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">${markdownToHtml(p.text)}</p>`).join('')}
+            </div>
+        </div>
     </div>
+</section>
 
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
-                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
-                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
-                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                </svg>
-                <a href="index.html" style="text-decoration: none;" class="logo">vantys</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#approach">Approach</a></li>
-                <li><a href="about-me.html">About Me</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container" style="max-width: 1200px;">
-            <div style="display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap;">
-                <img src="${aboutContent.photo}" alt="${aboutContent.title}" style="flex: 0 0 320px; width: 320px; height: auto; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
-                <div style="flex: 1; min-width: 300px;">
-                    <h1 style="margin-bottom: 30px;">${aboutContent.title}</h1>
-                    ${aboutContent.paragraphs.map(p => `<p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 24px;">${markdownToHtml(p.text)}</p>`).join('')}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-            <p><a href="${homepageContent.footer.linkedinUrl}">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+${footerHtml('')}
+<script src="script.js"></script>
 </body>
 </html>`;
 
-// Write files
+// ─── CASE STUDIES ────────────────────────────────────────────────────────────
+const csCmsDir  = path.join(__dirname, 'content', 'case-studies');
+const csOutDir  = path.join(__dirname, 'case-studies');
+
+if (!fs.existsSync(csOutDir)) fs.mkdirSync(csOutDir);
+
+const csFiles = fs.readdirSync(csCmsDir).filter(f => f.endsWith('.json'));
+const caseStudies = csFiles.map(f => JSON.parse(fs.readFileSync(path.join(csCmsDir, f), 'utf8')));
+
+// Sort: featured first, then alphabetical
+caseStudies.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+// Approach step icons (navy + golden, matching pathway SVG)
+const STEP_ICONS = [
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="4" height="8" rx="1.5" fill="#314969" opacity="0.4"/><rect x="9" y="7" width="4" height="12" rx="1.5" fill="#314969" opacity="0.7"/><rect x="15" y="4" width="4" height="15" rx="1.5" fill="#314969"/><circle cx="18" cy="4" r="3.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="20.5" y1="6.5" x2="22" y2="8" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M2 19 Q2 13 8 13 Q14 13 14 19" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M15 11 Q18 11 19 13" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="8" r="3" fill="none" stroke="#F2AF4C" stroke-width="1.5"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="2" width="12" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><polyline points="5,10 7,10 8,7 9,13 10,10 11,10 12,8 13,10 15,10" fill="none" stroke="#314969" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6 Q19 9 17 12" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M4 20 Q4 13 11 13 Q18 13 18 20" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="8" y1="15" x2="14" y2="15" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="12.5" x2="11" y2="17.5" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/></svg>`,
+];
+
+const PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>Healthcare transformation pathway</title>
+    <desc>Four programme pillars leading to measurable outcomes.</desc>
+    <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#F2AF4C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+    <g transform="translate(18,30)">
+        <circle cx="60" cy="50" r="28" fill="none" stroke="#314969" stroke-width="2"/>
+        <rect x="46" y="50" width="6" height="16" rx="2" fill="#314969" opacity="0.35"/>
+        <rect x="55" y="42" width="6" height="24" rx="2" fill="#314969" opacity="0.6"/>
+        <rect x="64" y="36" width="6" height="30" rx="2" fill="#314969"/>
+        <line x1="43" y1="66" x2="74" y2="66" stroke="#314969" stroke-width="1.2" opacity="0.4"/>
+        <line x1="83" y1="74" x2="97" y2="88" stroke="#314969" stroke-width="3" stroke-linecap="round"/>
+        <text x="60" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#314969">Risk Stratification</text>
+        <text x="60" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">ML across population</text>
+        <text x="60" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">health datasets</text>
+    </g>
+    <line x1="145" y1="80" x2="172" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
+    <g transform="translate(173,30)">
+        <circle cx="44" cy="28" r="11" fill="none" stroke="#314969" stroke-width="2"/>
+        <path d="M28 72 Q28 50 44 50 Q60 50 60 72" fill="none" stroke="#314969" stroke-width="2"/>
+        <circle cx="76" cy="28" r="11" fill="none" stroke="#F2AF4C" stroke-width="2"/>
+        <path d="M60 72 Q60 50 76 50 Q92 50 92 72" fill="none" stroke="#F2AF4C" stroke-width="2"/>
+        <circle cx="82" cy="68" r="14" fill="#314969" opacity="0.07" stroke="#314969" stroke-width="1.5"/>
+        <path d="M75 68 L80 73 L92 61" fill="none" stroke="#314969" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="60" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#314969">Patient Engagement</text>
+        <text x="60" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">Call centre + digital</text>
+        <text x="60" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">screening pathway</text>
+    </g>
+    <line x1="295" y1="80" x2="322" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
+    <g transform="translate(323,20)">
+        <rect x="26" y="14" width="56" height="72" rx="6" fill="none" stroke="#314969" stroke-width="2"/>
+        <rect x="32" y="20" width="44" height="48" rx="3" fill="#314969" opacity="0.05"/>
+        <polyline points="34,46 39,46 43,34 47,58 51,46 55,46 59,40 63,46 68,46 72,46" fill="none" stroke="#314969" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="54" cy="80" r="4" fill="none" stroke="#314969" stroke-width="1.5"/>
+        <path d="M88 18 Q92 12 96 18 Q100 25 95 28 Q88 25 88 18Z" fill="#F2AF4C" opacity="0.8"/>
+        <text x="57" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#314969">Remote Monitoring</text>
+        <text x="57" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">Connected devices +</text>
+        <text x="57" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">clinical escalation</text>
+    </g>
+    <line x1="443" y1="80" x2="470" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
+    <g transform="translate(471,20)">
+        <circle cx="57" cy="18" r="13" fill="none" stroke="#314969" stroke-width="2"/>
+        <circle cx="57" cy="18" r="7" fill="#314969" opacity="0.1"/>
+        <line x1="57" y1="31" x2="57" y2="40" stroke="#314969" stroke-width="2"/>
+        <path d="M30 90 Q30 58 57 58 Q84 58 84 90" fill="none" stroke="#314969" stroke-width="2"/>
+        <path d="M42 60 Q38 70 43 78 Q50 86 57 78 Q64 86 71 78 Q76 70 72 60" fill="none" stroke="#F2AF4C" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="54" y1="66" x2="60" y2="66" stroke="#F2AF4C" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="57" y1="63" x2="57" y2="69" stroke="#F2AF4C" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="57" y="110" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#314969">Pathway Redesign</text>
+        <text x="57" y="124" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">Novel therapies in</text>
+        <text x="57" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">guideline-concordant care</text>
+    </g>
+    <rect x="18" y="168" width="644" height="120" rx="12" fill="#314969" opacity="0.05" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
+    <text x="36" y="186" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#314969" opacity="0.4" letter-spacing="1.5">OUTCOMES WITHIN 18 MONTHS</text>
+    <text x="190" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#314969">+18%</text>
+    <text x="190" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#314969">At-risk patients identified</text>
+    <text x="190" y="262" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">vs standard-of-care</text>
+    <line x1="340" y1="178" x2="340" y2="278" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
+    <text x="400" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#F2AF4C">&#x2212;7%</text>
+    <text x="400" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#314969">Cardiovascular</text>
+    <text x="400" y="262" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">hospitalisations</text>
+    <line x1="530" y1="178" x2="530" y2="278" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
+    <text x="606" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#314969">18mo</text>
+    <text x="606" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#314969">Sustainable partnership</text>
+    <text x="606" y="262" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#697A92">model established</text>
+    <line x1="340" y1="152" x2="340" y2="168" stroke="#F2AF4C" stroke-width="1.5" stroke-dasharray="4 3"/>
+</svg>`;
+
+// ─── Build case study DETAIL pages ───────────────────────────────────────────
+function buildDetailPage(cs) {
+    const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const ARROW_LEFT = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    const tagHtml = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
+    const statsHtml = (cs.outcomes.stats || []).map(s =>
+        `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`
+    ).join('');
+    const detailsHtml = (cs.outcomes.details || []).map(d =>
+        `<li>${d.detail !== undefined ? d.detail : d}</li>`
+    ).join('');
+    const approachHtml = (cs.approach.items || []).map((item, i) =>
+        `<li>
+            <div class="approach-icon">${STEP_ICONS[i] || STEP_ICONS[0]}</div>
+            <div><strong>${item.title}</strong><span>${item.description}</span></div>
+        </li>`
+    ).join('');
+    const glanceHtml = (cs.sidebar.atAGlance || []).map(x =>
+        `<li>${x.item !== undefined ? x.item : x}</li>`
+    ).join('');
+    const capHtml = (cs.sidebar.capabilities || []).map(x =>
+        `<li>${x.capability !== undefined ? x.capability : x}</li>`
+    ).join('');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${cs.title} | VANTYS</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%);position:relative;overflow:hidden}
+        .cs-detail-hero .bg-shape-1{width:480px;height:380px;background:var(--navy);top:-150px;right:-100px;opacity:.07;transform:rotate(-37deg)}
+        .cs-detail-hero .bg-shape-2{width:300px;height:380px;background:var(--golden);bottom:-80px;left:-60px;opacity:.07;transform:rotate(19deg)}
+        .breadcrumb{font-size:.88em;color:var(--gray);margin-bottom:28px;position:relative;z-index:1}
+        .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--coral)}
+        .breadcrumb span{margin:0 8px;opacity:.5}
+        .cs-detail-hero h1{font-size:2.6em;font-weight:300;color:var(--navy);line-height:1.25;max-width:820px;margin-bottom:24px;position:relative;z-index:1}
+        .cs-detail-hero h1 strong{font-weight:600;color:var(--coral)}
+        .cs-meta-bar{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+        .cs-tag{display:inline-block;padding:6px 14px;border-radius:20px;font-size:.82em;font-weight:500;background:rgba(49,73,105,.07);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
+        .pathway-section{padding:60px 0;background:linear-gradient(135deg,var(--white) 0%,var(--warm-neutral) 100%);overflow:hidden}
+        .pathway-section h2{font-size:1.4em;font-weight:400;color:var(--navy);margin-bottom:40px;text-align:center}
+        .pathway-section h2 strong{font-weight:600;color:var(--coral)}
+        .cs-body{padding:80px 0 100px}
+        .cs-layout{display:grid;grid-template-columns:1fr 340px;gap:80px;align-items:start}
+        .cs-content-block{margin-bottom:60px}
+        .section-eyebrow{display:block;font-size:.75em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);margin-bottom:12px}
+        .cs-content-block h2{font-size:1.7em;font-weight:400;color:var(--navy);margin-bottom:20px;line-height:1.3}
+        .cs-content-block p{color:var(--gray);line-height:1.8;font-size:1.02em;margin-bottom:16px}
+        .approach-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px}
+        .approach-list li{display:flex;gap:20px;align-items:flex-start}
+        .approach-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center}
+        .approach-list li>div>strong{display:block;color:var(--navy);font-size:1em;font-weight:600;margin-bottom:4px}
+        .approach-list li>div>span{color:var(--gray);font-size:.96em;line-height:1.7}
+        .outcome-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
+        .outcome-stat{background:var(--warm-neutral);border-radius:16px;padding:28px 24px;text-align:center;border-top:3px solid var(--coral)}
+        .outcome-stat .number{font-size:2.4em;font-weight:700;color:var(--coral);display:block;line-height:1;margin-bottom:10px}
+        .outcome-stat .desc{font-size:.88em;color:var(--navy);line-height:1.5}
+        .outcome-detail{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+        .outcome-detail li{display:flex;gap:12px;align-items:flex-start;color:var(--gray);font-size:.98em;line-height:1.7}
+        .outcome-detail li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--coral);margin-top:9px}
+        .cs-sidebar{position:sticky;top:110px;display:flex;flex-direction:column;gap:28px}
+        .sidebar-card{background:var(--warm-neutral);border-radius:16px;padding:28px}
+        .sidebar-card h4{font-size:.75em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+        .sidebar-card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+        .sidebar-card ul li{font-size:.92em;color:var(--navy);line-height:1.5;padding-left:14px;position:relative}
+        .sidebar-card ul li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--coral)}
+        .sidebar-cta{background:var(--navy);border-radius:16px;padding:28px;text-align:center}
+        .sidebar-cta p{color:rgba(255,255,255,.75);font-size:.92em;line-height:1.6;margin-bottom:20px}
+        .sidebar-cta a{display:block;background:var(--coral);color:var(--white);padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:500;font-size:.92em;transition:all .3s}
+        .sidebar-cta a:hover{background:#E8622A;transform:translateY(-2px)}
+        .cs-nav-bar{border-top:1px solid var(--warm-neutral);padding:40px 0}
+        .cs-nav-link{display:inline-flex;align-items:center;gap:8px;color:var(--gray);text-decoration:none;font-size:.92em;transition:color .2s}
+        .cs-nav-link:hover{color:var(--coral)}
+        @media(max-width:960px){.cs-layout{grid-template-columns:1fr;gap:48px}.cs-sidebar{position:static}.outcome-stats{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.cs-detail-hero h1{font-size:1.9em}.outcome-stats{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('case-studies/', '../')}
+
+<section class="cs-detail-hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a><span>/</span>
+            <a href="./">Case Studies</a><span>/</span>
+            ${cs.shortTitle}
+        </div>
+        <h1>${cs.title}</h1>
+        <div class="cs-meta-bar">${tagHtml}</div>
+    </div>
+</section>
+
+<section class="pathway-section">
+    <div class="container">
+        <h2>The <strong>Transformation Pathway</strong></h2>
+        ${PATHWAY_SVG}
+    </div>
+</section>
+
+<section class="cs-body">
+    <div class="container">
+        <div class="cs-layout">
+            <div class="cs-main">
+                <div class="cs-content-block">
+                    <span class="section-eyebrow">The Challenge</span>
+                    <h2>${cs.challenge.heading}</h2>
+                    ${cs.challenge.body.split('\n\n').map(p => `<p>${markdownToHtml(p)}</p>`).join('')}
+                </div>
+                <div class="cs-content-block">
+                    <span class="section-eyebrow">Our Approach</span>
+                    <h2>${cs.approach.heading}</h2>
+                    <p>${cs.approach.intro}</p>
+                    <ul class="approach-list">${approachHtml}</ul>
+                </div>
+                <div class="cs-content-block">
+                    <span class="section-eyebrow">The Outcome</span>
+                    <h2>${cs.outcomes.heading}</h2>
+                    <div class="outcome-stats">${statsHtml}</div>
+                    <ul class="outcome-detail">${detailsHtml}</ul>
+                </div>
+            </div>
+            <aside class="cs-sidebar">
+                <div class="sidebar-card"><h4>At a glance</h4><ul>${glanceHtml}</ul></div>
+                <div class="sidebar-card"><h4>Capabilities deployed</h4><ul>${capHtml}</ul></div>
+                <div class="sidebar-cta"><p>Facing a similar challenge? Let us discuss how we can help.</p><a href="../contact.html">Book a Discovery Call</a></div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<div class="cs-nav-bar">
+    <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <span></span>
+            <a href="./" class="cs-nav-link">${ARROW_LEFT} All case studies</a>
+        </div>
+    </div>
+</div>
+
+${footerHtml('../')}
+<script src="../script.js"></script>
+</body>
+</html>`;
+}
+
+// ─── Build case studies LISTING page ─────────────────────────────────────────
+function buildListingPage(studies) {
+    const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const featured = studies.find(s => s.featured);
+    const rest = studies.filter(s => !s.featured);
+
+    const featuredHtml = featured ? `
+    <div class="cs-featured">
+        <span class="featured-label">Featured Case Study</span>
+        <h2>${featured.title}</h2>
+        <p>${featured.teaser}</p>
+        <div class="cs-meta">${(featured.tags || []).map(t => `<span class="cs-tag cs-tag-light">${t}</span>`).join('')}</div>
+        <a href="${featured.slug}.html" class="read-link">Read full story ${ARROW}</a>
+    </div>` : '';
+
+    const gridHtml = rest.length > 0 ? `
+    <div class="cs-grid">
+        ${rest.map(s => `
+        <div class="cs-card">
+            <div class="cs-meta">${(s.tags || []).map(t => `<span class="cs-tag cs-tag-dark">${t}</span>`).join('')}</div>
+            <h3>${s.shortTitle}</h3>
+            <p>${s.teaser}</p>
+            <a href="${s.slug}.html" class="read-link">Read full story ${ARROW}</a>
+        </div>`).join('')}
+    </div>` : `
+    <div class="cs-grid">
+        <div class="cs-card coming-soon">
+            <div class="cs-meta"><span class="cs-tag cs-tag-dark">Coming soon</span></div>
+            <h3>Commercial Model Transformation for a Global Pharma Launch</h3>
+            <p>Redesigning the go-to-market model ahead of a major product launch &#8212; aligning commercial, medical affairs and market access around a unified stakeholder strategy.</p>
+            <span class="read-link" style="color:var(--gray)">Coming soon ${ARROW}</span>
+        </div>
+        <div class="cs-card coming-soon">
+            <div class="cs-meta"><span class="cs-tag cs-tag-dark">Coming soon</span></div>
+            <h3>AI-Enabled Omnichannel Orchestration for a Specialty Biotech</h3>
+            <p>Implementing a practical omnichannel capability that moved beyond channel management to genuine HCP engagement orchestration.</p>
+            <span class="read-link" style="color:var(--gray)">Coming soon ${ARROW}</span>
+        </div>
+    </div>`;
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies | VANTYS</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .cs-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%);position:relative;overflow:hidden}
+        .cs-hero h1{font-size:3em;font-weight:300;color:var(--navy);margin-bottom:16px;line-height:1.2;position:relative;z-index:1}
+        .cs-hero h1 strong{font-weight:600;color:var(--coral)}
+        .cs-hero p{font-size:1.15em;color:var(--gray);max-width:620px;position:relative;z-index:1}
+        .cs-section{padding:80px 0 100px;background:var(--white)}
+        .featured-label{display:inline-block;font-size:.75em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--golden);margin-bottom:20px}
+        .cs-featured{background:var(--navy);border-radius:24px;padding:56px;margin-bottom:60px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:24px}
+        .cs-featured::before{content:'';position:absolute;width:340px;height:340px;background:var(--coral);border-radius:60px;top:-120px;right:-80px;opacity:.08;transform:rotate(22deg)}
+        .cs-featured h2{font-size:1.9em;font-weight:400;color:var(--white);line-height:1.3;max-width:700px;position:relative;z-index:1}
+        .cs-featured p{color:rgba(255,255,255,.75);font-size:1.05em;line-height:1.7;max-width:680px;position:relative;z-index:1}
+        .cs-meta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+        .cs-tag{display:inline-block;padding:6px 14px;border-radius:20px;font-size:.82em;font-weight:500}
+        .cs-tag-light{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15)}
+        .cs-tag-dark{background:rgba(49,73,105,.08);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
+        .read-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:.95em;transition:gap .3s;position:relative;z-index:1}
+        .cs-featured .read-link{color:var(--golden)}
+        .cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
+        .cs-card{background:var(--warm-neutral);border-radius:20px;padding:40px 36px;border-left:4px solid transparent;transition:all .3s;display:flex;flex-direction:column;gap:16px}
+        .cs-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+        .cs-card h3{font-size:1.2em;font-weight:500;color:var(--navy);line-height:1.4}
+        .cs-card p{color:var(--gray);font-size:.95em;line-height:1.7;flex:1}
+        .cs-card .read-link{color:var(--coral)}
+        .coming-soon{opacity:.55;pointer-events:none}
+        @media(max-width:768px){.cs-featured{padding:36px 28px}.cs-featured h2{font-size:1.5em}.cs-hero h1{font-size:2.2em}.cs-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('case-studies/', '../')}
+
+<section class="cs-hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="container">
+        <h1>From Strategy to <strong>Measurable Impact</strong></h1>
+        <p>How we help pharmaceutical and biotech companies bridge the gap between strategic ambition and operational results.</p>
+    </div>
+</section>
+
+<section class="cs-section">
+    <div class="container">
+        ${featuredHtml}
+        ${gridHtml}
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h2>Ready to Transform Your Operations?</h2>
+        <p>Let us discuss how we can help you connect strategy to execution.</p>
+        <a href="../contact.html" class="cta-button">Get in Touch</a>
+    </div>
+</section>
+
+${footerHtml('../')}
+<script src="../script.js"></script>
+</body>
+</html>`;
+}
+
+// ─── Write all files ──────────────────────────────────────────────────────────
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml, 'utf8');
 fs.writeFileSync(path.join(__dirname, 'about-me.html'), aboutHtml, 'utf8');
 
-console.log('✅ index.html and about-me.html generated successfully from CMS content!');
+caseStudies.forEach(cs => {
+    const html = buildDetailPage(cs);
+    fs.writeFileSync(path.join(csOutDir, `${cs.slug}.html`), html, 'utf8');
+    console.log(`  ✅ case-studies/${cs.slug}.html`);
+});
+
+const listingHtml = buildListingPage(caseStudies);
+fs.writeFileSync(path.join(csOutDir, 'index.html'), listingHtml, 'utf8');
+
+console.log('✅ index.html');
+console.log('✅ about-me.html');
+console.log('✅ case-studies/index.html');
+console.log(`✅ ${caseStudies.length} case study detail pages generated`);

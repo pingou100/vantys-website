@@ -2,20 +2,23 @@ backend:
   name: git-gateway
   branch: main
 
-# Netlify Identity for authentication
 publish_mode: editorial_workflow
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+
+  # ─────────────────────────────────────────
+  # PAGES (single files mapped to JSON)
+  # ─────────────────────────────────────────
   - name: "pages"
     label: "Pages"
     files:
+
       - label: "Homepage"
         name: "homepage"
         file: "content/homepage.json"
         fields:
-          # Hero Section
           - label: "Hero Section"
             name: "hero"
             widget: "object"
@@ -23,103 +26,162 @@ collections:
               - {label: "Title", name: "title", widget: "string", default: "Pharmaceutical"}
               - {label: "Title Highlight", name: "titleHighlight", widget: "string", default: "Operations Consulting"}
               - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-              - {label: "CTA Button Text", name: "ctaText", widget: "string", default: "Book a Discovery Call"}
-              - {label: "CTA Button Link", name: "ctaLink", widget: "string", default: "contact.html"}
-          
-          # Challenge Section
+              - {label: "CTA Button Text", name: "ctaText", widget: "string"}
+              - {label: "CTA Button Link", name: "ctaLink", widget: "string"}
           - label: "Challenge Section"
             name: "challenge"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string", default: "The Challenge You Are Facing"}
+              - {label: "Section Title", name: "title", widget: "string"}
               - label: "Challenges"
                 name: "items"
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
                   - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          
-          # Services Section
           - label: "Services Section"
             name: "services"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string", default: "Three Ways We Help"}
-              - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Bridging strategy and execution in pharmaceutical operations"}
+              - {label: "Section Title", name: "title", widget: "string"}
+              - {label: "Section Subtitle", name: "subtitle", widget: "string"}
               - label: "Services"
                 name: "items"
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
                   - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          
-          # Approach Section
           - label: "Approach Section"
             name: "approach"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string", default: "How We Work"}
-              - {label: "Section Subtitle", name: "subtitle", widget: "string", default: "Bridging the gap between strategic ambition and operational reality"}
+              - {label: "Section Title", name: "title", widget: "string"}
+              - {label: "Section Subtitle", name: "subtitle", widget: "string"}
               - label: "Approach Items"
                 name: "items"
                 widget: "list"
                 fields:
                   - {label: "Title", name: "title", widget: "string"}
                   - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          
-          # CTA Section
-          - label: "Final CTA Section"
+          - label: "CTA Section"
             name: "cta"
             widget: "object"
             fields:
-              - {label: "Title", name: "title", widget: "string", default: "Ready to Transform Your Operations?"}
+              - {label: "Title", name: "title", widget: "string"}
               - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-              - {label: "Button Text", name: "buttonText", widget: "string", default: "Get in Touch"}
-              - {label: "Button Link", name: "buttonLink", widget: "string", default: "contact.html"}
-          
-          # Footer
+              - {label: "Button Text", name: "buttonText", widget: "string"}
+              - {label: "Button Link", name: "buttonLink", widget: "string"}
           - label: "Footer"
             name: "footer"
             widget: "object"
             fields:
-              - {label: "Copyright Text", name: "copyright", widget: "string", default: "© 2026 VANTYS. Pharmaceutical Business Operations Consulting."}
+              - {label: "Copyright Text", name: "copyright", widget: "string"}
               - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
-      
+
       - label: "About Me Page"
         name: "about"
         file: "content/about-me.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string", default: "About Me"}
-          - {label: "Profile Photo", name: "photo", widget: "image", default: "/images/SB_Olivier_Delannoy_1200x800.jpg"}
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Profile Photo", name: "photo", widget: "image"}
           - label: "Content Paragraphs"
             name: "paragraphs"
             widget: "list"
             fields:
-              - {label: "Paragraph Text", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-      
+              - {label: "Paragraph", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+
       - label: "Contact Page"
         name: "contact"
         file: "content/contact.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string", default: "Get In Touch"}
+          - {label: "Page Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          - {label: "Email", name: "email", widget: "string", default: "contact@vantys.com"}
+          - {label: "Email", name: "email", widget: "string"}
           - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
-          - {label: "Response Time Note", name: "responseNote", widget: "string", default: "We typically respond within 24 hours."}
-      
+          - {label: "Response Time Note", name: "responseNote", widget: "string"}
+
       - label: "Privacy Policy"
         name: "privacy"
         file: "content/privacy-policy.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string", default: "Privacy Policy"}
-          - {label: "Last Updated", name: "lastUpdated", widget: "string", default: "May 2026"}
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Last Updated", name: "lastUpdated", widget: "string"}
           - label: "Sections"
             name: "sections"
             widget: "list"
             fields:
-              - {label: "Section Heading", name: "heading", widget: "string"}
+              - {label: "Heading", name: "heading", widget: "string"}
               - {label: "Content", name: "content", widget: "text"}
 
+  # ─────────────────────────────────────────
+  # CASE STUDIES (one JSON file per study)
+  # ─────────────────────────────────────────
+  - name: "case-studies"
+    label: "Case Studies"
+    label_singular: "Case Study"
+    folder: "content/case-studies"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    fields:
+      - {label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly identifier e.g. proactive-cardiovascular-risk-management"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show as featured (large) card on the listing page"}
+      - {label: "Title", name: "title", widget: "string", hint: "Full title shown on the detail page"}
+      - {label: "Short Title", name: "shortTitle", widget: "string", hint: "Shorter title used on listing cards"}
+      - {label: "Teaser", name: "teaser", widget: "text", hint: "2-3 sentence summary shown on the listing page"}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        hint: "e.g. Spain, Cardiovascular, 18 months"
+      - label: "The Challenge"
+        name: "challenge"
+        widget: "object"
+        fields:
+          - {label: "Section Heading", name: "heading", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+      - label: "Our Approach"
+        name: "approach"
+        widget: "object"
+        fields:
+          - {label: "Section Heading", name: "heading", widget: "string"}
+          - {label: "Intro sentence", name: "intro", widget: "string"}
+          - label: "Approach Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+      - label: "The Outcomes"
+        name: "outcomes"
+        widget: "object"
+        fields:
+          - {label: "Section Heading", name: "heading", widget: "string"}
+          - label: "Stats (up to 3)"
+            name: "stats"
+            widget: "list"
+            fields:
+              - {label: "Number / Metric", name: "number", widget: "string", hint: "e.g. +18% or 18mo"}
+              - {label: "Label", name: "label", widget: "string"}
+          - label: "Outcome Detail Bullets"
+            name: "details"
+            widget: "list"
+            field: {label: "Detail", name: "detail", widget: "string"}
+      - label: "Sidebar"
+        name: "sidebar"
+        widget: "object"
+        fields:
+          - label: "At a Glance items"
+            name: "atAGlance"
+            widget: "list"
+            field: {label: "Item", name: "item", widget: "string"}
+          - label: "Capabilities Deployed"
+            name: "capabilities"
+            widget: "list"
+            field: {label: "Capability", name: "capability", widget: "string"}
+
+  # ─────────────────────────────────────────
+  # SITE SETTINGS
+  # ─────────────────────────────────────────
   - name: "settings"
     label: "Site Settings"
     files:
