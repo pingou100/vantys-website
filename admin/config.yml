@@ -23,8 +23,8 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - {label: "Title", name: "title", widget: "string", default: "Pharmaceutical"}
-              - {label: "Title Highlight", name: "titleHighlight", widget: "string", default: "Operations Consulting"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Title Highlight", name: "titleHighlight", widget: "string"}
               - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
               - {label: "CTA Button Text", name: "ctaText", widget: "string"}
               - {label: "CTA Button Link", name: "ctaLink", widget: "string"}
@@ -115,24 +115,24 @@ collections:
 
   # ─────────────────────────────────────────
   # CASE STUDIES (one JSON file per study)
+  # title is the identifier — Decap default
+  # slug drives the filename via the slug template
   # ─────────────────────────────────────────
   - name: "case-studies"
     label: "Case Studies"
     label_singular: "Case Study"
     folder: "content/case-studies"
     create: true
-    slug: "{{slug}}"
-    identifier_field: "slug"
+    extension: "json"
+    format: "json"
+    slug: "{{fields.slug}}"
     fields:
-      - {label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly identifier e.g. proactive-cardiovascular-risk-management"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show as featured (large) card on the listing page"}
       - {label: "Title", name: "title", widget: "string", hint: "Full title shown on the detail page"}
+      - {label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly, e.g. proactive-cardiovascular-risk-management"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show as featured card on listing page"}
       - {label: "Short Title", name: "shortTitle", widget: "string", hint: "Shorter title used on listing cards"}
-      - {label: "Teaser", name: "teaser", widget: "text", hint: "2-3 sentence summary shown on the listing page"}
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
-        hint: "e.g. Spain, Cardiovascular, 18 months"
+      - {label: "Teaser", name: "teaser", widget: "text", hint: "2-3 sentence summary for the listing page"}
+      - {label: "Tags", name: "tags", widget: "list", hint: "e.g. Spain, Cardiovascular, 18 months"}
       - label: "The Challenge"
         name: "challenge"
         widget: "object"
@@ -165,7 +165,7 @@ collections:
           - label: "Outcome Detail Bullets"
             name: "details"
             widget: "list"
-            field: {label: "Detail", name: "detail", widget: "string"}
+            hint: "One bullet point per item"
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"
@@ -173,11 +173,9 @@ collections:
           - label: "At a Glance items"
             name: "atAGlance"
             widget: "list"
-            field: {label: "Item", name: "item", widget: "string"}
           - label: "Capabilities Deployed"
             name: "capabilities"
             widget: "list"
-            field: {label: "Capability", name: "capability", widget: "string"}
 
   # ─────────────────────────────────────────
   # SITE SETTINGS

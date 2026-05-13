@@ -1,7 +1,7 @@
 {
+  "title": "Healthcare Pathway Transformation: Proactive Cardiovascular Risk Management",
   "slug": "proactive-cardiovascular-risk-management",
   "featured": true,
-  "title": "Healthcare Pathway Transformation: Proactive Cardiovascular Risk Management",
   "shortTitle": "Proactive Cardiovascular Risk Management",
   "teaser": "An emerging European biotech needed to demonstrate real-world evidence of their cardiovascular therapies in a preventive care model. We designed a data-driven population health programme that identified high-risk patients earlier and reduced hospitalisations — within 18 months.",
   "tags": ["Healthcare System Partnership", "Spain", "Cardiovascular", "18 months", "European Biotech"],
@@ -34,9 +34,9 @@
   "outcomes": {
     "heading": "Measurable improvements within 18 months",
     "stats": [
-      { "number": "+18%", "label": "Increase in identification of at-risk patients vs standard-of-care pathways" },
-      { "number": "−7%", "label": "Reduction in cardiovascular-related hospitalisations within the targeted population" },
-      { "number": "18mo", "label": "Sustainable partnership model established demonstrating value to all stakeholders" }
+      {"number": "+18%", "label": "Increase in identification of at-risk patients vs standard-of-care pathways"},
+      {"number": "−7%", "label": "Reduction in cardiovascular-related hospitalisations within the targeted population"},
+      {"number": "18mo", "label": "Sustainable partnership model established demonstrating value to all stakeholders"}
     ],
     "details": [
       "18% increase in identification of patients at risk of cardiovascular events compared to standard-of-care pathways.",
@@ -45,7 +45,20 @@
     ]
   },
   "sidebar": {
-    "atAGlance": ["European biotech client", "Spanish regional health system", "Cardiovascular indication", "18-month programme", "Value-based partnership model"],
-    "capabilities": ["Healthcare system navigation", "Population health analytics", "Omnichannel patient engagement", "Remote monitoring infrastructure", "Care pathway redesign", "Real-world evidence generation"]
+    "atAGlance": [
+      "European biotech client",
+      "Spanish regional health system",
+      "Cardiovascular indication",
+      "18-month programme",
+      "Value-based partnership model"
+    ],
+    "capabilities": [
+      "Healthcare system navigation",
+      "Population health analytics",
+      "Omnichannel patient engagement",
+      "Remote monitoring infrastructure",
+      "Care pathway redesign",
+      "Real-world evidence generation"
+    ]
   }
 }
