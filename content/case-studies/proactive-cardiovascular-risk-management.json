@@ -54,16 +54,16 @@
   "tags": [
     "Healthcare System Partnership",
     "Cardiovascular",
-    "",
+    "Remote Patient Monitoring",
     "European Biotech"
   ],
   "shortTitle": "Proactive Cardiovascular Risk Management",
   "sidebar": {
     "atAGlance": [
-      "European biotech client",
-      "Spanish regional health system",
-      "Cardiovascular indication",
-      "18-month programme",
+      "European biotech",
+      "Regional Health System",
+      "Cardiovascular Indication",
+      "18-month collaborative programme",
       "Value-based partnership model"
     ],
     "capabilities": [
@@ -72,7 +72,8 @@
       "Omnichannel patient engagement",
       "Remote monitoring infrastructure",
       "Care pathway redesign",
-      "Real-world evidence generation"
+      "Real-world evidence generation",
+      "Change Management"
     ]
   }
 }
