@@ -190,7 +190,7 @@ const caseStudies = csFiles
     .map(f => JSON.parse(fs.readFileSync(path.join(csCmsDir, f), 'utf8')))
     .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
-// ─── Pathway block: custom image OR fallback SVG ────────────────────────────
+// ─── Pathway block ──────────────────────────────────────────────────────────
 const FALLBACK_PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
     <title>Healthcare transformation pathway</title>
     <desc>Four programme pillars leading to measurable outcomes.</desc>
@@ -261,9 +261,7 @@ const FALLBACK_PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img"
 function pathwayBlock(cs) {
     const img = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
     const alt = (cs.pathway && cs.pathway.alt) || 'Programme transformation pathway';
-    if (img) {
-        return `<img src="${img}" alt="${alt}" class="pathway-custom-img" width="1200" height="400"/>`;
-    }
+    if (img) return `<img src="${img}" alt="${alt}" class="pathway-custom-img" width="1200" height="400"/>`;
     return FALLBACK_PATHWAY_SVG;
 }
 
@@ -276,7 +274,6 @@ const STEP_ICONS = [
 
 // ─── Case study DETAIL page ─────────────────────────────────────────────────
 function buildDetailPage(cs) {
-    const ARROW      = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const ARROW_LEFT = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const tagHtml      = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
     const statsHtml    = (cs.outcomes.stats || []).map(s => `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`).join('');
@@ -298,9 +295,9 @@ function buildDetailPage(cs) {
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
     <style>
-        .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%);position:relative;overflow:hidden}
-        .cs-detail-hero .bg-shape-1{width:480px;height:380px;background:var(--navy);top:-150px;right:-100px;opacity:.07;transform:rotate(-37deg)}
-        .cs-detail-hero .bg-shape-2{width:300px;height:380px;background:var(--golden);bottom:-80px;left:-60px;opacity:.07;transform:rotate(19deg)}
+        /* NOTE: bg-shape positions for cs-detail-hero and pathway-section
+           are defined in styles.css — no overrides here so animations work */
+        .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
         .breadcrumb{font-size:.88em;color:var(--gray);margin-bottom:28px;position:relative;z-index:1}
         .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--coral)}
         .breadcrumb span{margin:0 8px;opacity:.5}
@@ -308,8 +305,8 @@ function buildDetailPage(cs) {
         .cs-detail-hero h1 strong{font-weight:600;color:var(--coral)}
         .cs-meta-bar{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
         .cs-tag{display:inline-block;padding:6px 14px;border-radius:20px;font-size:.82em;font-weight:500;background:rgba(49,73,105,.07);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
-        .pathway-section{padding:60px 0;background:linear-gradient(135deg,var(--white) 0%,var(--warm-neutral) 100%);overflow:hidden}
-        .pathway-section h2{font-size:1.4em;font-weight:400;color:var(--navy);margin-bottom:40px;text-align:center}
+        .pathway-section{padding:60px 0;background:linear-gradient(135deg,var(--white) 0%,var(--warm-neutral) 100%)}
+        .pathway-section h2{font-size:1.4em;font-weight:400;color:var(--navy);margin-bottom:40px;text-align:center;position:relative;z-index:1}
         .pathway-section h2 strong{font-weight:600;color:var(--coral)}
         .cs-body{padding:80px 0 100px}
         .cs-layout{display:grid;grid-template-columns:1fr 340px;gap:80px;align-items:start}
@@ -352,6 +349,7 @@ ${navHtml('case-studies/', '../')}
 <section class="cs-detail-hero">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
     <div class="container">
         <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="./">Case Studies</a><span>/</span>${cs.shortTitle}</div>
         <h1>${cs.title}</h1>
@@ -359,6 +357,8 @@ ${navHtml('case-studies/', '../')}
     </div>
 </section>
 <section class="pathway-section">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
     <div class="container">
         <h2>The <strong>Transformation Pathway</strong></h2>
         ${pathwayBlock(cs)}
@@ -413,14 +413,11 @@ function buildListingPage(studies) {
     const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const featured = studies.find(s => s.featured);
     const rest = studies.filter(s => !s.featured);
-
-    // Build title: replace highlight portion in coral
     const rawTitle = csIndexContent.title || 'From Strategy to Measurable Impact';
     const highlight = csIndexContent.titleHighlight || '';
     const listingTitle = highlight && rawTitle.includes(highlight)
         ? rawTitle.replace(highlight, `<strong>${highlight}</strong>`)
         : `<strong>${rawTitle}</strong>`;
-
     const featuredHtml = featured ? `
     <div class="cs-featured">
         <span class="featured-label">Featured Case Study</span>
@@ -429,7 +426,6 @@ function buildListingPage(studies) {
         <div class="cs-meta">${(featured.tags || []).map(t => `<span class="cs-tag cs-tag-light">${t}</span>`).join('')}</div>
         <a href="${featured.slug}.html" class="read-link">Read full story ${ARROW}</a>
     </div>` : '';
-
     const gridCards = rest.length > 0
         ? rest.map(s => `
         <div class="cs-card">
@@ -460,10 +456,6 @@ function buildListingPage(studies) {
     <title>Case Studies | VANTYS</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .cs-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%);position:relative;overflow:hidden}
-        .cs-hero h1{font-size:3em;font-weight:300;color:var(--navy);margin-bottom:16px;line-height:1.2;position:relative;z-index:1}
-        .cs-hero h1 strong{font-weight:600;color:var(--coral)}
-        .cs-hero p{font-size:1.15em;color:var(--gray);max-width:620px;position:relative;z-index:1}
         .cs-section{padding:80px 0 100px;background:var(--white)}
         .featured-label{display:inline-block;font-size:.75em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--golden);margin-bottom:20px}
         .cs-featured{background:var(--navy);border-radius:24px;padding:56px;margin-bottom:60px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:24px}
@@ -483,7 +475,9 @@ function buildListingPage(studies) {
         .cs-card p{color:var(--gray);font-size:.95em;line-height:1.7;flex:1}
         .cs-card .read-link{color:var(--coral)}
         .coming-soon{opacity:.55;pointer-events:none}
-        @media(max-width:768px){.cs-featured{padding:36px 28px}.cs-featured h2{font-size:1.5em}.cs-hero h1{font-size:2.2em}.cs-grid{grid-template-columns:1fr}}
+        .cs-hero p{position:relative;z-index:1}
+        .cs-hero h1{position:relative;z-index:1}
+        @media(max-width:768px){.cs-featured{padding:36px 28px}.cs-featured h2{font-size:1.5em}.cs-grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
@@ -526,7 +520,6 @@ caseStudies.forEach(cs => {
 });
 
 fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
-
 console.log('✅ index.html');
 console.log('✅ about-me.html');
 console.log('✅ case-studies/index.html');
