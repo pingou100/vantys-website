@@ -31,87 +31,79 @@ body {
 }
 
 /* ========================================
-   BREATHING ANIMATION - Varied rotation angles & irregular shapes
+   BREATHING ANIMATION
    ======================================== */
 
-/* Hero Shapes */
 @keyframes breathe-hero-1 {
     0%, 100% { transform: scale(1) rotate(-37deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(-37deg); opacity: 0.12; }
 }
-
 @keyframes breathe-hero-2 {
     0%, 100% { transform: scale(1) rotate(19deg); opacity: 0.12; }
     50% { transform: scale(1.05) rotate(19deg); opacity: 0.15; }
 }
-
 @keyframes breathe-hero-3 {
     0%, 100% { transform: scale(1) rotate(-28deg); opacity: 0.08; }
     50% { transform: scale(1.05) rotate(-28deg); opacity: 0.11; }
 }
-
-/* Services Shapes */
 @keyframes breathe-services-1 {
     0%, 100% { transform: scale(1) rotate(23deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(23deg); opacity: 0.13; }
 }
-
 @keyframes breathe-services-2 {
     0%, 100% { transform: scale(1) rotate(-41deg); opacity: 0.12; }
     50% { transform: scale(1.05) rotate(-41deg); opacity: 0.15; }
 }
-
 @keyframes breathe-services-3 {
     0%, 100% { transform: scale(1) rotate(15deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(15deg); opacity: 0.13; }
 }
-
-/* Approach Shapes */
 @keyframes breathe-approach-1 {
     0%, 100% { transform: scale(1) rotate(34deg); opacity: 0.12; }
     50% { transform: scale(1.05) rotate(34deg); opacity: 0.15; }
 }
-
 @keyframes breathe-approach-2 {
     0%, 100% { transform: scale(1) rotate(-25deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(-25deg); opacity: 0.13; }
 }
-
 @keyframes breathe-approach-3 {
     0%, 100% { transform: scale(1) rotate(42deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(42deg); opacity: 0.13; }
 }
-
-/* Challenge Shapes */
 @keyframes breathe-challenge-1 {
     0%, 100% { transform: scale(1) rotate(29deg); opacity: 0.04; }
     50% { transform: scale(1.05) rotate(29deg); opacity: 0.06; }
 }
-
 @keyframes breathe-challenge-2 {
     0%, 100% { transform: scale(1) rotate(-37deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(-37deg); opacity: 0.13; }
 }
-
-/* CTA Shapes */
 @keyframes breathe-cta-1 {
     0%, 100% { transform: scale(1) rotate(18deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(18deg); opacity: 0.13; }
 }
-
 @keyframes breathe-cta-2 {
     0%, 100% { transform: scale(1) rotate(-33deg); opacity: 0.12; }
     50% { transform: scale(1.05) rotate(-33deg); opacity: 0.15; }
 }
-
 @keyframes breathe-cta-3 {
     0%, 100% { transform: scale(1) rotate(26deg); opacity: 0.10; }
     50% { transform: scale(1.05) rotate(26deg); opacity: 0.13; }
 }
 
-/* To disable animation, uncomment this line:
-   .bg-shape { animation: none !important; }
-*/
+/* Case study hero / cs-listing shapes */
+@keyframes breathe-cs-1 {
+    0%, 100% { transform: scale(1) rotate(-37deg); opacity: 0.07; }
+    50% { transform: scale(1.05) rotate(-37deg); opacity: 0.10; }
+}
+@keyframes breathe-cs-2 {
+    0%, 100% { transform: scale(1) rotate(19deg); opacity: 0.07; }
+    50% { transform: scale(1.05) rotate(19deg); opacity: 0.10; }
+}
+@keyframes breathe-cs-3 {
+    0%, 100% { transform: scale(1) rotate(-22deg); opacity: 0.06; }
+    50% { transform: scale(1.05) rotate(-22deg); opacity: 0.09; }
+}
 
 /* Decorative Background Shapes */
 .bg-shape {
@@ -123,601 +115,321 @@ body {
     transform-origin: center;
 }
 
-/* Hero Section Shapes - Irregular dimensions */
-.hero {
-    position: relative;
-    overflow: hidden;
-}
-
+/* ── Hero (homepage + contact + about) ── */
+.hero { position: relative; overflow: hidden; }
 .hero .bg-shape-1 {
-    width: 480px;
-    height: 380px;
-    background: var(--navy);
-    top: -150px;
-    right: -100px;
-    opacity: 0.10;
+    width: 480px; height: 380px; background: var(--navy);
+    top: -150px; right: -100px; opacity: 0.10;
     transform: scale(1) rotate(-37deg);
     animation: breathe-hero-1 8s ease-in-out infinite;
 }
-
 .hero .bg-shape-2 {
-    width: 320px;
-    height: 420px;
-    background: var(--light-blue);
-    top: -80px;
-    right: 50px;
-    opacity: 0.12;
+    width: 320px; height: 420px; background: var(--light-blue);
+    top: -80px; right: 50px; opacity: 0.12;
     transform: scale(1) rotate(19deg);
     animation: breathe-hero-2 8s ease-in-out infinite 2.7s;
 }
-
 .hero .bg-shape-3 {
-    width: 360px;
-    height: 260px;
-    background: var(--golden);
-    bottom: -50px;
-    left: -80px;
-    opacity: 0.08;
+    width: 360px; height: 260px; background: var(--golden);
+    bottom: -50px; left: -80px; opacity: 0.08;
     transform: scale(1) rotate(-28deg);
     animation: breathe-hero-3 8s ease-in-out infinite 5.3s;
 }
 
-/* Services Section Shapes - Irregular dimensions */
-.services {
-    position: relative;
-    overflow: hidden;
-}
-
+/* ── Services ── */
+.services { position: relative; overflow: hidden; }
 .services .bg-shape-1 {
-    width: 380px;
-    height: 450px;
-    background: var(--golden);
-    bottom: -120px;
-    left: -100px;
-    opacity: 0.10;
+    width: 380px; height: 450px; background: var(--golden);
+    bottom: -120px; left: -100px; opacity: 0.10;
     transform: scale(1) rotate(23deg);
     animation: breathe-services-1 8s ease-in-out infinite;
 }
-
 .services .bg-shape-2 {
-    width: 420px;
-    height: 300px;
-    background: var(--light-coral);
-    bottom: -60px;
-    left: 30px;
-    opacity: 0.12;
+    width: 420px; height: 300px; background: var(--light-coral);
+    bottom: -60px; left: 30px; opacity: 0.12;
     transform: scale(1) rotate(-41deg);
     animation: breathe-services-2 8s ease-in-out infinite 2.7s;
 }
-
 .services .bg-shape-3 {
-    width: 260px;
-    height: 340px;
-    background: var(--light-blue);
-    top: 100px;
-    right: -80px;
-    opacity: 0.10;
+    width: 260px; height: 340px; background: var(--light-blue);
+    top: 100px; right: -80px; opacity: 0.10;
     transform: scale(1) rotate(15deg);
     animation: breathe-services-3 8s ease-in-out infinite 5.3s;
 }
 
-/* Approach Section Shapes - Irregular dimensions */
-.approach {
-    position: relative;
-    overflow: hidden;
-}
-
+/* ── Approach ── */
+.approach { position: relative; overflow: hidden; }
 .approach .bg-shape-1 {
-    width: 460px;
-    height: 380px;
-    background: var(--light-blue);
-    top: -100px;
-    right: -120px;
-    opacity: 0.12;
+    width: 460px; height: 380px; background: var(--light-blue);
+    top: -100px; right: -120px; opacity: 0.12;
     transform: scale(1) rotate(34deg);
     animation: breathe-approach-1 8s ease-in-out infinite;
 }
-
 .approach .bg-shape-2 {
-    width: 310px;
-    height: 420px;
-    background: var(--navy);
-    top: -40px;
-    right: 20px;
-    opacity: 0.10;
+    width: 310px; height: 420px; background: var(--navy);
+    top: -40px; right: 20px; opacity: 0.10;
     transform: scale(1) rotate(-25deg);
     animation: breathe-approach-2 8s ease-in-out infinite 2.7s;
 }
-
 .approach .bg-shape-3 {
-    width: 380px;
-    height: 280px;
-    background: var(--light-coral);
-    bottom: -80px;
-    right: -90px;
-    opacity: 0.10;
+    width: 380px; height: 280px; background: var(--light-coral);
+    bottom: -80px; right: -90px; opacity: 0.10;
     transform: scale(1) rotate(42deg);
     animation: breathe-approach-3 8s ease-in-out infinite 5.3s;
 }
 
-/* Challenge Section Shapes - Irregular dimensions */
-.challenge {
-    position: relative;
-    overflow: hidden;
-}
-
+/* ── Challenge ── */
+.challenge { position: relative; overflow: hidden; }
 .challenge .bg-shape-1 {
-    width: 420px;
-    height: 340px;
-    background: rgba(255, 255, 255, 0.04);
-    top: -100px;
-    right: -100px;
-    opacity: 0.04;
+    width: 420px; height: 340px; background: rgba(255,255,255,0.04);
+    top: -100px; right: -100px; opacity: 0.04;
     transform: scale(1) rotate(29deg);
     animation: breathe-challenge-1 8s ease-in-out infinite;
 }
-
 .challenge .bg-shape-2 {
-    width: 280px;
-    height: 380px;
-    background: var(--coral);
-    bottom: -80px;
-    left: -70px;
-    opacity: 0.10;
+    width: 280px; height: 380px; background: var(--coral);
+    bottom: -80px; left: -70px; opacity: 0.10;
     transform: scale(1) rotate(-37deg);
     animation: breathe-challenge-2 8s ease-in-out infinite 2.7s;
 }
 
-/* CTA Section Shapes - Irregular dimensions */
-.cta-section {
-    position: relative;
-    overflow: hidden;
-}
-
+/* ── CTA ── */
+.cta-section { position: relative; overflow: hidden; }
 .cta-section .bg-shape-1 {
-    width: 440px;
-    height: 360px;
-    background: var(--navy);
-    bottom: -120px;
-    right: -100px;
-    opacity: 0.10;
+    width: 440px; height: 360px; background: var(--navy);
+    bottom: -120px; right: -100px; opacity: 0.10;
     transform: scale(1) rotate(18deg);
     animation: breathe-cta-1 8s ease-in-out infinite;
 }
-
 .cta-section .bg-shape-2 {
-    width: 300px;
-    height: 400px;
-    background: var(--light-coral);
-    bottom: -60px;
-    right: 40px;
-    opacity: 0.12;
+    width: 300px; height: 400px; background: var(--light-coral);
+    bottom: -60px; right: 40px; opacity: 0.12;
     transform: scale(1) rotate(-33deg);
     animation: breathe-cta-2 8s ease-in-out infinite 2.7s;
 }
-
 .cta-section .bg-shape-3 {
-    width: 340px;
-    height: 260px;
-    background: var(--golden);
-    top: 80px;
-    left: -60px;
-    opacity: 0.10;
+    width: 340px; height: 260px; background: var(--golden);
+    top: 80px; left: -60px; opacity: 0.10;
     transform: scale(1) rotate(26deg);
     animation: breathe-cta-3 8s ease-in-out infinite 5.3s;
 }
 
+/* ── Case study detail hero (cs-detail-hero) ── */
+.cs-detail-hero { position: relative; overflow: hidden; }
+.cs-detail-hero .bg-shape-1 {
+    width: 480px; height: 380px; background: var(--navy);
+    top: -150px; right: -100px; opacity: 0.07;
+    transform: scale(1) rotate(-37deg);
+    animation: breathe-cs-1 8s ease-in-out infinite;
+}
+.cs-detail-hero .bg-shape-2 {
+    width: 300px; height: 380px; background: var(--golden);
+    bottom: -80px; left: -60px; opacity: 0.07;
+    transform: scale(1) rotate(19deg);
+    animation: breathe-cs-2 8s ease-in-out infinite 3s;
+}
+.cs-detail-hero .bg-shape-3 {
+    width: 260px; height: 320px; background: var(--light-blue);
+    top: 20px; left: 30%; opacity: 0.06;
+    transform: scale(1) rotate(-22deg);
+    animation: breathe-cs-3 8s ease-in-out infinite 5.5s;
+}
+
+/* ── Case study listing hero (cs-hero) ── */
+.cs-hero { position: relative; overflow: hidden; }
+.cs-hero .bg-shape-1 {
+    width: 480px; height: 380px; background: var(--navy);
+    top: -150px; right: -100px; opacity: 0.07;
+    transform: scale(1) rotate(-37deg);
+    animation: breathe-cs-1 8s ease-in-out infinite;
+}
+.cs-hero .bg-shape-2 {
+    width: 300px; height: 380px; background: var(--golden);
+    bottom: -80px; left: -60px; opacity: 0.07;
+    transform: scale(1) rotate(19deg);
+    animation: breathe-cs-2 8s ease-in-out infinite 3s;
+}
+
+/* ── Pathway section ── */
+.pathway-section { position: relative; overflow: hidden; }
+.pathway-section .bg-shape-1 {
+    width: 360px; height: 280px; background: var(--golden);
+    top: -80px; right: -80px; opacity: 0.06;
+    transform: scale(1) rotate(22deg);
+    animation: breathe-cs-2 8s ease-in-out infinite 1.5s;
+}
+.pathway-section .bg-shape-2 {
+    width: 280px; height: 340px; background: var(--navy);
+    bottom: -60px; left: -60px; opacity: 0.05;
+    transform: scale(1) rotate(-18deg);
+    animation: breathe-cs-1 8s ease-in-out infinite 4s;
+}
+
+/* ======================================== */
+
 /* Sticky Header */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    padding: 24px 0;
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--white); padding: 24px 0;
     border-bottom: 1px solid var(--warm-neutral);
-    z-index: 999;
-    transition: box-shadow 0.3s ease;
+    z-index: 999; transition: box-shadow 0.3s ease;
 }
+header.scrolled { box-shadow: 0 2px 10px rgba(49,73,105,0.1); }
 
-header.scrolled {
-    box-shadow: 0 2px 10px rgba(49, 73, 105, 0.1);
-}
+nav { display: flex; justify-content: space-between; align-items: center; }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.logo-container { display: flex; align-items: center; gap: 12px; z-index: 1001; }
+.logo-icon { width: 50px; height: 40px; }
+.logo { font-size: 2.2em; font-weight: 600; color: var(--navy); }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 1001;
-}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray); text-decoration: none; font-size: 0.95em; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--coral); }
 
-.logo-icon {
-    width: 50px;
-    height: 40px;
-}
-
-.logo {
-    font-size: 2.2em;
-    font-weight: 600;
-    color: var(--navy);
-}
-
-.nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-}
-
-.nav-links a {
-    color: var(--gray);
-    text-decoration: none;
-    font-size: 0.95em;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--coral);
-}
-
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 1001;
-    background: none;
-    border: none;
-    padding: 8px;
+    display: none; flex-direction: column; gap: 6px;
+    cursor: pointer; z-index: 1001; background: none; border: none; padding: 8px;
 }
-
 .mobile-menu-toggle span {
-    width: 28px;
-    height: 3px;
-    background: var(--navy);
-    border-radius: 3px;
-    transition: all 0.3s ease;
+    width: 28px; height: 3px; background: var(--navy);
+    border-radius: 3px; transition: all 0.3s ease;
 }
+.mobile-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px,8px); }
+.mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
 
-.mobile-menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Styles */
 @media (max-width: 768px) {
-    body {
-        padding-top: 73px;
-    }
-
-    .bg-shape {
-        display: none !important;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
-    }
-
+    body { padding-top: 73px; }
+    .bg-shape { display: none !important; }
+    .mobile-menu-toggle { display: flex; }
     .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        max-width: 300px;
-        height: 100vh;
-        background: var(--white);
-        flex-direction: column;
-        padding: 100px 40px 40px;
-        gap: 24px;
-        box-shadow: -4px 0 20px rgba(49, 73, 105, 0.1);
-        transition: right 0.3s ease;
-        z-index: 1000;
+        position: fixed; top: 0; right: -100%; width: 70%; max-width: 300px;
+        height: 100vh; background: var(--white); flex-direction: column;
+        padding: 100px 40px 40px; gap: 24px;
+        box-shadow: -4px 0 20px rgba(49,73,105,0.1);
+        transition: right 0.3s ease; z-index: 1000;
     }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .nav-links a {
-        font-size: 1.1em;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--warm-neutral);
-    }
-
-    .hero h1 {
-        font-size: 2em;
-    }
-
-    .hero p {
-        font-size: 1.05em;
-    }
-
-    .section-header h2 {
-        font-size: 1.8em;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .challenge-grid {
-        grid-template-columns: 1fr;
-    }
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.1em; padding: 12px 0; border-bottom: 1px solid var(--warm-neutral); }
+    .hero h1 { font-size: 2em; }
+    .hero p { font-size: 1.05em; }
+    .section-header h2 { font-size: 1.8em; }
+    .services-grid { grid-template-columns: 1fr; }
+    .challenge-grid { grid-template-columns: 1fr; }
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
     padding: 80px 0 100px;
     background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%);
 }
-
 .hero h1 {
-    font-size: 3.2em;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 24px;
-    line-height: 1.2;
-    position: relative;
-    z-index: 1;
+    font-size: 3.2em; font-weight: 300; color: var(--navy);
+    margin-bottom: 24px; line-height: 1.2; position: relative; z-index: 1;
 }
-
-.hero h1 strong {
-    font-weight: 600;
-    color: var(--coral);
-}
-
+.hero h1 strong { font-weight: 600; color: var(--coral); }
 .hero p {
-    font-size: 1.25em;
-    color: var(--gray);
-    margin-bottom: 40px;
-    max-width: 700px;
-    position: relative;
-    z-index: 1;
+    font-size: 1.25em; color: var(--gray); margin-bottom: 40px;
+    max-width: 700px; position: relative; z-index: 1;
 }
 
 .cta-button {
-    display: inline-block;
-    background: var(--coral);
-    color: var(--white);
-    padding: 16px 40px;
-    border-radius: 32px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
-    position: relative;
-    z-index: 1;
+    display: inline-block; background: var(--coral); color: var(--white);
+    padding: 16px 40px; border-radius: 32px; text-decoration: none;
+    font-weight: 500; transition: all 0.3s; position: relative; z-index: 1;
 }
+.cta-button:hover { background: #E8622A; transform: translateY(-2px); }
 
-.cta-button:hover {
-    background: #E8622A;
-    transform: translateY(-2px);
-}
+/* Services */
+.services { padding: 100px 0; background: var(--white); }
 
-/* Services Section */
-.services {
-    padding: 100px 0;
-    background: var(--white);
-}
-
-/* Approach Section */
+/* Approach */
 .approach {
     padding: 100px 0;
     background: linear-gradient(135deg, var(--white) 0%, var(--warm-neutral) 100%);
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 80px;
-    position: relative;
-    z-index: 1;
-}
-
-.section-header h2 {
-    font-size: 2.5em;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 16px;
-}
-
-.section-header p {
-    font-size: 1.15em;
-    color: var(--gray);
-    max-width: 600px;
-    margin: 0 auto;
-}
+.section-header { text-align: center; margin-bottom: 80px; position: relative; z-index: 1; }
+.section-header h2 { font-size: 2.5em; font-weight: 300; color: var(--navy); margin-bottom: 16px; }
+.section-header p { font-size: 1.15em; color: var(--gray); max-width: 600px; margin: 0 auto; }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 48px;
-    position: relative;
-    z-index: 1;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 48px; position: relative; z-index: 1;
 }
 
 .service-card {
-    background: var(--warm-neutral);
-    padding: 48px 40px;
-    border-radius: 24px;
-    transition: all 0.3s;
-    border-left: 4px solid transparent;
+    background: var(--warm-neutral); padding: 48px 40px;
+    border-radius: 24px; transition: all 0.3s; border-left: 4px solid transparent;
 }
-
 .service-card:hover {
-    border-left-color: var(--coral);
-    background: var(--white);
-    box-shadow: 0 8px 32px rgba(49, 73, 105, 0.08);
+    border-left-color: var(--coral); background: var(--white);
+    box-shadow: 0 8px 32px rgba(49,73,105,0.08);
 }
+.icon-container { width: 100px; height: 100px; margin-bottom: 32px; }
+.service-card h3 { font-size: 1.5em; color: var(--navy); margin-bottom: 16px; font-weight: 500; }
+.service-card p { color: var(--gray); font-size: 0.98em; line-height: 1.7; }
 
-.icon-container {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 32px;
-}
-
-.service-card h3 {
-    font-size: 1.5em;
-    color: var(--navy);
-    margin-bottom: 16px;
-    font-weight: 500;
-}
-
-.service-card p {
-    color: var(--gray);
-    font-size: 0.98em;
-    line-height: 1.7;
-}
-
-/* Challenge Section */
-.challenge {
-    padding: 100px 0;
-    background: var(--navy);
-    color: var(--white);
-}
-
+/* Challenge */
+.challenge { padding: 100px 0; background: var(--navy); color: var(--white); }
 .challenge h2 {
-    font-size: 2.5em;
-    font-weight: 300;
-    margin-bottom: 48px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    font-size: 2.5em; font-weight: 300; margin-bottom: 48px;
+    text-align: center; position: relative; z-index: 1;
 }
-
 .challenge-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    position: relative;
-    z-index: 1;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; position: relative; z-index: 1;
 }
-
 .challenge-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 32px;
-    border-radius: 16px;
-    border-left: 3px solid var(--coral);
+    background: rgba(255,255,255,0.05); padding: 32px;
+    border-radius: 16px; border-left: 3px solid var(--coral);
 }
+.challenge-item h3 { font-size: 1.3em; margin-bottom: 12px; font-weight: 500; }
+.challenge-item p { color: rgba(255,255,255,0.85); line-height: 1.7; }
 
-.challenge-item h3 {
-    font-size: 1.3em;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.challenge-item p {
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-}
-
-/* CTA Section */
+/* CTA */
 .cta-section {
     padding: 100px 0;
     background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%);
     text-align: center;
 }
-
 .cta-section h2 {
-    font-size: 2.5em;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 1;
+    font-size: 2.5em; font-weight: 300; color: var(--navy);
+    margin-bottom: 24px; position: relative; z-index: 1;
 }
-
 .cta-section p {
-    font-size: 1.15em;
-    color: var(--gray);
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 1;
+    font-size: 1.15em; color: var(--gray); margin-bottom: 40px;
+    max-width: 600px; margin-left: auto; margin-right: auto;
+    position: relative; z-index: 1;
 }
 
 /* Footer */
-footer {
-    background: var(--navy);
-    color: var(--white);
-    padding: 48px 0;
-    text-align: center;
-}
+footer { background: var(--navy); color: var(--white); padding: 48px 0; text-align: center; }
+footer p { color: rgba(255,255,255,0.7); font-size: 0.9em; }
+footer a { color: var(--coral); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-footer p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9em;
-}
-
-footer a {
-    color: var(--coral);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Back to Top Button */
+/* Back to Top */
 .back-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 50px;
-    height: 50px;
-    background: var(--coral);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(240, 123, 74, 0.3);
-    z-index: 1000;
+    position: fixed; bottom: 40px; right: 40px;
+    width: 50px; height: 50px; background: var(--coral);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; opacity: 0; visibility: hidden;
+    transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(240,123,74,0.3); z-index: 1000;
 }
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
+.back-to-top.visible { opacity: 1; visibility: visible; }
 .back-to-top:hover {
-    background: #E8622A;
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(240, 123, 74, 0.4);
+    background: #E8622A; transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(240,123,74,0.4);
 }
-
-.back-to-top svg {
-    width: 24px;
-    height: 24px;
-}
+.back-to-top svg { width: 24px; height: 24px; }
 
 /* ========================================
-   OUTCOME STATS — hover effect (case study detail page)
-   Mirrors .service-card:hover behaviour
+   OUTCOME STATS — hover (case study detail)
    ======================================== */
-.outcome-stat {
-    transition: all 0.3s;
-    cursor: default;
-}
-
+.outcome-stat { transition: all 0.3s; cursor: default; }
 .outcome-stat:hover {
     background: var(--white);
-    box-shadow: 0 8px 32px rgba(49, 73, 105, 0.08);
+    box-shadow: 0 8px 32px rgba(49,73,105,0.08);
     transform: translateY(-2px);
 }
