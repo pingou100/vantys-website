@@ -10,19 +10,16 @@
             padding: 120px 0 80px;
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
-        
         .about-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 30px;
         }
-        
         .about-content {
             display: flex;
             gap: 60px;
             align-items: flex-start;
         }
-        
         .profile-photo {
             flex-shrink: 0;
             width: 320px;
@@ -30,44 +27,27 @@
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        
-        .about-text {
-            flex: 1;
-        }
-        
+        .about-text { flex: 1; }
         .about-text h1 {
             font-size: 2.5rem;
             color: #314969;
             margin-bottom: 30px;
             font-weight: 700;
         }
-        
         .about-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
             margin-bottom: 20px;
         }
-        
         @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .profile-photo {
-                width: 100%;
-                max-width: 320px;
-            }
-            
-            .about-text h1 {
-                font-size: 2rem;
-            }
+            .about-content { flex-direction: column; gap: 30px; }
+            .profile-photo { width: 100%; max-width: 320px; }
+            .about-text h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo-container">
@@ -80,40 +60,35 @@
                 </svg>
                 <a href="index.html" style="text-decoration: none;" class="logo">vantys</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#approach">Approach</a></li>
+                <li><a href="case-studies/">Case Studies</a></li>
                 <li><a href="about-me.html">About Me</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- About Section -->
     <section class="about-section">
         <div class="about-container">
             <div class="about-content">
                 <img src="images/SB_Olivier_Delannoy_1200x800.jpg" alt="Olivier Delannoy" class="profile-photo">
-                
                 <div class="about-text">
                     <h1>About Me</h1>
-                    
                     <p>These transitions have been navigated before, just with different enabling technologies. The difference between organizations that genuinely transform and those that just renovate the facade? It's visible from experience.</p>
-                    
                     <p><strong>How it works:</strong></p>
-                    
                     <p>No theoretical frameworks that look impressive but fail in practice. No transformation theatre.</p>
-                    
                     <p>Identifying the specific strategic and operational gaps limiting impact. Building the capabilities required to close them. Ensuring organizations can sustain them independently.</p>
-                    
                     <p><strong>Strategic. Pragmatic. Built to compound.</strong></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
