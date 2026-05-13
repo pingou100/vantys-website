@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// ─── Markdown → HTML (simple) ───────────────────────────────────────────────
+// ─── Markdown → HTML ──────────────────────────────────────────────────────
 function markdownToHtml(text) {
     if (!text) return '';
     return text
@@ -14,11 +14,11 @@ function markdownToHtml(text) {
         .replace(/\n/g, '<br>');
 }
 
-// ─── Read content JSON ───────────────────────────────────────────────────────
-const homepageContent  = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
-const aboutContent     = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+// ─── Read content JSON ──────────────────────────────────────────────────────
+const homepageContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
+const aboutContent    = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
 
-// ─── Shared HTML fragments ───────────────────────────────────────────────────
+// ─── Shared fragments ─────────────────────────────────────────────────────────
 const LOGO_SVG = `<svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
     <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
@@ -35,7 +35,7 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
 
 function navHtml(activeHref, prefix = '') {
     const links = [
-        { href: `${prefix}index.html#services`,  label: 'Services' },
+        { href: `${prefix}index.html#services`, label: 'Services' },
         { href: `${prefix}index.html#approach`,  label: 'Approach' },
         { href: `${prefix}case-studies/`,        label: 'Case Studies' },
         { href: `${prefix}about-me.html`,        label: 'About Me' },
@@ -69,20 +69,20 @@ function footerHtml(prefix = '') {
 </footer>`;
 }
 
-// ─── PAGE: index.html ────────────────────────────────────────────────────────
+// ─── PAGE: index.html ───────────────────────────────────────────────────────
 let heroTitle = homepageContent.hero.title && homepageContent.hero.title.trim()
     ? `${homepageContent.hero.title} <strong>${homepageContent.hero.titleHighlight}</strong>`
     : `<strong>${homepageContent.hero.titleHighlight}</strong>`;
 
 const serviceIcons = [
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="lc"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rc"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rc)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.4"/><line x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.7"/><line x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle cx="80" cy="35" r="3" fill="#F07B4A"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><defs><clipPath id="lc"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rc"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rc)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><line x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.4"/><line x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.7"/><line x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle cx="80" cy="35" r="3" fill="#F07B4A"/></svg>`,
 ];
 const approachIcons = [
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
 ];
 
 const indexHtml = `<!DOCTYPE html>
@@ -97,7 +97,6 @@ const indexHtml = `<!DOCTYPE html>
 <body>
 ${BACK_TO_TOP}
 ${navHtml('', '')}
-
 <section class="hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -106,7 +105,6 @@ ${navHtml('', '')}
         <a href="${homepageContent.hero.ctaLink}" class="cta-button">${homepageContent.hero.ctaText}</a>
     </div>
 </section>
-
 <section class="challenge" id="challenge">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
@@ -116,7 +114,6 @@ ${navHtml('', '')}
         </div>
     </div>
 </section>
-
 <section class="services" id="services">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -126,7 +123,6 @@ ${navHtml('', '')}
         </div>
     </div>
 </section>
-
 <section class="approach" id="approach">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -136,7 +132,6 @@ ${navHtml('', '')}
         </div>
     </div>
 </section>
-
 <section class="cta-section">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -145,7 +140,6 @@ ${navHtml('', '')}
         <a href="${homepageContent.cta.buttonLink}" class="cta-button">${homepageContent.cta.buttonText}</a>
     </div>
 </section>
-
 ${footerHtml('')}
 <script src="script.js"></script>
 <script>
@@ -168,7 +162,6 @@ const aboutHtml = `<!DOCTYPE html>
 <body>
 ${BACK_TO_TOP}
 ${navHtml('about-me.html', '')}
-
 <section class="hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container" style="max-width:1200px">
@@ -181,33 +174,23 @@ ${navHtml('about-me.html', '')}
         </div>
     </div>
 </section>
-
 ${footerHtml('')}
 <script src="script.js"></script>
 </body>
 </html>`;
 
-// ─── CASE STUDIES ────────────────────────────────────────────────────────────
-const csCmsDir  = path.join(__dirname, 'content', 'case-studies');
-const csOutDir  = path.join(__dirname, 'case-studies');
-
+// ─── CASE STUDIES ──────────────────────────────────────────────────────────
+const csCmsDir = path.join(__dirname, 'content', 'case-studies');
+const csOutDir = path.join(__dirname, 'case-studies');
 if (!fs.existsSync(csOutDir)) fs.mkdirSync(csOutDir);
 
 const csFiles = fs.readdirSync(csCmsDir).filter(f => f.endsWith('.json'));
-const caseStudies = csFiles.map(f => JSON.parse(fs.readFileSync(path.join(csCmsDir, f), 'utf8')));
+const caseStudies = csFiles
+    .map(f => JSON.parse(fs.readFileSync(path.join(csCmsDir, f), 'utf8')))
+    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
-// Sort: featured first, then alphabetical
-caseStudies.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-
-// Approach step icons (navy + golden, matching pathway SVG)
-const STEP_ICONS = [
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="4" height="8" rx="1.5" fill="#314969" opacity="0.4"/><rect x="9" y="7" width="4" height="12" rx="1.5" fill="#314969" opacity="0.7"/><rect x="15" y="4" width="4" height="15" rx="1.5" fill="#314969"/><circle cx="18" cy="4" r="3.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="20.5" y1="6.5" x2="22" y2="8" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M2 19 Q2 13 8 13 Q14 13 14 19" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M15 11 Q18 11 19 13" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="8" r="3" fill="none" stroke="#F2AF4C" stroke-width="1.5"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="2" width="12" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><polyline points="5,10 7,10 8,7 9,13 10,10 11,10 12,8 13,10 15,10" fill="none" stroke="#314969" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6 Q19 9 17 12" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M4 20 Q4 13 11 13 Q18 13 18 20" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="8" y1="15" x2="14" y2="15" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="12.5" x2="11" y2="17.5" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/></svg>`,
-];
-
-const PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
+// ─── Pathway block: custom image OR fallback hardcoded SVG ───────────────────
+const FALLBACK_PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
     <title>Healthcare transformation pathway</title>
     <desc>Four programme pillars leading to measurable outcomes.</desc>
     <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#F2AF4C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
@@ -274,30 +257,50 @@ const PATHWAY_SVG = `<svg width="100%" viewBox="0 0 680 310" role="img" xmlns="h
     <line x1="340" y1="152" x2="340" y2="168" stroke="#F2AF4C" stroke-width="1.5" stroke-dasharray="4 3"/>
 </svg>`;
 
-// ─── Build case study DETAIL pages ───────────────────────────────────────────
+function pathwayBlock(cs) {
+    const img = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
+    const alt = (cs.pathway && cs.pathway.alt) || 'Programme transformation pathway';
+    if (img) {
+        // Custom uploaded SVG — rendered as <img> so it's isolated and scales cleanly
+        return `<img
+            src="${img}"
+            alt="${alt}"
+            class="pathway-custom-img"
+            width="1200"
+            height="400"
+        />`;
+    }
+    // Fallback: hardcoded inline SVG
+    return FALLBACK_PATHWAY_SVG;
+}
+
+// Approach step icons
+const STEP_ICONS = [
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="4" height="8" rx="1.5" fill="#314969" opacity="0.4"/><rect x="9" y="7" width="4" height="12" rx="1.5" fill="#314969" opacity="0.7"/><rect x="15" y="4" width="4" height="15" rx="1.5" fill="#314969"/><circle cx="18" cy="4" r="3.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="20.5" y1="6.5" x2="22" y2="8" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M2 19 Q2 13 8 13 Q14 13 14 19" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M15 11 Q18 11 19 13" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="8" r="3" fill="none" stroke="#F2AF4C" stroke-width="1.5"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="2" width="12" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><polyline points="5,10 7,10 8,7 9,13 10,10 11,10 12,8 13,10 15,10" fill="none" stroke="#314969" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6 Q19 9 17 12" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M4 20 Q4 13 11 13 Q18 13 18 20" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="8" y1="15" x2="14" y2="15" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="12.5" x2="11" y2="17.5" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/></svg>`,
+];
+
+// ─── Build case study DETAIL page ─────────────────────────────────────────────
 function buildDetailPage(cs) {
-    const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const ARROW      = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const ARROW_LEFT = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-    const tagHtml = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
-    const statsHtml = (cs.outcomes.stats || []).map(s =>
-        `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`
-    ).join('');
-    const detailsHtml = (cs.outcomes.details || []).map(d =>
-        `<li>${d.detail !== undefined ? d.detail : d}</li>`
-    ).join('');
+    const tagHtml     = (cs.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
+    const statsHtml   = (cs.outcomes.stats || []).map(s => `<div class="outcome-stat"><span class="number">${s.number}</span><span class="desc">${s.label}</span></div>`).join('');
+    const detailsHtml = (cs.outcomes.details || []).map(d => `<li>${typeof d === 'object' ? d.detail : d}</li>`).join('');
     const approachHtml = (cs.approach.items || []).map((item, i) =>
-        `<li>
-            <div class="approach-icon">${STEP_ICONS[i] || STEP_ICONS[0]}</div>
-            <div><strong>${item.title}</strong><span>${item.description}</span></div>
-        </li>`
+        `<li><div class="approach-icon">${STEP_ICONS[i] || STEP_ICONS[0]}</div><div><strong>${item.title}</strong><span>${item.description}</span></div></li>`
     ).join('');
-    const glanceHtml = (cs.sidebar.atAGlance || []).map(x =>
-        `<li>${x.item !== undefined ? x.item : x}</li>`
-    ).join('');
-    const capHtml = (cs.sidebar.capabilities || []).map(x =>
-        `<li>${x.capability !== undefined ? x.capability : x}</li>`
-    ).join('');
+    const glanceHtml  = (cs.sidebar.atAGlance || []).map(x => `<li>${typeof x === 'object' ? x.item : x}</li>`).join('');
+    const capHtml     = (cs.sidebar.capabilities || []).map(x => `<li>${typeof x === 'object' ? x.capability : x}</li>`).join('');
+
+    // pathway: custom img gets extra style; fallback SVG uses its own sizing
+    const hasCustomImg = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
+    const pathwayImgStyle = hasCustomImg
+        ? `<style>.pathway-custom-img{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto}</style>`
+        : '';
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -306,6 +309,7 @@ function buildDetailPage(cs) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${cs.title} | VANTYS</title>
     <link rel="stylesheet" href="../styles.css">
+    ${pathwayImgStyle}
     <style>
         .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%);position:relative;overflow:hidden}
         .cs-detail-hero .bg-shape-1{width:480px;height:380px;background:var(--navy);top:-150px;right:-100px;opacity:.07;transform:rotate(-37deg)}
@@ -376,7 +380,7 @@ ${navHtml('case-studies/', '../')}
 <section class="pathway-section">
     <div class="container">
         <h2>The <strong>Transformation Pathway</strong></h2>
-        ${PATHWAY_SVG}
+        ${pathwayBlock(cs)}
     </div>
 </section>
 
@@ -441,30 +445,27 @@ function buildListingPage(studies) {
         <a href="${featured.slug}.html" class="read-link">Read full story ${ARROW}</a>
     </div>` : '';
 
-    const gridHtml = rest.length > 0 ? `
-    <div class="cs-grid">
-        ${rest.map(s => `
+    const gridCards = rest.length > 0
+        ? rest.map(s => `
         <div class="cs-card">
             <div class="cs-meta">${(s.tags || []).map(t => `<span class="cs-tag cs-tag-dark">${t}</span>`).join('')}</div>
             <h3>${s.shortTitle}</h3>
             <p>${s.teaser}</p>
             <a href="${s.slug}.html" class="read-link">Read full story ${ARROW}</a>
-        </div>`).join('')}
-    </div>` : `
-    <div class="cs-grid">
+        </div>`).join('')
+        : `
         <div class="cs-card coming-soon">
             <div class="cs-meta"><span class="cs-tag cs-tag-dark">Coming soon</span></div>
             <h3>Commercial Model Transformation for a Global Pharma Launch</h3>
-            <p>Redesigning the go-to-market model ahead of a major product launch &#8212; aligning commercial, medical affairs and market access around a unified stakeholder strategy.</p>
+            <p>Redesigning the go-to-market model ahead of a major product launch.</p>
             <span class="read-link" style="color:var(--gray)">Coming soon ${ARROW}</span>
         </div>
         <div class="cs-card coming-soon">
             <div class="cs-meta"><span class="cs-tag cs-tag-dark">Coming soon</span></div>
             <h3>AI-Enabled Omnichannel Orchestration for a Specialty Biotech</h3>
-            <p>Implementing a practical omnichannel capability that moved beyond channel management to genuine HCP engagement orchestration.</p>
+            <p>Implementing a practical omnichannel capability with measurable improvements in HCP reach and quality.</p>
             <span class="read-link" style="color:var(--gray)">Coming soon ${ARROW}</span>
-        </div>
-    </div>`;
+        </div>`;
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -503,23 +504,19 @@ function buildListingPage(studies) {
 <body>
 ${BACK_TO_TOP}
 ${navHtml('case-studies/', '../')}
-
 <section class="cs-hero">
-    <div class="bg-shape bg-shape-1"></div>
-    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
         <h1>From Strategy to <strong>Measurable Impact</strong></h1>
         <p>How we help pharmaceutical and biotech companies bridge the gap between strategic ambition and operational results.</p>
     </div>
 </section>
-
 <section class="cs-section">
     <div class="container">
         ${featuredHtml}
-        ${gridHtml}
+        <div class="cs-grid">${gridCards}</div>
     </div>
 </section>
-
 <section class="cta-section">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -528,27 +525,23 @@ ${navHtml('case-studies/', '../')}
         <a href="../contact.html" class="cta-button">Get in Touch</a>
     </div>
 </section>
-
 ${footerHtml('../')}
 <script src="../script.js"></script>
 </body>
 </html>`;
 }
 
-// ─── Write all files ──────────────────────────────────────────────────────────
+// ─── Write all files ─────────────────────────────────────────────────────────
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml, 'utf8');
 fs.writeFileSync(path.join(__dirname, 'about-me.html'), aboutHtml, 'utf8');
 
 caseStudies.forEach(cs => {
-    const html = buildDetailPage(cs);
-    fs.writeFileSync(path.join(csOutDir, `${cs.slug}.html`), html, 'utf8');
+    fs.writeFileSync(path.join(csOutDir, `${cs.slug}.html`), buildDetailPage(cs), 'utf8');
     console.log(`  ✅ case-studies/${cs.slug}.html`);
 });
 
-const listingHtml = buildListingPage(caseStudies);
-fs.writeFileSync(path.join(csOutDir, 'index.html'), listingHtml, 'utf8');
-
+fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
 console.log('✅ index.html');
 console.log('✅ about-me.html');
 console.log('✅ case-studies/index.html');
-console.log(`✅ ${caseStudies.length} case study detail pages generated`);
+console.log(`✅ ${caseStudies.length} case study detail page(s) generated`);

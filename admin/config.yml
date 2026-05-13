@@ -9,7 +9,7 @@ public_folder: "/images/uploads"
 collections:
 
   # ─────────────────────────────────────────
-  # PAGES (single files mapped to JSON)
+  # PAGES
   # ─────────────────────────────────────────
   - name: "pages"
     label: "Pages"
@@ -114,9 +114,7 @@ collections:
               - {label: "Content", name: "content", widget: "text"}
 
   # ─────────────────────────────────────────
-  # CASE STUDIES (one JSON file per study)
-  # title is the identifier — Decap default
-  # slug drives the filename via the slug template
+  # CASE STUDIES
   # ─────────────────────────────────────────
   - name: "case-studies"
     label: "Case Studies"
@@ -127,12 +125,30 @@ collections:
     format: "json"
     slug: "{{fields.slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string", hint: "Full title shown on the detail page"}
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly, e.g. proactive-cardiovascular-risk-management"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show as featured card on listing page"}
-      - {label: "Short Title", name: "shortTitle", widget: "string", hint: "Shorter title used on listing cards"}
-      - {label: "Teaser", name: "teaser", widget: "text", hint: "2-3 sentence summary for the listing page"}
-      - {label: "Tags", name: "tags", widget: "list", hint: "e.g. Spain, Cardiovascular, 18 months"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Short Title", name: "shortTitle", widget: "string"}
+      - {label: "Teaser", name: "teaser", widget: "text"}
+      - {label: "Tags", name: "tags", widget: "list"}
+
+      - label: "Pathway Illustration"
+        name: "pathway"
+        widget: "object"
+        hint: "Visual diagram shown between the hero and the body text"
+        fields:
+          - label: "Custom SVG image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Upload a custom SVG (1200x400px, transparent background, navy #314969 + golden #F2AF4C). Leave empty to use the default generated illustration."
+          - label: "Image alt text"
+            name: "alt"
+            widget: "string"
+            required: false
+            default: "Programme transformation pathway"
+            hint: "Describe the diagram for accessibility"
+
       - label: "The Challenge"
         name: "challenge"
         widget: "object"
@@ -160,22 +176,17 @@ collections:
             name: "stats"
             widget: "list"
             fields:
-              - {label: "Number / Metric", name: "number", widget: "string", hint: "e.g. +18% or 18mo"}
+              - {label: "Number / Metric", name: "number", widget: "string"}
               - {label: "Label", name: "label", widget: "string"}
           - label: "Outcome Detail Bullets"
             name: "details"
             widget: "list"
-            hint: "One bullet point per item"
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"
         fields:
-          - label: "At a Glance items"
-            name: "atAGlance"
-            widget: "list"
-          - label: "Capabilities Deployed"
-            name: "capabilities"
-            widget: "list"
+          - {label: "At a Glance items", name: "atAGlance", widget: "list"}
+          - {label: "Capabilities Deployed", name: "capabilities", widget: "list"}
 
   # ─────────────────────────────────────────
   # SITE SETTINGS
