@@ -44,7 +44,7 @@
     ]
   },
   "pathway": {
-    "image": "/images/uploads/wireless_device.svg",
+    "image": "",
     "alt": "Four-step cardiovascular risk management programme pathway leading to measurable outcomes"
   },
   "slug": "proactive-cardiovascular-risk-management",
@@ -53,9 +53,8 @@
   "title": "Healthcare Pathway Transformation: Proactive Cardiovascular Risk Management",
   "tags": [
     "Healthcare System Partnership",
-    "Spain",
     "Cardiovascular",
-    "18 months",
+    "",
     "European Biotech"
   ],
   "shortTitle": "Proactive Cardiovascular Risk Management",
