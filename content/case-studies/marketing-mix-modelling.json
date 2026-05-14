@@ -34,7 +34,7 @@
         "description": "We deployed a multi-channel attribution model that decomposed sales into their constituent drivers: field force detailing, meetings and events, digital engagement, seasonality, and competitor activity. The model revealed various patterns depending on the analysed brand, with sometimes a significant mismatch between where budget was concentrated and where sales were actually being generated."
       },
       {
-        "title": "Response Curves & ROI Analysis",
+        "title": "Resource Optimisation",
         "description": "For each channel, we built response curves mapping the relationship between investment and incremental sales — distinguishing marginal ROI from average ROI. This identified frequency thresholds beyond which detailing or activity generated diminishing returns, exposed underfunded channels with significant headroom, and shifted leadership thinking from how much did we spend to what did the last dollar of investment actually return."
       },
       {
@@ -44,7 +44,7 @@
     ]
   },
   "pathway": {
-    "image": "",
+    "image": "/images/uploads/mmm.svg",
     "alt": "MMM transformation pathway showing Commercial Excellence Foundation, Marketing Mix Modelling, Response Curves and ROI Analysis, and Capability Building"
   },
   "slug": "marketing-mix-modelling",
