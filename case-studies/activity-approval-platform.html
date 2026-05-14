@@ -6,322 +6,57 @@
     <title>Operational Excellence: Activity Approval Platform | VANTYS</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .cs-detail-hero {
-            padding: 80px 0 72px;
-            background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .cs-detail-hero .bg-shape-1 {
-            width: 480px; height: 380px;
-            background: var(--navy);
-            top: -150px; right: -100px;
-            opacity: 0.07;
-            transform: rotate(-37deg);
-        }
-        .cs-detail-hero .bg-shape-2 {
-            width: 300px; height: 380px;
-            background: var(--golden);
-            bottom: -80px; left: -60px;
-            opacity: 0.07;
-            transform: rotate(19deg);
-        }
-        .breadcrumb {
-            font-size: 0.88em;
-            color: var(--gray);
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-        .breadcrumb a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+        .cs-detail-hero { padding: 80px 0 72px; background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%); position: relative; overflow: hidden; }
+        .breadcrumb { font-size: 0.88em; color: var(--gray); margin-bottom: 28px; position: relative; z-index: 1; }
+        .breadcrumb a { color: var(--gray); text-decoration: none; transition: color 0.2s; }
         .breadcrumb a:hover { color: var(--coral); }
         .breadcrumb span { margin: 0 8px; opacity: 0.5; }
-        .cs-detail-hero h1 {
-            font-size: 2.6em;
-            font-weight: 300;
-            color: var(--navy);
-            line-height: 1.25;
-            max-width: 820px;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
+        .cs-detail-hero h1 { font-size: 2.6em; font-weight: 300; color: var(--navy); line-height: 1.25; max-width: 820px; margin-bottom: 24px; position: relative; z-index: 1; }
         .cs-detail-hero h1 strong { font-weight: 600; color: var(--coral); }
-        .cs-meta-bar {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .cs-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.82em;
-            font-weight: 500;
-            background: rgba(49,73,105,0.07);
-            color: var(--navy);
-            border: 1px solid rgba(49,73,105,0.12);
-        }
-        /* Body layout */
-        .cs-body {
-            padding: 80px 0 100px;
-        }
-        .cs-layout {
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 80px;
-            align-items: start;
-        }
-        /* Main content */
-        .cs-content-block {
-            margin-bottom: 60px;
-        }
+        .cs-meta-bar { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+        .cs-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.82em; font-weight: 500; background: rgba(49,73,105,0.07); color: var(--navy); border: 1px solid rgba(49,73,105,0.12); }
+        .cs-body { padding: 80px 0 100px; }
+        .cs-layout { display: grid; grid-template-columns: 1fr 340px; gap: 80px; align-items: start; }
+        .cs-content-block { margin-bottom: 60px; }
         .cs-content-block:last-child { margin-bottom: 0; }
-        .section-eyebrow {
-            display: block;
-            font-size: 0.75em;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 12px;
-        }
-        .cs-content-block h2 {
-            font-size: 1.7em;
-            font-weight: 400;
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-        .cs-content-block p {
-            color: var(--gray);
-            line-height: 1.8;
-            font-size: 1.02em;
-            margin-bottom: 16px;
-        }
+        .section-eyebrow { display: block; font-size: 0.75em; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+        .cs-content-block h2 { font-size: 1.7em; font-weight: 400; color: var(--navy); margin-bottom: 20px; line-height: 1.3; }
+        .cs-content-block p { color: var(--gray); line-height: 1.8; font-size: 1.02em; margin-bottom: 16px; }
         .cs-content-block p:last-child { margin-bottom: 0; }
-        /* Approach bullets */
-        .approach-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        .approach-list li {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        .approach-icon {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--warm-neutral);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .approach-list li > div > strong {
-            display: block;
-            color: var(--navy);
-            font-size: 1em;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .approach-list li > div > span {
-            color: var(--gray);
-            font-size: 0.96em;
-            line-height: 1.7;
-        }
-        /* Outcomes */
-        .outcome-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-        .outcome-stat {
-            background: var(--warm-neutral);
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-            border-top: 3px solid var(--coral);
-        }
-        .outcome-stat .number {
-            font-size: 2.4em;
-            font-weight: 700;
-            color: var(--coral);
-            display: block;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-        .outcome-stat .desc {
-            font-size: 0.88em;
-            color: var(--navy);
-            line-height: 1.5;
-        }
-        .outcome-detail {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .outcome-detail li {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            color: var(--gray);
-            font-size: 0.98em;
-            line-height: 1.7;
-        }
-        .outcome-detail li::before {
-            content: '';
-            flex-shrink: 0;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--coral);
-            margin-top: 9px;
-        }
-        /* Sidebar */
-        .cs-sidebar {
-            position: sticky;
-            top: 110px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-        .sidebar-card {
-            background: var(--warm-neutral);
-            border-radius: 16px;
-            padding: 28px;
-        }
-        .sidebar-card h4 {
-            font-size: 0.75em;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-bottom: 16px;
-        }
-        .sidebar-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .sidebar-card ul li {
-            font-size: 0.92em;
-            color: var(--navy);
-            line-height: 1.5;
-            padding-left: 14px;
-            position: relative;
-        }
-        .sidebar-card ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--coral);
-        }
-        .sidebar-cta {
-            background: var(--navy);
-            border-radius: 16px;
-            padding: 28px;
-            text-align: center;
-        }
-        .sidebar-cta p {
-            color: rgba(255,255,255,0.75);
-            font-size: 0.92em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .sidebar-cta a {
-            display: block;
-            background: var(--coral);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 24px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.92em;
-            transition: all 0.3s;
-        }
-        .sidebar-cta a:hover {
-            background: #E8622A;
-            transform: translateY(-2px);
-        }
-        /* Pathway illustration section */
-        .pathway-section {
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--white) 0%, var(--warm-neutral) 100%);
-            overflow: hidden;
-            position: relative;
-        }
-        .pathway-section h2 {
-            font-size: 1.4em;
-            font-weight: 400;
-            color: var(--navy);
-            margin-bottom: 40px;
-            text-align: center;
-        }
+        .approach-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px; }
+        .approach-list li { display: flex; gap: 20px; align-items: flex-start; }
+        .approach-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--warm-neutral); display: flex; align-items: center; justify-content: center; }
+        .approach-list li > div > strong { display: block; color: var(--navy); font-size: 1em; font-weight: 600; margin-bottom: 4px; }
+        .approach-list li > div > span { color: var(--gray); font-size: 0.96em; line-height: 1.7; }
+        .outcome-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+        .outcome-stat { background: var(--warm-neutral); border-radius: 16px; padding: 28px 24px; text-align: center; border-top: 3px solid var(--coral); }
+        .outcome-stat .number { font-size: 2.2em; font-weight: 700; color: var(--coral); display: block; line-height: 1; margin-bottom: 10px; }
+        .outcome-stat .desc { font-size: 0.88em; color: var(--navy); line-height: 1.5; }
+        .cs-sidebar { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 28px; }
+        .sidebar-card { background: var(--warm-neutral); border-radius: 16px; padding: 28px; }
+        .sidebar-card h4 { font-size: 0.75em; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+        .sidebar-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-card ul li { font-size: 0.92em; color: var(--navy); line-height: 1.5; padding-left: 14px; position: relative; }
+        .sidebar-card ul li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
+        .sidebar-cta { background: var(--navy); border-radius: 16px; padding: 28px; text-align: center; }
+        .sidebar-cta p { color: rgba(255,255,255,0.75); font-size: 0.92em; line-height: 1.6; margin-bottom: 20px; }
+        .sidebar-cta a { display: block; background: var(--coral); color: var(--white); padding: 12px 24px; border-radius: 24px; text-decoration: none; font-weight: 500; font-size: 0.92em; transition: all 0.3s; }
+        .sidebar-cta a:hover { background: #E8622A; transform: translateY(-2px); }
+        .pathway-section { padding: 60px 0; background: linear-gradient(135deg, var(--white) 0%, var(--warm-neutral) 100%); overflow: hidden; position: relative; }
+        .pathway-section h2 { font-size: 1.4em; font-weight: 400; color: var(--navy); margin-bottom: 40px; text-align: center; }
         .pathway-section h2 strong { font-weight: 600; color: var(--coral); }
-        /* Nav between case studies */
-        .cs-nav-bar {
-            border-top: 1px solid var(--warm-neutral);
-            padding: 40px 0;
-        }
-        .cs-nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-        }
-        .cs-nav-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.92em;
-            transition: color 0.2s;
-        }
+        .cs-nav-bar { border-top: 1px solid var(--warm-neutral); padding: 40px 0; }
+        .cs-nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+        .cs-nav-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gray); text-decoration: none; font-size: 0.92em; transition: color 0.2s; }
         .cs-nav-link:hover { color: var(--coral); }
-        @media (max-width: 960px) {
-            .cs-layout {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-            .cs-sidebar { position: static; }
-            .outcome-stats { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 768px) {
-            .cs-detail-hero h1 { font-size: 1.9em; }
-            .outcome-stats { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 960px) { .cs-layout { grid-template-columns: 1fr; gap: 48px; } .cs-sidebar { position: static; } .outcome-stats { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) { .cs-detail-hero h1 { font-size: 1.9em; } .outcome-stats { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="back-to-top" id="backToTop">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-
     <header>
         <nav class="container">
             <div class="logo-container">
@@ -334,9 +69,7 @@
                 </svg>
                 <a href="../index.html" style="text-decoration:none" class="logo">vantys</a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="../index.html#approach">Approach</a></li>
@@ -346,17 +79,11 @@
             </ul>
         </nav>
     </header>
-
-    <!-- Hero -->
     <section class="cs-detail-hero">
         <div class="bg-shape bg-shape-1"></div>
         <div class="bg-shape bg-shape-2"></div>
         <div class="container">
-            <div class="breadcrumb">
-                <a href="../index.html">Home</a><span>/</span>
-                <a href="index.html">Case Studies</a><span>/</span>
-                Activity Approval Platform
-            </div>
+            <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Case Studies</a><span>/</span>Activity Approval Platform</div>
             <h1>Operational Excellence:<br><strong>HCP Engagement Activity Approval Platform</strong></h1>
             <div class="cs-meta-bar">
                 <span class="cs-tag">Business Operations Transformation</span>
@@ -367,290 +94,84 @@
             </div>
         </div>
     </section>
-
-    <!-- Pathway illustration -->
     <section class="pathway-section">
         <div class="container">
             <h2>The <strong>Transformation Pathway</strong></h2>
             <svg width="100%" viewBox="0 0 680 310" role="img" xmlns="http://www.w3.org/2000/svg">
                 <title>Activity approval transformation pathway</title>
-                <desc>Four programme pillars — Process Reengineering, Technology Deployment, User Experience, Compliance Integration — leading to measurable operational outcomes.</desc>
-                <defs>
-                    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                        <path d="M2 1L8 5L2 9" fill="none" stroke="#F2AF4C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    </marker>
-                </defs>
-
-                <!-- Step 1: Process Reengineering -->
-                <g transform="translate(18,30)">
-                    <!-- flowchart icon -->
-                    <rect x="36" y="28" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/>
-                    <rect x="66" y="28" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/>
-                    <rect x="36" y="58" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/>
-                    <rect x="66" y="58" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/>
-                    <!-- connections -->
-                    <line x1="54" y1="35" x2="66" y2="35" stroke="#F2AF4C" stroke-width="2"/>
-                    <line x1="45" y1="42" x2="45" y2="58" stroke="#F2AF4C" stroke-width="2"/>
-                    <line x1="75" y1="42" x2="75" y2="58" stroke="#F2AF4C" stroke-width="2"/>
-                    <line x1="54" y1="65" x2="66" y2="65" stroke="#F2AF4C" stroke-width="2"/>
-                    <text x="60" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Process Reengineering</text>
-                    <text x="60" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">End-to-end workflow</text>
-                    <text x="60" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">redesign across 15 markets</text>
-                </g>
-
-                <!-- Arrow 1 -->
+                <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#F2AF4C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <g transform="translate(18,30)"><rect x="36" y="28" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/><rect x="66" y="28" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/><rect x="36" y="58" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/><rect x="66" y="58" width="18" height="14" rx="3" fill="none" stroke="#314969" stroke-width="2"/><line x1="54" y1="35" x2="66" y2="35" stroke="#F2AF4C" stroke-width="2"/><line x1="45" y1="42" x2="45" y2="58" stroke="#F2AF4C" stroke-width="2"/><line x1="75" y1="42" x2="75" y2="58" stroke="#F2AF4C" stroke-width="2"/><line x1="54" y1="65" x2="66" y2="65" stroke="#F2AF4C" stroke-width="2"/><text x="60" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Process Reengineering</text><text x="60" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">End-to-end workflow</text><text x="60" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">redesign across 15 markets</text></g>
                 <line x1="145" y1="80" x2="172" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
-
-                <!-- Step 2: Technology Deployment -->
-                <g transform="translate(173,30)">
-                    <!-- server/deployment icon -->
-                    <rect x="30" y="24" width="60" height="50" rx="5" fill="none" stroke="#314969" stroke-width="2"/>
-                    <circle cx="45" cy="38" r="3.5" fill="#314969"/>
-                    <circle cx="75" cy="38" r="3.5" fill="#F2AF4C"/>
-                    <line x1="36" y1="48" x2="84" y2="48" stroke="#314969" stroke-width="1.5" opacity="0.3"/>
-                    <rect x="36" y="54" width="48" height="4" rx="2" fill="#314969" opacity="0.2"/>
-                    <rect x="36" y="62" width="38" height="4" rx="2" fill="#314969" opacity="0.2"/>
-                    <path d="M52 80 L60 88 L68 80" fill="none" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <text x="60" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Technology Deployment</text>
-                    <text x="60" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Open-source stack with</text>
-                    <text x="60" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">automated workflows</text>
-                </g>
-
-                <!-- Arrow 2 -->
+                <g transform="translate(173,30)"><rect x="30" y="24" width="60" height="50" rx="5" fill="none" stroke="#314969" stroke-width="2"/><circle cx="45" cy="38" r="3.5" fill="#314969"/><circle cx="75" cy="38" r="3.5" fill="#F2AF4C"/><line x1="36" y1="48" x2="84" y2="48" stroke="#314969" stroke-width="1.5" opacity="0.3"/><rect x="36" y="54" width="48" height="4" rx="2" fill="#314969" opacity="0.2"/><rect x="36" y="62" width="38" height="4" rx="2" fill="#314969" opacity="0.2"/><path d="M52 80 L60 88 L68 80" fill="none" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Technology Deployment</text><text x="60" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Open-source stack with</text><text x="60" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">automated workflows</text></g>
                 <line x1="295" y1="80" x2="322" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
-
-                <!-- Step 3: User Experience -->
-                <g transform="translate(323,20)">
-                    <!-- monitor + click -->
-                    <rect x="26" y="20" width="62" height="48" rx="4" fill="none" stroke="#314969" stroke-width="2"/>
-                    <rect x="32" y="26" width="50" height="32" rx="2" fill="#314969" opacity="0.05"/>
-                    <!-- simple interface elements -->
-                    <rect x="38" y="32" width="18" height="4" rx="2" fill="#314969" opacity="0.3"/>
-                    <rect x="38" y="40" width="28" height="4" rx="2" fill="#314969" opacity="0.3"/>
-                    <circle cx="72" cy="50" r="6" fill="#F2AF4C" opacity="0.3"/>
-                    <path d="M69 50 L71 52 L75 48" fill="none" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/>
-                    <!-- base -->
-                    <rect x="44" y="68" width="26" height="4" rx="2" fill="#314969"/>
-                    <rect x="38" y="72" width="38" height="10" rx="3" fill="#314969" opacity="0.1"/>
-                    <!-- cursor -->
-                    <path d="M94 34 L94 48 L98 43 L102 46 L105 42 L101 39 L106 38Z" fill="#F2AF4C" stroke="#314969" stroke-width="1"/>
-                    <text x="57" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">User Experience</text>
-                    <text x="57" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Intuitive interface reducing</text>
-                    <text x="57" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">training time by 70%</text>
-                </g>
-
-                <!-- Arrow 3 -->
+                <g transform="translate(323,20)"><rect x="26" y="20" width="62" height="48" rx="4" fill="none" stroke="#314969" stroke-width="2"/><rect x="32" y="26" width="50" height="32" rx="2" fill="#314969" opacity="0.05"/><rect x="38" y="32" width="18" height="4" rx="2" fill="#314969" opacity="0.3"/><rect x="38" y="40" width="28" height="4" rx="2" fill="#314969" opacity="0.3"/><circle cx="72" cy="50" r="6" fill="#F2AF4C" opacity="0.3"/><path d="M69 50 L71 52 L75 48" fill="none" stroke="#314969" stroke-width="1.5"/><rect x="44" y="68" width="26" height="4" rx="2" fill="#314969"/><rect x="38" y="72" width="38" height="10" rx="3" fill="#314969" opacity="0.1"/><path d="M94 34 L94 48 L98 43 L102 46 L105 42 L101 39 L106 38Z" fill="#F2AF4C" stroke="#314969" stroke-width="1"/><text x="57" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">User Experience</text><text x="57" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Intuitive interface reducing</text><text x="57" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">training time by 70%</text></g>
                 <line x1="443" y1="80" x2="470" y2="80" stroke="#F2AF4C" stroke-width="2" marker-end="url(#arr)"/>
-
-                <!-- Step 4: Compliance Integration -->
-                <g transform="translate(471,20)">
-                    <!-- shield with checkmarks -->
-                    <path d="M57 18 L44 24 L44 44 Q44 66 57 80 Q70 66 70 44 L70 24 Z" fill="none" stroke="#314969" stroke-width="2"/>
-                    <path d="M57 18 L50 21 L50 42 Q50 58 57 68 Q64 58 64 42 L64 21 Z" fill="#314969" opacity="0.05"/>
-                    <!-- checks -->
-                    <path d="M50 42 L53 45 L60 36" fill="none" stroke="#314969" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M50 52 L53 55 L60 46" fill="none" stroke="#F2AF4C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M50 62 L53 65 L60 56" fill="none" stroke="#314969" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <text x="57" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Compliance Integration</text>
-                    <text x="57" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Embedded controls with</text>
-                    <text x="57" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">complete audit trail</text>
-                </g>
-
-                <!-- Outcome band -->
+                <g transform="translate(471,20)"><path d="M57 18 L44 24 L44 44 Q44 66 57 80 Q70 66 70 44 L70 24 Z" fill="none" stroke="#314969" stroke-width="2"/><path d="M57 18 L50 21 L50 42 Q50 58 57 68 Q64 58 64 42 L64 21 Z" fill="#314969" opacity="0.05"/><path d="M50 42 L53 45 L60 36" fill="none" stroke="#314969" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 52 L53 55 L60 46" fill="none" stroke="#F2AF4C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62 L53 65 L60 56" fill="none" stroke="#314969" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><text x="57" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#314969">Compliance Integration</text><text x="57" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">Embedded controls with</text><text x="57" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">complete audit trail</text></g>
                 <rect x="18" y="168" width="644" height="120" rx="12" fill="#314969" opacity="0.05" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
                 <text x="36" y="186" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#314969" opacity="0.4" letter-spacing="1.5">OUTCOMES WITHIN 12 MONTHS</text>
-
-                <text x="190" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#314969">−80%</text>
-                <text x="190" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Approval processing time</text>
-                <text x="190" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">vs manual workflows</text>
-
+                <text x="190" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#314969">−80%</text><text x="190" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Approval processing time</text><text x="190" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">vs manual workflows</text>
                 <line x1="340" y1="178" x2="340" y2="278" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
-
-                <text x="400" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#F2AF4C">15</text>
-                <text x="400" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Countries standardized</text>
-                <text x="400" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">on single platform</text>
-
+                <text x="400" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#F2AF4C">15</text><text x="400" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Countries standardized</text><text x="400" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">on single platform</text>
                 <line x1="530" y1="178" x2="530" y2="278" stroke="#314969" stroke-width="1" stroke-opacity="0.12"/>
-
-                <text x="606" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#314969">100%</text>
-                <text x="606" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Compliance tracking</text>
-                <text x="606" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">with complete audit trail</text>
-
-                <!-- connector -->
+                <text x="606" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#314969">100%</text><text x="606" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#314969">Compliance tracking</text><text x="606" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#697A92">with complete audit trail</text>
                 <line x1="340" y1="152" x2="340" y2="168" stroke="#F2AF4C" stroke-width="1.5" stroke-dasharray="4 3"/>
             </svg>
         </div>
     </section>
-
-    <!-- Case study body -->
     <section class="cs-body">
         <div class="container">
             <div class="cs-layout">
-
                 <div class="cs-main">
-
-                    <!-- Challenge -->
                     <div class="cs-content-block">
                         <span class="section-eyebrow">The Challenge</span>
                         <h2>Breaking through operational bottlenecks in HCP engagement</h2>
                         <p>A mid-size pharmaceutical company with operations across 15 European markets faced significant frustration with their HCP engagement approval process. Medical affairs teams spent days preparing activity requests, only to face weeks of back-and-forth iterations with compliance, legal, and finance.</p>
                         <p>The manual process created delays that meant missed opportunities for timely scientific exchange, frustrated field teams who felt disconnected from decision-making, and compliance teams overwhelmed by fragmented documentation across email chains and spreadsheets. The organization needed a solution that would preserve necessary controls while dramatically reducing friction.</p>
                     </div>
-
-                    <!-- Approach -->
                     <div class="cs-content-block">
                         <span class="section-eyebrow">Our Approach</span>
                         <h2>A user-centric platform prioritizing efficiency and transparency</h2>
                         <p>Rather than implementing a heavy enterprise system, we designed a streamlined solution focused on eliminating waste in the approval journey:</p>
                         <ul class="approach-list">
-                            <li>
-                                <div class="approach-icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                        <rect x="3" y="5" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <rect x="12" y="5" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <rect x="3" y="13" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <rect x="12" y="13" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <line x1="7" y1="11" x2="7" y2="13" stroke="#F2AF4C" stroke-width="2"/>
-                                        <line x1="15" y1="11" x2="15" y2="13" stroke="#F2AF4C" stroke-width="2"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>Process Reengineering</strong>
-                                    <span>Mapped and streamlined end-to-end workflows across all 15 markets, removing redundant approval steps while maintaining necessary controls. Created standardized templates that captured 80% of required information upfront, eliminating multiple rounds of clarification.</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="approach-icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                        <rect x="4" y="3" width="14" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <circle cx="8" cy="7" r="1.5" fill="#314969"/>
-                                        <circle cx="14" cy="7" r="1.5" fill="#F2AF4C"/>
-                                        <rect x="7" y="11" width="8" height="2" rx="1" fill="#314969" opacity="0.3"/>
-                                        <rect x="7" y="15" width="6" height="2" rx="1" fill="#314969" opacity="0.3"/>
-                                        <path d="M9 20 L11 22 L13 20" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>Open-Source Technology Stack</strong>
-                                    <span>Deployed a modern, open-source platform that automated routing, notifications, and documentation. The system integrated seamlessly with the organization's existing HCP payment systems and compliance databases, eliminating manual data re-entry and reducing errors.</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="approach-icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                        <circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <path d="M4 19 Q4 13 11 13 Q18 13 18 19" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <circle cx="16" cy="16" r="3" fill="#F2AF4C" opacity="0.2" stroke="#F2AF4C" stroke-width="1.5"/>
-                                        <path d="M14.5 16 L15.5 17 L17.5 15" fill="none" stroke="#314969" stroke-width="1.8" stroke-linecap="round"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>User Experience Focus</strong>
-                                    <span>Designed interfaces that field teams could navigate intuitively without extensive training. Progressive disclosure ensured users only saw fields relevant to their activity type, while built-in validation caught common errors immediately rather than after approval submission.</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="approach-icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                        <rect x="4" y="4" width="14" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/>
-                                        <path d="M7 8 L10 11 L15 6" fill="none" stroke="#314969" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <line x1="7" y1="14" x2="15" y2="14" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="7" y1="17" x2="12" y2="17" stroke="#314969" stroke-width="2" stroke-linecap="round"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <strong>Embedded Compliance & Efficiency</strong>
-                                    <span>Built compliance rules directly into the workflow engine, automatically routing activities to appropriate reviewers based on activity type, budget, and country regulations. Real-time dashboards gave all stakeholders visibility into approval status, eliminating "where is my request" inquiries.</span>
-                                </div>
-                            </li>
+                            <li><div class="approach-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/><rect x="12" y="5" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/><rect x="3" y="13" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/><rect x="12" y="13" width="7" height="6" rx="1.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="7" y1="11" x2="7" y2="13" stroke="#F2AF4C" stroke-width="2"/><line x1="15" y1="11" x2="15" y2="13" stroke="#F2AF4C" stroke-width="2"/></svg></div><div><strong>Process Reengineering</strong><span>Mapped and streamlined end-to-end workflows across all 15 markets, removing redundant approval steps while maintaining necessary controls. Created standardized templates that captured 80% of required information upfront, eliminating multiple rounds of clarification.</span></div></li>
+                            <li><div class="approach-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="3" width="14" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><circle cx="8" cy="7" r="1.5" fill="#314969"/><circle cx="14" cy="7" r="1.5" fill="#F2AF4C"/><rect x="7" y="11" width="8" height="2" rx="1" fill="#314969" opacity="0.3"/><rect x="7" y="15" width="6" height="2" rx="1" fill="#314969" opacity="0.3"/><path d="M9 20 L11 22 L13 20" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><strong>Open-Source Technology Stack</strong><span>Deployed a modern, open-source platform that automated routing, notifications, and documentation. The system integrated seamlessly with the organisation's existing HCP payment systems and compliance databases, eliminating manual data re-entry and reducing errors.</span></div></li>
+                            <li><div class="approach-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M3 19 Q3 13 8 13 Q13 13 13 19" fill="none" stroke="#314969" stroke-width="1.5"/><circle cx="16" cy="16" r="3" fill="#F2AF4C" opacity="0.2" stroke="#F2AF4C" stroke-width="1.5"/><path d="M14.5 16 L15.5 17 L17.5 15" fill="none" stroke="#314969" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><strong>User Experience Focus</strong><span>Designed interfaces that field teams could navigate intuitively without extensive training. Progressive disclosure ensured users only saw fields relevant to their activity type, while built-in validation caught common errors immediately rather than after approval submission.</span></div></li>
+                            <li><div class="approach-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="4" width="14" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M7 8 L10 11 L15 6" fill="none" stroke="#314969" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="14" x2="15" y2="14" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="17" x2="12" y2="17" stroke="#314969" stroke-width="2" stroke-linecap="round"/></svg></div><div><strong>Embedded Compliance &amp; Efficiency</strong><span>Built compliance rules directly into the workflow engine, automatically routing activities to appropriate reviewers based on activity type, budget, and country regulations. Real-time dashboards gave all stakeholders visibility into approval status, eliminating status inquiries.</span></div></li>
                         </ul>
                     </div>
-
-                    <!-- Outcome -->
                     <div class="cs-content-block">
                         <span class="section-eyebrow">The Outcome</span>
                         <h2>Transformed operational efficiency within 12 months</h2>
                         <div class="outcome-stats">
-                            <div class="outcome-stat">
-                                <span class="number">−80%</span>
-                                <span class="desc">Reduction in approval processing time from submission to final decision</span>
-                            </div>
-                            <div class="outcome-stat">
-                                <span class="number">15</span>
-                                <span class="desc">European markets standardized on a single platform and consistent processes</span>
-                            </div>
-                            <div class="outcome-stat">
-                                <span class="number">100%</span>
-                                <span class="desc">Compliance tracking with complete audit trail and automated documentation</span>
-                            </div>
+                            <div class="outcome-stat"><span class="number">&minus;80%</span><span class="desc">Reduction in approval processing time from submission to final decision</span></div>
+                            <div class="outcome-stat"><span class="number">15</span><span class="desc">European markets standardized on a single platform and consistent processes</span></div>
+                            <div class="outcome-stat"><span class="number">100%</span><span class="desc">Compliance tracking with complete audit trail and automated documentation</span></div>
                         </div>
-                        <ul class="outcome-detail">
-                            <li>80% reduction in average approval processing time, enabling the organization to respond more quickly to scientific exchange opportunities.</li>
-                            <li>Standardized workflows across 15 European markets, eliminating country-specific workarounds and ensuring consistent compliance standards.</li>
-                            <li>Field teams reported significantly higher satisfaction with transparency and predictability of the approval process.</li>
-                            <li>Compliance and finance teams reduced time spent on status inquiries and manual documentation by over 60%.</li>
-                            <li>Complete audit trail automatically generated for every activity, supporting both internal governance and external transparency reporting requirements.</li>
-                        </ul>
                     </div>
-
                 </div>
-
-                <!-- Sidebar -->
                 <aside class="cs-sidebar">
-                    <div class="sidebar-card">
-                        <h4>At a glance</h4>
-                        <ul>
-                            <li>Mid-size pharmaceutical client</li>
-                            <li>15 European markets</li>
-                            <li>HCP engagement operations</li>
-                            <li>12-month implementation</li>
-                            <li>Open-source technology platform</li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-card">
-                        <h4>Capabilities deployed</h4>
-                        <ul>
-                            <li>Process reengineering & optimization</li>
-                            <li>Multi-country workflow design</li>
-                            <li>Technology platform deployment</li>
-                            <li>User experience design</li>
-                            <li>Compliance framework integration</li>
-                            <li>Change management & training</li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-cta">
-                        <p>Struggling with operational bottlenecks? Let's explore how we can help.</p>
-                        <a href="../contact.html">Book a Discovery Call</a>
-                    </div>
+                    <div class="sidebar-card"><h4>At a glance</h4><ul><li>Mid-size pharmaceutical client</li><li>15 European markets</li><li>HCP engagement operations</li><li>12-month implementation</li><li>Open-source technology platform</li></ul></div>
+                    <div class="sidebar-card"><h4>Capabilities deployed</h4><ul><li>Process reengineering &amp; optimization</li><li>Multi-country workflow design</li><li>Technology platform deployment</li><li>User experience design</li><li>Compliance framework integration</li><li>Change management &amp; training</li></ul></div>
+                    <div class="sidebar-cta"><p>Struggling with operational bottlenecks? Let's explore how we can help.</p><a href="../contact.html">Book a Call</a></div>
                 </aside>
-
             </div>
         </div>
     </section>
-
-    <!-- Nav between case studies -->
     <div class="cs-nav-bar">
         <div class="container">
             <div class="cs-nav-inner">
-                <a href="proactive-cardiovascular-risk-management.html" class="cs-nav-link">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    Healthcare Pathway Transformation
-                </a>
-                <a href="index.html" class="cs-nav-link">
-                    All case studies
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <a href="proactive-cardiovascular-risk-management.html" class="cs-nav-link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Healthcare Pathway Transformation</a>
+                <a href="index.html" class="cs-nav-link">All case studies<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
         </div>
     </div>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
+            <p>All rights reserved.</p>
             <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="../privacy-policy.html">Privacy Policy</a></p>
         </div>
     </footer>
-
     <script src="../script.js"></script>
 </body>
 </html>
