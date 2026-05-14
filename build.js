@@ -35,7 +35,7 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
 </div>`;
 
 const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">`;
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
 function navHtml(activeHref, prefix = '') {
     const links = [
