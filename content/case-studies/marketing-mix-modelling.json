@@ -1,18 +1,18 @@
 {
   "outcomes": {
-    "heading": "A measurable shift in performance — and in how leaders think",
+    "heading": "A measurable shift in performance — and in how leaders think. An EU Brand example",
     "stats": [
       {
-        "number": "+18% NRx",
-        "label": "uplift on the lead respiratory brand within 12 months of reallocating promotional spend toward higher-ROI channels"
+        "number": "+7% NRx",
+        "label": "Sales uplift within 12 months of reallocating promotional spend toward higher-ROI channels"
       },
       {
-        "number": "3 FTE",
-        "label": "redeployed from overcalled low-potential segments to high-value accounts, with no increase in total field force headcount"
+        "number": "23 FTEs",
+        "label": "Redeployed from overcalled low-potential segments to high-value accounts, with no increase in total field force headcount"
       },
       {
-        "number": "Pervasive Capability",
-        "label": "MMM outputs now inform brand planning, S&T reviews and commercial governance across all therapeutic areas on a recurring basis"
+        "number": "2,7 MUSD",
+        "label": "Shift in channel resources allocation based on data-driven decisions"
       }
     ],
     "details": []
@@ -23,7 +23,7 @@
   },
   "approach": {
     "heading": "Building the analytical engine behind smarter commercial decisions",
-    "intro": "cdcd",
+    "intro": "A structured approach for sustainable results",
     "items": [
       {
         "title": "Commercial Excellence Foundation",
@@ -39,7 +39,7 @@
       },
       {
         "title": "Capability Building",
-        "description": "The most durable outcome was the change in how decisions were made. We co-developed an interactive scenario planning tool with brand teams, enabling them to simulate allocation decisions independently. Structured capability sessions reframed the annual budgeting conversation — from a negotiation anchored in last year's spend to an evidence-based dialogue about marginal impact. Senior leaders described it as the first time they felt genuinely equipped to make confident investment decisions."
+        "description": "The most durable outcome was the change in how decisions were made. We amended the business planning process and developed an interactive scenario planning tool with brand teams, enabling them to simulate channel allocation decisions independently. Structured capability sessions reframed the annual budgeting conversation so senior leaders felt genuinely equipped to make confident investment decisions."
       }
     ]
   },
@@ -61,18 +61,15 @@
   "sidebar": {
     "atAGlance": [
       "Global biopharmaceutical company",
-      "Multiple therapeutic areas",
-      "Field force, digital, events & samples",
-      "Multi-year engagement",
+      "Data-driven decision making",
+      "Resource optimisation",
       "Self-sustaining analytics capability"
     ],
     "capabilities": [
       "Commercial Excellence health checks",
-      "Descriptive analytics & baselining",
       "Marketing mix modelling (MMM)",
-      "Response curves & ROI analysis",
-      "Resource optimisation & scenario planning",
-      "Capability building & leadership alignment"
+      "Channel Response curves & ROI analysis",
+      "Scenario Planning"
     ]
   }
 }
