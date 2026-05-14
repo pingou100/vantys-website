@@ -34,6 +34,9 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
     </svg>
 </div>`;
 
+const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">`;
+
 function navHtml(activeHref, prefix = '') {
     const links = [
         { href: `${prefix}index.html#services`, label: 'Services' },
@@ -65,6 +68,7 @@ function footerHtml(prefix = '') {
     return `<footer>
     <div class="container">
         <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
+        <p>All rights reserved.</p>
         <p><a href="${homepageContent.footer.linkedinUrl}">LinkedIn</a> | <a href="${prefix}privacy-policy.html">Privacy Policy</a></p>
     </div>
 </footer>`;
@@ -92,6 +96,7 @@ const indexHtml = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANTYS | Pharmaceutical Operations Consulting</title>
+${FAVICON_LINKS}
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -158,6 +163,7 @@ const aboutHtml = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${aboutContent.title} | VANTYS</title>
+${FAVICON_LINKS}
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -292,11 +298,10 @@ function buildDetailPage(cs) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${cs.title} | VANTYS</title>
+${FAVICON_LINKS}
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
     <style>
-        /* NOTE: bg-shape positions for cs-detail-hero and pathway-section
-           are defined in styles.css — no overrides here so animations work */
         .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
         .breadcrumb{font-size:.88em;color:var(--gray);margin-bottom:28px;position:relative;z-index:1}
         .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--coral)}
@@ -389,7 +394,7 @@ ${navHtml('case-studies/', '../')}
             <aside class="cs-sidebar">
                 <div class="sidebar-card"><h4>At a glance</h4><ul>${glanceHtml}</ul></div>
                 <div class="sidebar-card"><h4>Capabilities deployed</h4><ul>${capHtml}</ul></div>
-                <div class="sidebar-cta"><p>Facing a similar challenge? Let us discuss how we can help.</p><a href="../contact.html">Book a Discovery Call</a></div>
+                <div class="sidebar-cta"><p>Facing a similar challenge? Let us discuss how we can help.</p><a href="../contact.html">Book a Call</a></div>
             </aside>
         </div>
     </div>
@@ -454,6 +459,7 @@ function buildListingPage(studies) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies | VANTYS</title>
+${FAVICON_LINKS}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .cs-section{padding:80px 0 100px;background:var(--white)}
