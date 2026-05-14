@@ -8,7 +8,7 @@
       },
       {
         "number": " 9 FTE",
-        "label": "Estimated number of Full-Time Equivalent that could be reinvested into other added value tasks and engagement with Healthcare Professionals"
+        "label": "Estimated number of Full-Time Equivalent that could be reinvested into other added value tasks and engagement time with Healthcare Professionals"
       },
       {
         "number": "55KUSD",
@@ -44,7 +44,7 @@
     ]
   },
   "pathway": {
-    "image": "",
+    "image": "/images/uploads/activity_approval_platform.svg",
     "alt": "Activity approval transformation pathway showing Process Reengineering, Technology Deployment, User Experience, and Compliance Integration"
   },
   "slug": "activity-approval-platform",
