@@ -427,8 +427,18 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 }
 
 /* Footer */
-footer { background: var(--navy); color: var(--white); padding: 48px 0; text-align: center; }
-footer p { color: rgba(255,255,255,0.7); font-size: 0.9em; }
+footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 48px 0;
+    text-align: center;
+}
+footer p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+footer p:last-child { margin-bottom: 0; }
 footer a { color: var(--coral); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
