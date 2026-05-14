@@ -271,11 +271,81 @@ function pathwayBlock(cs) {
     return FALLBACK_PATHWAY_SVG;
 }
 
+// ─── Animated Vantys-logo approach icons (inline SVG, CSS-animated) ─────────
+// Icon 1 — Sequential scan (Risk Stratification / Process Reengineering / Commercial Excellence)
+// Icon 2 — Wave pulse  (Patient Engagement / Open-Source Stack / MMM)
+// Icon 3 — Heartbeat   (Remote Monitoring / User Experience / Resource Optimisation)
+// Icon 4 — Build path  (Pathway Redesign / Compliance / Capability Building)
+// If a case study has only 3 items, icons 0-2 are used (icon 3 is omitted automatically).
+
+const APPROACH_ICON_STYLES = `<style>
+@keyframes vty-scan1{0%,15%{transform:scaleY(0)}50%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
+@keyframes vty-scan2{0%,22%{transform:scaleY(0)}55%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
+@keyframes vty-scan3{0%,29%{transform:scaleY(0)}60%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
+@keyframes vty-scan4{0%,36%{transform:scaleY(0)}65%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
+@keyframes vty-scan5{0%,43%{transform:scaleY(0)}70%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
+@keyframes vty-wave-c{0%,100%{opacity:1}40%{opacity:0.25}}
+@keyframes vty-wave-m{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes vty-wave-o{0%,100%{opacity:1}60%{opacity:0.4}}
+@keyframes vty-hb-c{0%,100%{transform:scaleY(1)}15%{transform:scaleY(1.18)}30%{transform:scaleY(0.94)}45%{transform:scaleY(1)}}
+@keyframes vty-hb-m{0%,100%{transform:scaleY(1)}20%{transform:scaleY(1.12)}35%{transform:scaleY(0.96)}50%{transform:scaleY(1)}}
+@keyframes vty-hb-o{0%,100%{transform:scaleY(1)}25%{transform:scaleY(1.06)}40%{transform:scaleY(0.98)}55%{transform:scaleY(1)}}
+@keyframes vty-build1{0%,5%{opacity:0;transform:scaleY(0)}18%,75%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(0.5)}}
+@keyframes vty-build2{0%,15%{opacity:0;transform:scaleY(0)}28%,75%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(0.5)}}
+@keyframes vty-build3{0%,25%{opacity:0;transform:scaleY(0)}38%,75%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(0.5)}}
+@keyframes vty-build4{0%,35%{opacity:0;transform:scaleY(0)}48%,75%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(0.5)}}
+@keyframes vty-build5{0%,45%{opacity:0;transform:scaleY(0)}58%,75%{opacity:1;transform:scaleY(1)}90%,100%{opacity:0;transform:scaleY(0.5)}}
+.vty-i1-b1{transform-origin:0 100%;animation:vty-scan1 3s ease-in-out infinite}
+.vty-i1-b2{transform-origin:0 100%;animation:vty-scan2 3s ease-in-out infinite}
+.vty-i1-b3{transform-origin:0 100%;animation:vty-scan3 3s ease-in-out infinite}
+.vty-i1-b4{transform-origin:0 100%;animation:vty-scan4 3s ease-in-out infinite}
+.vty-i1-b5{transform-origin:0 100%;animation:vty-scan5 3s ease-in-out infinite}
+.vty-i2-b1{animation:vty-wave-o 2s ease-in-out infinite 0.3s}
+.vty-i2-b2{animation:vty-wave-m 2s ease-in-out infinite 0.15s}
+.vty-i2-b3{animation:vty-wave-c 2s ease-in-out infinite 0s}
+.vty-i2-b4{animation:vty-wave-m 2s ease-in-out infinite 0.15s}
+.vty-i2-b5{animation:vty-wave-o 2s ease-in-out infinite 0.3s}
+.vty-i3-b1{transform-origin:0 50%;animation:vty-hb-o 1.8s ease-in-out infinite 0.12s}
+.vty-i3-b2{transform-origin:0 50%;animation:vty-hb-m 1.8s ease-in-out infinite 0.06s}
+.vty-i3-b3{transform-origin:0 50%;animation:vty-hb-c 1.8s ease-in-out infinite 0s}
+.vty-i3-b4{transform-origin:0 50%;animation:vty-hb-m 1.8s ease-in-out infinite 0.06s}
+.vty-i3-b5{transform-origin:0 50%;animation:vty-hb-o 1.8s ease-in-out infinite 0.12s}
+.vty-i4-b1{transform-origin:0 100%;animation:vty-build1 3.5s ease-in-out infinite}
+.vty-i4-b2{transform-origin:0 100%;animation:vty-build2 3.5s ease-in-out infinite}
+.vty-i4-b3{transform-origin:0 100%;animation:vty-build3 3.5s ease-in-out infinite}
+.vty-i4-b4{transform-origin:0 100%;animation:vty-build4 3.5s ease-in-out infinite}
+.vty-i4-b5{transform-origin:0 100%;animation:vty-build5 3.5s ease-in-out infinite}
+</style>`;
+
 const STEP_ICONS = [
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="4" height="8" rx="1.5" fill="#314969" opacity="0.4"/><rect x="9" y="7" width="4" height="12" rx="1.5" fill="#314969" opacity="0.7"/><rect x="15" y="4" width="4" height="15" rx="1.5" fill="#314969"/><circle cx="18" cy="4" r="3.5" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="20.5" y1="6.5" x2="22" y2="8" stroke="#314969" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M2 19 Q2 13 8 13 Q14 13 14 19" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M15 11 Q18 11 19 13" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="8" r="3" fill="none" stroke="#F2AF4C" stroke-width="1.5"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="2" width="12" height="16" rx="2" fill="none" stroke="#314969" stroke-width="1.5"/><polyline points="5,10 7,10 8,7 9,13 10,10 11,10 12,8 13,10 15,10" fill="none" stroke="#314969" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6 Q19 9 17 12" fill="none" stroke="#F2AF4C" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6" r="4" fill="none" stroke="#314969" stroke-width="1.5"/><path d="M4 20 Q4 13 11 13 Q18 13 18 20" fill="none" stroke="#314969" stroke-width="1.5"/><line x1="8" y1="15" x2="14" y2="15" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="12.5" x2="11" y2="17.5" stroke="#F2AF4C" stroke-width="2" stroke-linecap="round"/></svg>`,
+    `<svg width="28" height="28" viewBox="0 0 180 180" aria-hidden="true">
+      <rect class="vty-i1-b1" x="11"  y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i1-b2" x="44"  y="35" width="26" height="110" rx="6" fill="#314969"/>
+      <rect class="vty-i1-b3" x="77"  y="42" width="26" height="96"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i1-b4" x="110" y="42" width="26" height="96"  rx="6" fill="#F2AF4C"/>
+      <rect class="vty-i1-b5" x="143" y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+    </svg>`,
+    `<svg width="28" height="28" viewBox="0 0 180 180" aria-hidden="true">
+      <rect class="vty-i2-b1" x="11"  y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i2-b2" x="44"  y="35" width="26" height="110" rx="6" fill="#314969"/>
+      <rect class="vty-i2-b3" x="77"  y="42" width="26" height="96"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i2-b4" x="110" y="42" width="26" height="96"  rx="6" fill="#F2AF4C"/>
+      <rect class="vty-i2-b5" x="143" y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+    </svg>`,
+    `<svg width="28" height="28" viewBox="0 0 180 180" aria-hidden="true">
+      <rect class="vty-i3-b1" x="11"  y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i3-b2" x="44"  y="35" width="26" height="110" rx="6" fill="#314969"/>
+      <rect class="vty-i3-b3" x="77"  y="42" width="26" height="96"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i3-b4" x="110" y="42" width="26" height="96"  rx="6" fill="#F2AF4C"/>
+      <rect class="vty-i3-b5" x="143" y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+    </svg>`,
+    `<svg width="28" height="28" viewBox="0 0 180 180" aria-hidden="true">
+      <rect class="vty-i4-b1" x="11"  y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i4-b2" x="44"  y="35" width="26" height="110" rx="6" fill="#314969"/>
+      <rect class="vty-i4-b3" x="77"  y="42" width="26" height="96"  rx="6" fill="#F07B4A"/>
+      <rect class="vty-i4-b4" x="110" y="42" width="26" height="96"  rx="6" fill="#F2AF4C"/>
+      <rect class="vty-i4-b5" x="143" y="55" width="26" height="70"  rx="6" fill="#F07B4A"/>
+    </svg>`,
 ];
 
 // ─── Case study DETAIL page ─────────────────────────────────────────────────
@@ -301,6 +371,7 @@ function buildDetailPage(cs) {
 ${FAVICON_LINKS}
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
+    ${APPROACH_ICON_STYLES}
     <style>
         .cs-detail-hero{padding:80px 0 72px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
         .breadcrumb{font-size:.88em;color:var(--gray);margin-bottom:28px;position:relative;z-index:1}
