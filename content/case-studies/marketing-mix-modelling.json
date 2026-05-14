@@ -1,0 +1,79 @@
+{
+  "title": "From Gut Feel to Data-Driven Decisions: Marketing Mix Modelling in Life Sciences",
+  "slug": "marketing-mix-modelling",
+  "featured": false,
+  "shortTitle": "Marketing Mix Modelling in Life Sciences",
+  "teaser": "Transforming how a global biopharmaceutical company allocates promotional spend — from intuition-led budgeting to a self-sustaining, MMM-powered planning capability that changed how senior leaders think about resource decisions.",
+  "tags": [
+    "Commercial Analytics",
+    "Global Biopharmaceutical",
+    "Multi-channel Optimisation",
+    "Advanced Analytics",
+    "Capability Building"
+  ],
+  "pathway": {
+    "image": "",
+    "alt": "MMM transformation pathway showing Commercial Excellence Foundation, Marketing Mix Modelling, Response Curves and ROI Analysis, and Capability Building"
+  },
+  "challenge": {
+    "heading": "When budget decisions are driven by precedent rather than evidence",
+    "body": "A global biopharmaceutical company operating across multiple therapeutic areas was investing heavily across field force, digital, events and samples — but had no reliable way to know which channels were actually driving prescriptions. Budget decisions were made on intuition and historical precedent rather than evidence. Senior leaders disagreed on the value of digital versus face-to-face detailing, yet both continued to be funded at similar levels with no data to arbitrate.\n\nAs the organisation moved towards omnichannel engagement, attribution became harder. Field teams were overcalling certain HCP segments, underfunding high-potential accounts, and deploying samples with no measurable return. Each annual planning cycle reopened the same unresolved debate: where should we put the money?\n\nWhat was missing was not ambition or investment — it was the analytical infrastructure to connect commercial spend to commercial outcomes, and a shared language for leaders to make resource decisions with confidence."
+  },
+  "approach": {
+    "heading": "Building the analytical engine behind smarter commercial decisions",
+    "intro": "",
+    "items": [
+      {
+        "title": "Commercial Excellence Foundation",
+        "description": "Before modelling, we conducted a structured health check of commercial effectiveness fundamentals — segmentation and targeting quality, call plan coverage, channel mix logic. Descriptive analytics established a clear baseline of what was actually happening across the promotional mix, surfacing significant gaps between intended strategy and actual execution, and building leadership credibility for the analytical work that followed."
+      },
+      {
+        "title": "Marketing Mix Modelling",
+        "description": "We deployed a multi-channel attribution model that decomposed sales into their constituent drivers: field force detailing, meetings and events, digital engagement, samples, seasonality, and competitor activity. The model revealed a significant mismatch between where budget was concentrated and where sales were actually being generated — challenging assumptions that had gone unquestioned for years."
+      },
+      {
+        "title": "Response Curves & ROI Analysis",
+        "description": "For each channel, we built response curves mapping the relationship between investment and incremental sales — distinguishing marginal ROI from average ROI. This identified frequency thresholds beyond which detailing generated diminishing returns, exposed underfunded channels with significant headroom, and shifted leadership thinking from how much did we spend to what did the last pound of investment actually return."
+      },
+      {
+        "title": "Capability Building",
+        "description": "The most durable outcome was the change in how decisions were made. We co-developed an interactive scenario planning tool with brand teams, enabling them to simulate allocation decisions independently. Structured capability sessions reframed the annual budgeting conversation — from a negotiation anchored in last year's spend to an evidence-based dialogue about marginal impact. Senior leaders described it as the first time they felt genuinely equipped to make confident investment decisions."
+      }
+    ]
+  },
+  "outcomes": {
+    "heading": "A measurable shift in performance — and in how leaders think",
+    "stats": [
+      {
+        "number": "+18% NRx",
+        "label": "uplift on the lead respiratory brand within 12 months of reallocating promotional spend toward higher-ROI channels"
+      },
+      {
+        "number": "3 FTE",
+        "label": "redeployed from overcalled low-potential segments to high-value accounts, with no increase in total field force headcount"
+      },
+      {
+        "number": "Pervasive Capability",
+        "label": "MMM outputs now inform brand planning, S&T reviews and commercial governance across all therapeutic areas on a recurring basis"
+      }
+    ],
+    "details": []
+  },
+  "sidebar": {
+    "atAGlance": [
+      "Global biopharmaceutical company",
+      "Multiple therapeutic areas",
+      "Field force, digital, events & samples",
+      "Multi-year engagement",
+      "Self-sustaining analytics capability"
+    ],
+    "capabilities": [
+      "Commercial Excellence health checks",
+      "Descriptive analytics & baselining",
+      "Marketing mix modelling (MMM)",
+      "Response curves & ROI analysis",
+      "Resource optimisation & scenario planning",
+      "Capability building & leadership alignment"
+    ]
+  }
+}
