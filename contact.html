@@ -4,41 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - VANTYS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
-        .contact-form-container {
-            max-width: 700px;
-            margin: 60px auto 0;
-            padding: 48px;
-            background: var(--warm-neutral);
-            border-radius: 24px;
-        }
-        .address-section {
-            max-width: 700px;
-            margin: 40px auto 0;
-            padding: 48px;
-            background: var(--warm-neutral);
-            border-radius: 24px;
-        }
+        .contact-form-container { max-width: 700px; margin: 60px auto 0; padding: 48px; background: var(--warm-neutral); border-radius: 24px; }
+        .address-section { max-width: 700px; margin: 40px auto 0; padding: 48px; background: var(--warm-neutral); border-radius: 24px; }
         .address-section h3 { margin-bottom: 24px; color: var(--navy); font-size: 1.3em; }
         .address-section address { font-style: normal; color: var(--gray); line-height: 1.8; }
         .form-group { margin-bottom: 24px; }
         .form-group label { display: block; margin-bottom: 8px; color: var(--navy); font-weight: 500; font-size: 0.95em; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 14px 16px; border: 1px solid #ddd;
-            border-radius: 8px; font-size: 1em; font-family: inherit; transition: border-color 0.3s;
-        }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; transition: border-color 0.3s; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--coral); }
         .form-group textarea { resize: vertical; min-height: 150px; }
         .privacy-notice { font-size: 0.85em; color: var(--gray); margin-bottom: 24px; }
         .privacy-notice a { color: var(--coral); text-decoration: none; }
         .privacy-notice a:hover { text-decoration: underline; }
-        .submit-button {
-            background: var(--coral); color: var(--white);
-            padding: 16px 48px; border: none; border-radius: 32px;
-            font-weight: 500; font-size: 1em; cursor: pointer; transition: all 0.3s;
-        }
+        .submit-button { background: var(--coral); color: var(--white); padding: 16px 48px; border: none; border-radius: 32px; font-weight: 500; font-size: 1em; cursor: pointer; transition: all 0.3s; }
         .submit-button:hover { background: #E8622A; transform: translateY(-2px); }
         .success-message { display: none; padding: 24px; background: #4CAF50; color: white; border-radius: 8px; margin-bottom: 24px; }
         .success-message.show { display: block; }
@@ -46,26 +29,21 @@
 </head>
 <body>
     <div class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-
     <header>
         <nav class="container">
             <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none">
                     <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
                     <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
                     <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
                     <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
                     <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
                 </svg>
-                <a href="index.html" style="text-decoration: none;" class="logo">vantys</a>
+                <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#approach">Approach</a></li>
@@ -75,19 +53,18 @@
             </ul>
         </nav>
     </header>
-
     <section class="hero">
         <div class="bg-shape bg-shape-1"></div>
         <div class="bg-shape bg-shape-2"></div>
         <div class="bg-shape bg-shape-3"></div>
         <div class="container">
             <h1>Get In Touch</h1>
-            <p style="max-width: 700px;">Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.</p>
+            <p style="max-width:700px">Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.</p>
             <div class="contact-form-container">
                 <div class="success-message" id="successMessage">Thank you for your message! We'll get back to you within 24 hours.</div>
                 <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
                     <input type="hidden" name="form-name" value="contact">
-                    <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+                    <p style="display:none"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
                     <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
                     <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
                     <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
@@ -102,7 +79,6 @@
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
@@ -110,7 +86,6 @@
             <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
         </div>
     </footer>
-
     <script src="script.js"></script>
     <script>
         const form = document.getElementById('contactForm');
@@ -118,11 +93,7 @@
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(form);
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
-            })
+            fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
             .then(() => { successMessage.classList.add('show'); form.reset(); window.scrollTo({ top: 0, behavior: 'smooth' }); })
             .catch(() => { alert('Oops! There was an error submitting the form. Please try again or email us directly.'); });
         });

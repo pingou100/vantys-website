@@ -4,65 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | VANTYS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .about-section {
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-        .about-content {
-            display: flex;
-            gap: 60px;
-            align-items: flex-start;
-        }
-        .profile-photo {
-            flex-shrink: 0;
-            width: 320px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
+        .about-section { padding: 120px 0 80px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); }
+        .about-container { max-width: 1000px; margin: 0 auto; padding: 0 30px; }
+        .about-content { display: flex; gap: 60px; align-items: flex-start; }
+        .profile-photo { flex-shrink: 0; width: 320px; height: auto; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
         .about-text { flex: 1; }
-        .about-text h1 {
-            font-size: 2.5rem;
-            color: #314969;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 768px) {
-            .about-content { flex-direction: column; gap: 30px; }
-            .profile-photo { width: 100%; max-width: 320px; }
-            .about-text h1 { font-size: 2rem; }
-        }
+        .about-text h1 { font-size: 2.5rem; color: #314969; margin-bottom: 30px; font-weight: 700; }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px; }
+        @media (max-width: 768px) { .about-content { flex-direction: column; gap: 30px; } .profile-photo { width: 100%; max-width: 320px; } .about-text h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none">
                     <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
                     <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
                     <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
                     <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
                     <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
                 </svg>
-                <a href="index.html" style="text-decoration: none;" class="logo">vantys</a>
+                <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#approach">Approach</a></li>
@@ -72,7 +41,6 @@
             </ul>
         </nav>
     </header>
-
     <section class="about-section">
         <div class="about-container">
             <div class="about-content">
@@ -88,7 +56,6 @@
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
@@ -96,7 +63,6 @@
             <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
