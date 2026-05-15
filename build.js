@@ -173,7 +173,13 @@ ${navHtml('about-me.html', '')}
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container" style="max-width:1200px">
         <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap">
-            <img src="${aboutContent.photo}" alt="${aboutContent.title}" style="flex:0 0 320px;width:320px;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1)">
+            <div style="flex:0 0 320px;width:320px;text-align:center">
+                <img src="${aboutContent.photo}" alt="${aboutContent.title}" style="width:320px;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">
+                <p style="margin:14px 0 0;font-size:1rem;font-weight:600;color:var(--navy)">Olivier Delannoy</p>
+                <a href="https://www.linkedin.com/in/olivierdelannoy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" style="display:inline-block;margin-top:10px;color:var(--navy);transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M7.75 9.5H5.5v8h2.25v-8zm-1.125-1.5a1.375 1.375 0 1 0 0-2.75 1.375 1.375 0 0 0 0 2.75zM18.5 17.5h-2.25v-3.9c0-2.1-2.5-1.94-2.5 0v3.9H11.5v-8h2.25v1.18c1.05-1.95 4.75-2.09 4.75 1.87v4.95z" fill="white"/></svg>
+                </a>
+            </div>
             <div style="flex:1;min-width:300px">
                 <h1 style="margin-bottom:30px">${aboutContent.title}</h1>
                 ${aboutContent.paragraphs.map(p => `<p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">${markdownToHtml(p.text)}</p>`).join('')}

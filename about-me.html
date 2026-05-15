@@ -5,64 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | VANTYS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .about-section { padding: 120px 0 80px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); }
-        .about-container { max-width: 1000px; margin: 0 auto; padding: 0 30px; }
-        .about-content { display: flex; gap: 60px; align-items: flex-start; }
-        .profile-photo { flex-shrink: 0; width: 320px; height: auto; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .about-text { flex: 1; }
-        .about-text h1 { font-size: 2.5rem; color: #314969; margin-bottom: 30px; font-weight: 700; }
-        .about-text p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px; }
-        @media (max-width: 768px) { .about-content { flex-direction: column; gap: 30px; } .profile-photo { width: 100%; max-width: 320px; } .about-text h1 { font-size: 2rem; } }
-    </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none">
-                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
-                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
-                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
-                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                </svg>
-                <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
+<div class="back-to-top" id="backToTop">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<header>
+    <nav class="container">
+        <div class="logo-container">
+            <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+                <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
+                <rect x="16" y="6"  width="5" height="20" rx="2.5" fill="#F07B4A"/>
+                <rect x="23" y="6"  width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+                <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+            </svg>
+            <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#approach">Approach</a></li>
+            <li><a href="case-studies/">Case Studies</a></li>
+            <li><a href="about-me.html" class="active">About Me</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container" style="max-width:1200px">
+        <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:0 0 320px;width:320px;text-align:center">
+                <img src="/images/SB_Olivier_Delannoy_1200x800.jpg" alt="Olivier Delannoy" style="width:320px;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">
+                <p style="margin:14px 0 0;font-size:1rem;font-weight:600;color:#314969">Olivier Delannoy</p>
+                <a href="https://www.linkedin.com/in/olivierdelannoy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" style="display:inline-block;margin-top:10px;color:#314969;transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M7.75 9.5H5.5v8h2.25v-8zm-1.125-1.5a1.375 1.375 0 1 0 0-2.75 1.375 1.375 0 0 0 0 2.75zM18.5 17.5h-2.25v-3.9c0-2.1-2.5-1.94-2.5 0v3.9H11.5v-8h2.25v1.18c1.05-1.95 4.75-2.09 4.75 1.87v4.95z" fill="white"/></svg>
+                </a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-            <ul class="nav-links">
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#approach">Approach</a></li>
-                <li><a href="case-studies/">Case Studies</a></li>
-                <li><a href="about-me.html">About Me</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-content">
-                <img src="images/SB_Olivier_Delannoy_1200x800.jpg" alt="Olivier Delannoy" class="profile-photo">
-                <div class="about-text">
-                    <h1>About Me</h1>
-                    <p>These transitions have been navigated before, just with different enabling technologies. The difference between organizations that genuinely transform and those that just renovate the facade? It's visible from experience.</p>
-                    <p><strong>How it works:</strong></p>
-                    <p>No theoretical frameworks that look impressive but fail in practice. No transformation theatre.</p>
-                    <p>Identifying the specific strategic and operational gaps limiting impact. Building the capabilities required to close them. Ensuring organizations can sustain them independently.</p>
-                    <p><strong>Strategic. Pragmatic. Built to compound.</strong></p>
-                </div>
+            <div style="flex:1;min-width:300px">
+                <h1 style="margin-bottom:30px">About Me</h1>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px"><strong>Three decades. One constant: challenging what&#x27;s next</strong></p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">A career spent at the strategic intersections—where commercial ambition meets operational reality, where innovation stops being a concept and becomes something deployed at scale, where pharma&#x27;s traditional playbook meets the demands of a fundamentally different healthcare landscape.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Early days: building the data and analytics infrastructure that would power insight-driven strategies. Mid-career: pioneering omnichannel approaches when the industry was still figuring out what that even meant. Recently: working directly with health systems to redesign care pathways—moving beyond product conversations to genuine healthcare transformation.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">The pattern? Operating at the edge of what&#x27;s emerging. Not chasing trends, but recognizing inflection points before they become obvious.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px"><strong>What matters</strong></p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">The gap between strategic intent and actual execution is where most transformation efforts stall. Brilliant vision, executive mandate, healthy budgets—none of it matters without the right commercial infrastructure, operating discipline, and capability foundations.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Commercial ecosystems built across different markets, therapeutic areas, and levels of organizational maturity. Infrastructure that enables teams to execute with precision. Analytics frameworks that turn data into strategic advantage. Operating models designed for agility, not bureaucracy.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Some bets paid off spectacularly. Others taught expensive lessons. All shaped a view of what&#x27;s coming next.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px"><strong>Why Vantys exists</strong></p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Life Science sits at another inflection point.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Health systems demand true partnerships, not transactional relationships. Digital channels are multiplying beyond traditional engagement models. AI promises competitive advantage, but most organizations lack the strategic foundations—data architecture, cross-functional alignment, operational agility—to capture real value.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">These transitions have been navigated before, just with different enabling technologies. The difference between organizations that genuinely transform and those that just renovate the facade? It&#x27;s visible from experience.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px"><strong>How it works:</strong></p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">No theoretical frameworks that look impressive but fail in practice. No transformation theatre.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px">Identifying the specific strategic and operational gaps limiting impact. Building the capabilities required to close them. Ensuring organizations can sustain them independently.</p>
+                <p style="font-size:1.1rem;line-height:1.8;margin-bottom:24px"><strong>Strategic. Pragmatic. Built to compound.</strong></p>
             </div>
         </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-            <p>All rights reserved.</p>
-            <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
-        </div>
-    </footer>
-    <script src="script.js"></script>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
+        <p>All rights reserved.</p>
+        <p><a href="https://www.linkedin.com/in/olivierdelannoy/">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+    </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
