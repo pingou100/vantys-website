@@ -2,6 +2,10 @@
   publish = "."
   command = "node build.js"
 
+[[edge_functions]]
+  path = "/api/contact"
+  function = "contact"
+
 # Let sub-paths work without the catch-all redirect eating them
 [[redirects]]
   from = "/case-studies"

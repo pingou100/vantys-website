@@ -23,8 +23,13 @@
         .privacy-notice a:hover { text-decoration: underline; }
         .submit-button { background: var(--coral); color: var(--white); padding: 16px 48px; border: none; border-radius: 32px; font-weight: 500; font-size: 1em; cursor: pointer; transition: all 0.3s; }
         .submit-button:hover { background: #E8622A; transform: translateY(-2px); }
+        .submit-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         .success-message { display: none; padding: 24px; background: #4CAF50; color: white; border-radius: 8px; margin-bottom: 24px; }
         .success-message.show { display: block; }
+        .error-message { display: none; padding: 24px; background: #f44336; color: white; border-radius: 8px; margin-bottom: 24px; }
+        .error-message.show { display: block; }
+        /* Honeypot — hidden from humans, visible to bots */
+        .ohnohoney { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
     </style>
 </head>
 <body>
@@ -62,15 +67,19 @@
             <p style="max-width:700px">Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.</p>
             <div class="contact-form-container">
                 <div class="success-message" id="successMessage">Thank you for your message! We'll get back to you within 24 hours.</div>
-                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p style="display:none"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                <div class="error-message" id="errorMessage">Oops! Something went wrong. Please try again or email us directly.</div>
+                <form id="contactForm" novalidate>
+                    <!-- Honeypot field — bots fill this, humans don't see it -->
+                    <div class="ohnohoney" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
                     <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
                     <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
                     <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required></textarea></div>
                     <p class="privacy-notice">By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We'll use your information only to respond to your inquiry and provide information about our services.</p>
-                    <button type="submit" class="submit-button">Send Message</button>
+                    <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
                 </form>
             </div>
             <div class="address-section">
@@ -90,12 +99,48 @@
     <script>
         const form = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
-        form.addEventListener('submit', function(e) {
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const formData = new FormData(form);
-            fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
-            .then(() => { successMessage.classList.add('show'); form.reset(); window.scrollTo({ top: 0, behavior: 'smooth' }); })
-            .catch(() => { alert('Oops! There was an error submitting the form. Please try again or email us directly.'); });
+
+            // Reset messages
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const payload = {
+                website: document.getElementById('website').value, // honeypot
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                message: document.getElementById('message').value,
+            };
+
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+
+                if (res.ok) {
+                    successMessage.classList.add('show');
+                    form.reset();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    errorMessage.classList.add('show');
+                }
+            } catch {
+                errorMessage.classList.add('show');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
         });
     </script>
 </body>
