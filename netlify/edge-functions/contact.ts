@@ -20,7 +20,6 @@ export default async function handler(req: Request, context: Context) {
 
   // Honeypot check — bots fill this, humans don't
   if (body.website) {
-    // Silent 200 to fool the bot
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -62,7 +61,7 @@ export default async function handler(req: Request, context: Context) {
       "api-key": apiKey,
     },
     body: JSON.stringify({
-      sender: { name: "Vantys Contact Form", email: "contact@vantys.be" },
+      sender: { name: "Vantys Contact Form", email: "delannoy.olivier@gmail.com" },
       to: [{ email: "delannoy.olivier@gmail.com", name: "Olivier Delannoy" }],
       replyTo: { email: email, name: name },
       subject: `New contact from ${name}${company ? ` (${company})` : ""}`,
