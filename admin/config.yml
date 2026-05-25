@@ -25,16 +25,13 @@ collections:
         widget: "boolean"
         default: true
         hint: "Décochez pour sauvegarder en brouillon sans publier"
-
       - label: "URL de l'article (slug)"
         name: "slug"
         widget: "string"
         hint: "Exemple : mon-premier-article → accessible sur /blog/mon-premier-article.html. Minuscules, tirets, pas d'espaces."
-
       - label: "Titre"
         name: "title"
         widget: "string"
-
       - label: "Date de publication"
         name: "date"
         widget: "datetime"
@@ -42,51 +39,42 @@ collections:
         date_format: "DD/MM/YYYY"
         time_format: false
         hint: "Par défaut : aujourd'hui. Modifiable librement."
-
       - label: "Temps de lecture (minutes)"
         name: "readingTime"
         widget: "number"
         default: 5
         required: false
-        hint: "Affiché sous le titre de l'article"
-
       - label: "Tags"
         name: "tags"
         widget: "list"
         required: false
         hint: "Ex: IA, Stratégie commerciale, Life Sciences"
-
       - label: "Résumé (extrait)"
         name: "excerpt"
         widget: "text"
         hint: "Affiché dans la liste des articles. 1-2 phrases maximum."
-
       - label: "Image principale (optionnelle)"
         name: "heroImage"
         widget: "image"
         required: false
-        hint: "Affichée en haut de l'article, sous le titre"
-
       - label: "Texte alternatif de l'image"
         name: "heroImageAlt"
         widget: "string"
         required: false
         default: ""
-
       - label: "Contenu de l'article"
         name: "body"
         widget: "markdown"
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list", "heading-two", "heading-three"]
         editor_components: []
         modes: ["rich_text"]
-        hint: "Utilisez ## pour les titres de section, ### pour les sous-titres"
 
   # ─────────────────────────────────────────
   # PAGES LIBRES
   # ─────────────────────────────────────────
   - name: "free-pages"
-    label: "Pages"
-    label_singular: "Page"
+    label: "Pages libres"
+    label_singular: "Page libre"
     folder: "content/pages"
     create: true
     extension: "json"
@@ -98,51 +86,43 @@ collections:
         widget: "boolean"
         default: true
         hint: "Décochez pour masquer cette page sans la supprimer"
-
       - label: "URL de la page (slug)"
         name: "slug"
         widget: "string"
-        hint: "Exemple : nos-services → la page sera accessible sur /nos-services.html. Minuscules, tirets, pas d'espaces."
-
+        hint: "Exemple : nos-services → accessible sur /nos-services.html. Minuscules, tirets, pas d'espaces."
       - label: "Titre de la page"
         name: "title"
         widget: "string"
-
       - label: "Texte d'introduction"
         name: "intro"
         widget: "text"
         required: false
         hint: "Affiché sous le titre, dans la section hero"
-
-      - label: "Layout"
+      - label: "Layout principal"
         name: "layout"
         widget: "select"
         default: "text-simple"
-        hint: "Choisissez la mise en page principale. Vous pouvez combiner plusieurs types en remplissant plusieurs sections ci-dessous."
+        hint: "Définit comment sont affichés les 'Blocs de contenu'. Vous pouvez combiner avec des Cards et/ou des Sections."
         options:
           - { label: "📄 Texte simple (blocs titre + texte)", value: "text-simple" }
           - { label: "🖼️  Deux colonnes (texte + image)", value: "two-columns" }
           - { label: "🃏 Cards (grille de cartes)", value: "cards" }
           - { label: "🏠 Hero + Sections", value: "hero-sections" }
-
       - label: "Bouton CTA (optionnel)"
         name: "ctaText"
         widget: "string"
         required: false
-        hint: "Texte du bouton affiché dans le hero (ex: Nous contacter)"
-
+        hint: "Texte du bouton dans le hero (ex: Nous contacter)"
       - label: "Lien du bouton CTA"
         name: "ctaLink"
         widget: "string"
         required: false
         hint: "Ex: /contact.html"
-
-      # ── Blocs — text-simple et two-columns ──────────────────────────────
       - label: "Blocs de contenu"
         name: "blocks"
         widget: "list"
         required: false
-        hint: "Pour layout 'Texte simple' ou 'Deux colonnes'. Remplissez cette section ET une autre pour mixer les layouts."
+        hint: "Texte simple ou Deux colonnes. Affiché en premier."
         fields:
           - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
           - label: "Contenu"
@@ -151,7 +131,7 @@ collections:
             buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
             editor_components: []
             modes: ["rich_text"]
-          - { label: "Image (layout deux colonnes uniquement)", name: "image", widget: "image", required: false }
+          - { label: "Image (deux colonnes uniquement)", name: "image", widget: "image", required: false }
           - { label: "Texte alternatif de l'image", name: "imageAlt", widget: "string", required: false, default: "" }
           - label: "Position de l'image"
             name: "imagePosition"
@@ -160,24 +140,20 @@ collections:
             options:
               - { label: "Image à droite", value: "right" }
               - { label: "Image à gauche", value: "left" }
-
-      # ── Cards ─────────────────────────────────────────────────────────────
-      - label: "Colonnes par ligne"
+      - label: "Colonnes par ligne (cards)"
         name: "columns"
         widget: "select"
         default: "3"
         required: false
-        hint: "Pour le layout 'Cards'"
         options:
           - { label: "2 colonnes (cards larges)", value: "2" }
           - { label: "3 colonnes (défaut)", value: "3" }
           - { label: "4 colonnes (cards compactes)", value: "4" }
-
       - label: "Cards"
         name: "cards"
         widget: "list"
         required: false
-        hint: "Pour layout 'Cards'. Peut être combiné avec des blocs ou des sections."
+        hint: "Affiché après les blocs de contenu."
         fields:
           - { label: "Titre de la carte", name: "title", widget: "string" }
           - label: "Contenu"
@@ -186,13 +162,11 @@ collections:
             buttons: ["bold", "italic", "link", "bulleted-list"]
             editor_components: []
             modes: ["rich_text"]
-
-      # ── Sections ──────────────────────────────────────────────────────────
       - label: "Sections"
         name: "sections"
         widget: "list"
         required: false
-        hint: "Pour layout 'Hero + Sections'. Peut être combiné avec des blocs ou des cards."
+        hint: "Affiché en dernier, après les cards."
         fields:
           - { label: "Titre de la section", name: "heading", widget: "string", required: false }
           - label: "Contenu"
@@ -392,17 +366,30 @@ collections:
           - {label: "Capabilities Deployed", name: "capabilities", widget: "list"}
 
   # ─────────────────────────────────────────
-  # SITE SETTINGS
+  # NAVIGATION + SITE SETTINGS
   # ─────────────────────────────────────────
   - name: "settings"
-    label: "Site Settings"
+    label: "Paramètres du site"
     files:
-      - label: "General Settings"
+
+      - label: "Navigation"
+        name: "navigation"
+        file: "content/navigation.json"
+        fields:
+          - label: "Liens du menu"
+            name: "items"
+            widget: "list"
+            hint: "Ordre d'affichage dans la barre de navigation. Ajoutez, supprimez ou réordonnez librement."
+            fields:
+              - { label: "Texte du lien", name: "label", widget: "string", hint: "Ex: Blog, Services, À propos" }
+              - { label: "URL", name: "href", widget: "string", hint: "Ex: /blog/ ou /contact.html ou /index.html#services" }
+
+      - label: "Paramètres généraux"
         name: "general"
         file: "content/settings.json"
         fields:
-          - {label: "Site Title", name: "siteTitle", widget: "string"}
-          - label: "Colors"
+          - {label: "Titre du site", name: "siteTitle", widget: "string"}
+          - label: "Couleurs"
             name: "colors"
             widget: "object"
             fields:
