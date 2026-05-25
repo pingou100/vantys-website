@@ -10,11 +10,19 @@ function markdownToHtml(text) {
         .replace(/\*([^*]+)\*/g, '<em>$1</em>')
         .replace(/_([^_]+)_/g, '<em>$1</em>')
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
         .replace(/^- (.+)$/gm, '<li>$1</li>')
         .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
         .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
         .replace(/\n\n/g, '</p><p>')
         .replace(/\n/g, '<br>');
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('fr-BE', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 // ─── Read content JSON ──────────────────────────────────────────────────────
@@ -589,119 +597,104 @@ ${footerHtml('../')}
 </html>`;
 }
 
-// ─── FREE PAGES — layouts ────────────────────────────────────────────────────
+// ─── FREE PAGES — mode mixte ─────────────────────────────────────────────────
+// On affiche TOUT ce qui est rempli, dans l'ordre : blocks → cards → sections
+// Le champ "layout" est conservé pour compatibilité mais n'est plus le seul critère.
 
-function layoutTextSimple(page) {
-    const blocksHtml = (page.blocks || []).map(block => `
+const FREE_PAGE_SHARED_STYLES = `
+    <style>
+        /* Blocs texte */
+        .fp-content{padding:60px 0;background:var(--white)}
+        .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+        .fp-block{border-left:3px solid var(--coral);padding-left:28px}
+        .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
+        .fp-block-body{color:var(--gray);line-height:1.8}
+        .fp-block-body p{margin-bottom:12px}
+        .fp-block-body h2{font-size:1.3em;font-weight:500;color:var(--navy);margin:24px 0 12px}
+        .fp-block-body h3{font-size:1.1em;font-weight:600;color:var(--navy);margin:20px 0 8px}
+        .fp-block-body strong{color:var(--navy)}
+        .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
+        .fp-block-body li{margin-bottom:6px}
+        .fp-block-body a{color:var(--coral);text-decoration:none}
+        .fp-block-body a:hover{text-decoration:underline}
+        /* Deux colonnes */
+        .tc-content{padding:60px 0;background:var(--white)}
+        .tc-rows{display:flex;flex-direction:column;gap:80px}
+        .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .tc-heading{font-size:1.6em;font-weight:500;color:var(--navy);margin-bottom:20px;line-height:1.3}
+        .tc-body{color:var(--gray);line-height:1.8}
+        .tc-body p{margin-bottom:12px}
+        .tc-body strong{color:var(--navy)}
+        .tc-body a{color:var(--coral);text-decoration:none}
+        /* Cards */
+        .fc-content{padding:60px 0;background:var(--white)}
+        .fc-grid{display:grid;gap:32px}
+        .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
+        .fc-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+        .fc-card-title{font-size:1.2em;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
+        .fc-card-body{color:var(--gray);line-height:1.7;font-size:.97em}
+        .fc-card-body p{margin-bottom:8px}
+        .fc-card-body strong{color:var(--navy)}
+        @media(max-width:768px){.tc-row{grid-template-columns:1fr}.tc-img{order:-1}.fc-grid{grid-template-columns:1fr!important}}
+    </style>`;
+
+function renderBlocks(page) {
+    if (!page.blocks || page.blocks.length === 0) return '';
+    const layout = page.layout || 'text-simple';
+    if (layout === 'two-columns') {
+        const rowsHtml = page.blocks.map(block => {
+            const imgSide = block.imagePosition === 'left' ? 'left' : 'right';
+            const imgHtml = block.image && block.image.trim()
+                ? `<img src="${block.image}" alt="${block.imageAlt || ''}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">`
+                : `<div style="width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9em;border:2px dashed rgba(49,73,105,.15)">Image à ajouter</div>`;
+            const textCol = `<div class="tc-text">${block.heading ? `<h2 class="tc-heading">${block.heading}</h2>` : ''}<div class="tc-body"><p>${markdownToHtml(block.body || '')}</p></div></div>`;
+            const imgCol = `<div class="tc-img">${imgHtml}</div>`;
+            const cols = imgSide === 'left' ? `${imgCol}${textCol}` : `${textCol}${imgCol}`;
+            return `<div class="tc-row">${cols}</div>`;
+        }).join('');
+        return `<section class="tc-content"><div class="container"><div class="tc-rows">${rowsHtml}</div></div></section>`;
+    }
+    // text-simple (default)
+    const blocksHtml = page.blocks.map(block => `
         <div class="fp-block">
             ${block.heading ? `<h2 class="fp-block-heading">${block.heading}</h2>` : ''}
             <div class="fp-block-body"><p>${markdownToHtml(block.body || '')}</p></div>
-        </div>`
-    ).join('');
-    return `
-        <style>
-            .fp-content{padding:60px 0 100px;background:var(--white)}
-            .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
-            .fp-block{border-left:3px solid var(--coral);padding-left:28px}
-            .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
-            .fp-block-body{color:var(--gray);line-height:1.8}
-            .fp-block-body p{margin-bottom:12px}
-            .fp-block-body strong{color:var(--navy)}
-            .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
-            .fp-block-body li{margin-bottom:6px}
-            .fp-block-body a{color:var(--coral);text-decoration:none}
-            .fp-block-body a:hover{text-decoration:underline}
-        </style>
-        <section class="fp-content">
-            <div class="container"><div class="fp-blocks">${blocksHtml}</div></div>
-        </section>`;
+        </div>`).join('');
+    return `<section class="fp-content"><div class="container"><div class="fp-blocks">${blocksHtml}</div></div></section>`;
 }
 
-function layoutTwoColumns(page) {
-    const rowsHtml = (page.blocks || []).map(block => {
-        const imgSide = block.imagePosition === 'left' ? 'left' : 'right';
-        const imgHtml = block.image && block.image.trim()
-            ? `<img src="${block.image}" alt="${block.imageAlt || ''}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">`
-            : `<div style="width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9em;border:2px dashed rgba(49,73,105,.15)">Image à ajouter</div>`;
-        const textCol = `<div class="tc-text">
-            ${block.heading ? `<h2 class="tc-heading">${block.heading}</h2>` : ''}
-            <div class="tc-body"><p>${markdownToHtml(block.body || '')}</p></div>
-        </div>`;
-        const imgCol = `<div class="tc-img">${imgHtml}</div>`;
-        const cols = imgSide === 'left' ? `${imgCol}${textCol}` : `${textCol}${imgCol}`;
-        return `<div class="tc-row">${cols}</div>`;
-    }).join('');
-    return `
-        <style>
-            .tc-content{padding:60px 0 100px;background:var(--white)}
-            .tc-rows{display:flex;flex-direction:column;gap:80px}
-            .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-            .tc-heading{font-size:1.6em;font-weight:500;color:var(--navy);margin-bottom:20px;line-height:1.3}
-            .tc-body{color:var(--gray);line-height:1.8}
-            .tc-body p{margin-bottom:12px}
-            .tc-body strong{color:var(--navy)}
-            .tc-body a{color:var(--coral);text-decoration:none}
-            .tc-body a:hover{text-decoration:underline}
-            @media(max-width:768px){.tc-row{grid-template-columns:1fr}.tc-img{order:-1}}
-        </style>
-        <section class="tc-content">
-            <div class="container"><div class="tc-rows">${rowsHtml}</div></div>
-        </section>`;
-}
-
-function layoutCards(page) {
-    // columns: "2", "3" (default), or "4"
+function renderCards(page) {
+    if (!page.cards || page.cards.length === 0) return '';
     const cols = parseInt(page.columns || '3', 10);
     const minWidth = cols === 2 ? '440px' : cols === 4 ? '220px' : '300px';
-    const cardsHtml = (page.cards || []).map(card => `
+    const cardsHtml = page.cards.map(card => `
         <div class="fc-card">
             <h3 class="fc-card-title">${card.title}</h3>
             <div class="fc-card-body"><p>${markdownToHtml(card.body || '')}</p></div>
-        </div>`
-    ).join('');
-    return `
-        <style>
-            .fc-content{padding:60px 0 100px;background:var(--white)}
-            .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(${minWidth},1fr));gap:32px}
-            .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
-            .fc-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
-            .fc-card-title{font-size:1.2em;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
-            .fc-card-body{color:var(--gray);line-height:1.7;font-size:.97em}
-            .fc-card-body p{margin-bottom:8px}
-            .fc-card-body strong{color:var(--navy)}
-            .fc-card-body a{color:var(--coral);text-decoration:none}
-            @media(max-width:768px){.fc-grid{grid-template-columns:1fr}}
-        </style>
-        <section class="fc-content">
-            <div class="container"><div class="fc-grid">${cardsHtml}</div></div>
-        </section>`;
+        </div>`).join('');
+    return `<section class="fc-content"><div class="container"><div class="fc-grid" style="grid-template-columns:repeat(auto-fit,minmax(${minWidth},1fr))">${cardsHtml}</div></div></section>`;
 }
 
-function layoutHeroSections(page) {
-    const sectionsHtml = (page.sections || []).map(section => {
+function renderSections(page) {
+    if (!page.sections || page.sections.length === 0) return '';
+    return page.sections.map(section => {
         const bg = section.background === 'neutral' ? 'var(--warm-neutral)' : 'var(--white)';
-        return `
-        <section style="padding:60px 0;background:${bg}">
+        return `<section style="padding:60px 0;background:${bg}">
             <div class="container" style="max-width:800px">
                 ${section.heading ? `<h2 style="font-size:1.7em;font-weight:400;color:var(--navy);margin-bottom:20px;line-height:1.3">${section.heading}</h2>` : ''}
                 <div style="color:var(--gray);line-height:1.8;font-size:1.05em"><p>${markdownToHtml(section.body || '')}</p></div>
             </div>
         </section>`;
     }).join('');
-    return sectionsHtml;
 }
 
 function buildFreePage(page) {
-    const layout = page.layout || 'text-simple';
-    let contentHtml = '';
-    if (layout === 'two-columns')        contentHtml = layoutTwoColumns(page);
-    else if (layout === 'cards')         contentHtml = layoutCards(page);
-    else if (layout === 'hero-sections') contentHtml = layoutHeroSections(page);
-    else                                 contentHtml = layoutTextSimple(page);
-
-    const ctaHtml = (layout === 'hero-sections' && page.ctaText && page.ctaLink)
+    const ctaHtml = page.ctaText && page.ctaLink
         ? `<a href="${page.ctaLink}" class="cta-button" style="position:relative;z-index:1">${page.ctaText}</a>`
         : '';
+
+    // Mode mixte : on affiche tout ce qui est rempli, dans l'ordre
+    const contentHtml = renderBlocks(page) + renderCards(page) + renderSections(page);
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -711,6 +704,7 @@ function buildFreePage(page) {
     <title>${page.title} | VANTYS</title>
 ${FAVICON_LINKS}
     <link rel="stylesheet" href="styles.css">
+    ${FREE_PAGE_SHARED_STYLES}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -732,6 +726,199 @@ ${footerHtml('')}
 </html>`;
 }
 
+// ─── BLOG ────────────────────────────────────────────────────────────────────
+const blogCmsDir = path.join(__dirname, 'content', 'articles');
+const blogOutDir = path.join(__dirname, 'blog');
+if (!fs.existsSync(blogOutDir)) fs.mkdirSync(blogOutDir);
+
+function buildArticlePage(article, allArticles) {
+    const tagHtml = (article.tags || []).map(t => `<span class="blog-tag">${t}</span>`).join('');
+    const dateStr = formatDate(article.date);
+    const heroImgHtml = article.heroImage && article.heroImage.trim()
+        ? `<img src="${article.heroImage}" alt="${article.heroImageAlt || article.title}" style="width:100%;height:auto;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.1);margin-bottom:48px;display:block">`
+        : '';
+
+    // Articles récents pour la sidebar (excl. article courant)
+    const recentArticles = allArticles
+        .filter(a => a.slug !== article.slug && a.published !== false)
+        .slice(0, 4);
+    const recentHtml = recentArticles.length > 0
+        ? recentArticles.map(a => `
+            <a href="${a.slug}.html" class="sidebar-recent-item">
+                <span class="sidebar-recent-title">${a.title}</span>
+                <span class="sidebar-recent-date">${formatDate(a.date)}</span>
+            </a>`).join('')
+        : '<p style="color:var(--gray);font-size:.9em">Aucun autre article pour le moment.</p>';
+
+    const bodyHtml = (article.body || '').split('\n\n').map(p => {
+        const trimmed = p.trim();
+        if (trimmed.startsWith('## ') || trimmed.startsWith('### ')) return markdownToHtml(trimmed);
+        return `<p>${markdownToHtml(trimmed)}</p>`;
+    }).join('');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${article.title} | VANTYS</title>
+${FAVICON_LINKS}
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .blog-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
+        .blog-hero .breadcrumb{font-size:.88em;color:var(--gray);margin-bottom:28px;position:relative;z-index:1}
+        .blog-hero .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}
+        .blog-hero .breadcrumb a:hover{color:var(--coral)}
+        .blog-hero .breadcrumb span{margin:0 8px;opacity:.5}
+        .blog-hero h1{font-size:2.4em;font-weight:300;color:var(--navy);line-height:1.25;max-width:820px;margin-bottom:20px;position:relative;z-index:1}
+        .blog-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;position:relative;z-index:1}
+        .blog-date{font-size:.88em;color:var(--gray)}
+        .blog-reading-time{font-size:.88em;color:var(--gray)}
+        .blog-reading-time::before{content:'·';margin-right:20px}
+        .blog-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+        .blog-tag{display:inline-block;padding:5px 12px;border-radius:20px;font-size:.78em;font-weight:500;background:rgba(49,73,105,.07);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
+        .blog-body{padding:60px 0 100px;background:var(--white)}
+        .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:80px;align-items:start}
+        .blog-content h2{font-size:1.5em;font-weight:500;color:var(--navy);margin:36px 0 16px;line-height:1.3}
+        .blog-content h3{font-size:1.2em;font-weight:600;color:var(--navy);margin:28px 0 12px}
+        .blog-content p{color:var(--gray);line-height:1.85;font-size:1.05em;margin-bottom:20px}
+        .blog-content strong{color:var(--navy)}
+        .blog-content ul,.blog-content ol{padding-left:24px;margin-bottom:20px;color:var(--gray);line-height:1.8}
+        .blog-content li{margin-bottom:8px}
+        .blog-content a{color:var(--coral);text-decoration:none}
+        .blog-content a:hover{text-decoration:underline}
+        .blog-sidebar{position:sticky;top:110px;display:flex;flex-direction:column;gap:28px}
+        .sidebar-card{background:var(--warm-neutral);border-radius:16px;padding:24px}
+        .sidebar-card h4{font-size:.75em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+        .sidebar-recent-item{display:block;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(49,73,105,.08)}
+        .sidebar-recent-item:last-child{border-bottom:none}
+        .sidebar-recent-title{display:block;font-size:.92em;color:var(--navy);line-height:1.4;margin-bottom:4px;transition:color .2s}
+        .sidebar-recent-item:hover .sidebar-recent-title{color:var(--coral)}
+        .sidebar-recent-date{display:block;font-size:.78em;color:var(--gray)}
+        .blog-nav-bar{border-top:1px solid var(--warm-neutral);padding:40px 0}
+        .blog-nav-link{display:inline-flex;align-items:center;gap:8px;color:var(--gray);text-decoration:none;font-size:.92em;transition:color .2s}
+        .blog-nav-link:hover{color:var(--coral)}
+        @media(max-width:960px){.blog-layout{grid-template-columns:1fr;gap:48px}.blog-sidebar{position:static}}
+        @media(max-width:768px){.blog-hero h1{font-size:1.8em}}
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('blog/', '../')}
+<section class="blog-hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="./">Blog</a><span>/</span>${article.title}</div>
+        <h1>${article.title}</h1>
+        <div class="blog-meta">
+            ${dateStr ? `<span class="blog-date">${dateStr}</span>` : ''}
+            ${article.readingTime ? `<span class="blog-reading-time">${article.readingTime} min de lecture</span>` : ''}
+        </div>
+        <div class="blog-tags">${tagHtml}</div>
+    </div>
+</section>
+<section class="blog-body">
+    <div class="container">
+        <div class="blog-layout">
+            <div class="blog-content">
+                ${heroImgHtml}
+                ${bodyHtml}
+            </div>
+            <aside class="blog-sidebar">
+                <div class="sidebar-card">
+                    <h4>Articles récents</h4>
+                    ${recentHtml}
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<div class="blog-nav-bar">
+    <div class="container">
+        <a href="./" class="blog-nav-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Tous les articles
+        </a>
+    </div>
+</div>
+${footerHtml('../')}
+<script src="../script.js"></script>
+</body>
+</html>`;
+}
+
+function buildBlogListingPage(articles) {
+    const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const cardsHtml = articles.map(a => {
+        const tagHtml = (a.tags || []).slice(0, 2).map(t => `<span class="blog-tag-dark">${t}</span>`).join('');
+        return `
+        <div class="blog-card">
+            <div class="blog-card-meta">
+                ${formatDate(a.date) ? `<span class="blog-card-date">${formatDate(a.date)}</span>` : ''}
+                ${a.readingTime ? `<span class="blog-card-rt">${a.readingTime} min</span>` : ''}
+            </div>
+            <h2 class="blog-card-title"><a href="${a.slug}.html">${a.title}</a></h2>
+            <p class="blog-card-excerpt">${a.excerpt || ''}</p>
+            <div class="blog-card-footer">
+                <div class="blog-card-tags">${tagHtml}</div>
+                <a href="${a.slug}.html" class="read-link">Lire l'article ${ARROW}</a>
+            </div>
+        </div>`;
+    }).join('');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | VANTYS</title>
+${FAVICON_LINKS}
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .blog-listing{padding:80px 0 100px;background:var(--white)}
+        .blog-grid{display:flex;flex-direction:column;gap:40px;max-width:800px}
+        .blog-card{background:var(--warm-neutral);border-radius:20px;padding:40px;border-left:4px solid transparent;transition:all .3s}
+        .blog-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+        .blog-card-meta{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+        .blog-card-date{font-size:.82em;color:var(--gray)}
+        .blog-card-rt{font-size:.82em;color:var(--gray)}
+        .blog-card-rt::before{content:'·';margin-right:16px}
+        .blog-card-title{font-size:1.4em;font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:12px}
+        .blog-card-title a{text-decoration:none;color:inherit;transition:color .2s}
+        .blog-card-title a:hover{color:var(--coral)}
+        .blog-card-excerpt{color:var(--gray);line-height:1.7;font-size:.97em;margin-bottom:20px}
+        .blog-card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+        .blog-card-tags{display:flex;gap:8px;flex-wrap:wrap}
+        .blog-tag-dark{display:inline-block;padding:4px 10px;border-radius:16px;font-size:.76em;font-weight:500;background:rgba(49,73,105,.08);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
+        .read-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:.92em;color:var(--coral);transition:gap .3s}
+        .read-link:hover{gap:12px}
+        .blog-hero p{position:relative;z-index:1}
+        @media(max-width:768px){.blog-card{padding:28px}}
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('blog/', '../')}
+<section class="hero blog-hero">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
+    <div class="container">
+        <h1>Insights & <strong>Perspectives</strong></h1>
+        <p>Réflexions sur la stratégie commerciale, les opérations et l'innovation en Life Sciences.</p>
+    </div>
+</section>
+<section class="blog-listing">
+    <div class="container">
+        <div class="blog-grid">${cardsHtml}</div>
+    </div>
+</section>
+${footerHtml('../')}
+<script src="../script.js"></script>
+</body>
+</html>`;
+}
+
 // ─── Write all files ─────────────────────────────────────────────────────────
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml, 'utf8');
 fs.writeFileSync(path.join(__dirname, 'about-me.html'), aboutHtml, 'utf8');
@@ -740,10 +927,9 @@ caseStudies.forEach(cs => {
     fs.writeFileSync(path.join(csOutDir, `${cs.slug}.html`), buildDetailPage(cs), 'utf8');
     console.log(`  ✅ case-studies/${cs.slug}.html`);
 });
-
 fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
 
-// ─── Generate free pages ─────────────────────────────────────────────────────
+// ─── Free pages ───────────────────────────────────────────────────────────────
 const freePagesDir = path.join(__dirname, 'content', 'pages');
 if (fs.existsSync(freePagesDir)) {
     const freePageFiles = fs.readdirSync(freePagesDir).filter(f => f.endsWith('.json'));
@@ -751,14 +937,30 @@ if (fs.existsSync(freePagesDir)) {
     freePageFiles.forEach(f => {
         const page = JSON.parse(fs.readFileSync(path.join(freePagesDir, f), 'utf8'));
         if (page.published === false) {
-            console.log(`  ⏭️  ${page.slug}.html (dépublié — ignoré)`);
+            console.log(`  ⏭️  ${page.slug}.html (dépublié)`);
             return;
         }
         fs.writeFileSync(path.join(__dirname, `${page.slug}.html`), buildFreePage(page), 'utf8');
-        console.log(`  ✅ ${page.slug}.html (layout: ${page.layout || 'text-simple'})`);
+        console.log(`  ✅ ${page.slug}.html (mixte)`);
         count++;
     });
     console.log(`✅ ${count} page(s) libre(s) générée(s)`);
+}
+
+// ─── Blog ─────────────────────────────────────────────────────────────────────
+if (fs.existsSync(blogCmsDir)) {
+    const articleFiles = fs.readdirSync(blogCmsDir).filter(f => f.endsWith('.json'));
+    const articles = articleFiles
+        .map(f => JSON.parse(fs.readFileSync(path.join(blogCmsDir, f), 'utf8')))
+        .filter(a => a.published !== false)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    articles.forEach(article => {
+        fs.writeFileSync(path.join(blogOutDir, `${article.slug}.html`), buildArticlePage(article, articles), 'utf8');
+        console.log(`  ✅ blog/${article.slug}.html`);
+    });
+    fs.writeFileSync(path.join(blogOutDir, 'index.html'), buildBlogListingPage(articles), 'utf8');
+    console.log(`✅ blog/index.html (${articles.length} article(s))`);
 }
 
 console.log('✅ index.html');
