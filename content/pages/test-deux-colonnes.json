@@ -1,0 +1,23 @@
+{
+  "layout": "two-columns",
+  "published": true,
+  "slug": "test-deux-colonnes",
+  "title": "Notre Expertise",
+  "intro": "Une page exemple avec le layout deux colonnes.",
+  "blocks": [
+    {
+      "heading": "Stratégie commerciale",
+      "body": "Nous accompagnons les équipes pharmaceutiques dans la **définition de leur stratégie** go-to-market, du lancement produit à l'optimisation des canaux de vente.\n\nNotre approche combine analyse des données de marché et expertise terrain.",
+      "image": "",
+      "imagePosition": "right",
+      "imageAlt": "Stratégie commerciale"
+    },
+    {
+      "heading": "Excellence opérationnelle",
+      "body": "Identifier les inefficacités, redesigner les processus, mesurer l'impact. Nous intervenons sur l'ensemble de la chaîne opérationnelle.",
+      "image": "",
+      "imagePosition": "left",
+      "imageAlt": "Excellence opérationnelle"
+    }
+  ]
+}

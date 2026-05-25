@@ -1,0 +1,25 @@
+{
+  "layout": "cards",
+  "published": true,
+  "slug": "test-cards",
+  "title": "Nos Services",
+  "intro": "Une page exemple avec le layout cards.",
+  "cards": [
+    {
+      "title": "Stratégie de lancement",
+      "body": "Définir et exécuter une stratégie de lancement produit adaptée aux réalités du marché pharmaceutique."
+    },
+    {
+      "title": "Optimisation des opérations",
+      "body": "Identifier les inefficacités et redesigner les processus pour maximiser l'impact terrain."
+    },
+    {
+      "title": "Formation des équipes",
+      "body": "Développer les compétences de vos équipes commerciales et médicales avec des programmes sur mesure."
+    },
+    {
+      "title": "Analyse de marché",
+      "body": "Comprendre votre positionnement concurrentiel et identifier les opportunités de croissance."
+    }
+  ]
+}

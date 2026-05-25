@@ -1,0 +1,26 @@
+{
+  "layout": "hero-sections",
+  "published": true,
+  "slug": "test-hero-sections",
+  "title": "Notre Approche",
+  "intro": "Une page exemple avec le layout hero + sections.",
+  "ctaText": "Nous contacter",
+  "ctaLink": "/contact.html",
+  "sections": [
+    {
+      "heading": "Diagnostic & Stratégie",
+      "body": "Nous commençons par une analyse approfondie de votre situation. Comprendre vos défis spécifiques, votre environnement concurrentiel et vos ambitions de croissance.",
+      "background": "white"
+    },
+    {
+      "heading": "Co-construction",
+      "body": "Nous travaillons **avec** vos équipes, pas à leur place. Chaque solution est construite en partenariat pour garantir l'adhésion et la durabilité.",
+      "background": "neutral"
+    },
+    {
+      "heading": "Exécution & Mesure",
+      "body": "L'implémentation est suivie d'une mesure rigoureuse des résultats. Nous ajustons en continu pour maximiser l'impact.",
+      "background": "white"
+    }
+  ]
+}

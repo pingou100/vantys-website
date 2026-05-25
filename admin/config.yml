@@ -25,28 +25,41 @@ collections:
         widget: "boolean"
         default: true
         hint: "Décochez pour masquer cette page sans la supprimer"
+
       - label: "URL de la page (slug)"
         name: "slug"
         widget: "string"
         hint: "Exemple : nos-services → la page sera accessible sur /nos-services.html. Minuscules, tirets, pas d'espaces."
+
       - label: "Titre de la page"
         name: "title"
         widget: "string"
+
       - label: "Texte d'introduction"
         name: "intro"
         widget: "text"
         required: false
         hint: "Affiché sous le titre, dans la section hero"
+
+      - label: "Layout"
+        name: "layout"
+        widget: "select"
+        default: "text-simple"
+        hint: "Choisissez la mise en page de votre page"
+        options:
+          - { label: "📄 Texte simple (blocs titre + texte)", value: "text-simple" }
+          - { label: "🖼️  Deux colonnes (texte + image)", value: "two-columns" }
+          - { label: "🃏 Cards (grille de cartes)", value: "cards" }
+          - { label: "🏠 Hero + Sections", value: "hero-sections" }
+
+      # ── Champs layout: text-simple ──────────────────────────────────────
       - label: "Blocs de contenu"
         name: "blocks"
         widget: "list"
         required: false
-        hint: "Ajoutez autant de blocs que vous voulez. Chaque bloc = un titre + un texte."
+        hint: "Layout 'Texte simple' — ajoutez autant de blocs que vous voulez"
         fields:
-          - label: "Titre du bloc"
-            name: "heading"
-            widget: "string"
-            required: false
+          - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
           - label: "Contenu"
             name: "body"
             widget: "markdown"
@@ -54,8 +67,81 @@ collections:
             editor_components: []
             modes: ["rich_text"]
 
+      # ── Champs layout: two-columns ───────────────────────────────────────
+      - label: "Blocs deux colonnes"
+        name: "blocks"
+        widget: "list"
+        required: false
+        hint: "Layout 'Deux colonnes' — chaque bloc = texte d'un côté, image de l'autre"
+        fields:
+          - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
+          - label: "Contenu"
+            name: "body"
+            widget: "markdown"
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            modes: ["rich_text"]
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Texte alternatif de l'image", name: "imageAlt", widget: "string", required: false, default: "" }
+          - label: "Position de l'image"
+            name: "imagePosition"
+            widget: "select"
+            default: "right"
+            options:
+              - { label: "Image à droite", value: "right" }
+              - { label: "Image à gauche", value: "left" }
+
+      # ── Champs layout: cards ─────────────────────────────────────────────
+      - label: "Cards"
+        name: "cards"
+        widget: "list"
+        required: false
+        hint: "Layout 'Cards' — ajoutez autant de cartes que vous voulez"
+        fields:
+          - { label: "Titre de la carte", name: "title", widget: "string" }
+          - label: "Contenu"
+            name: "body"
+            widget: "markdown"
+            buttons: ["bold", "italic", "link", "bulleted-list"]
+            editor_components: []
+            modes: ["rich_text"]
+
+      # ── Champs layout: hero-sections ─────────────────────────────────────
+      - label: "Bouton CTA (optionnel)"
+        name: "ctaText"
+        widget: "string"
+        required: false
+        hint: "Layout 'Hero + Sections' — texte du bouton dans le hero"
+
+      - label: "Lien du bouton CTA"
+        name: "ctaLink"
+        widget: "string"
+        required: false
+        hint: "Ex: /contact.html"
+
+      - label: "Sections"
+        name: "sections"
+        widget: "list"
+        required: false
+        hint: "Layout 'Hero + Sections' — ajoutez autant de sections que vous voulez"
+        fields:
+          - { label: "Titre de la section", name: "heading", widget: "string", required: false }
+          - label: "Contenu"
+            name: "body"
+            widget: "markdown"
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            modes: ["rich_text"]
+          - label: "Fond"
+            name: "background"
+            widget: "select"
+            default: "white"
+            options:
+              - { label: "Blanc", value: "white" }
+              - { label: "Beige neutre", value: "neutral" }
+
   # ─────────────────────────────────────────
-  # PAGES
+  # PAGES FIXES
   # ─────────────────────────────────────────
   - name: "pages"
     label: "Pages fixes"
@@ -128,9 +214,9 @@ collections:
         name: "case-studies-index"
         file: "content/case-studies-index.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string", hint: "Main heading — the highlighted part is set separately below"}
-          - {label: "Title Highlight", name: "titleHighlight", widget: "string", hint: "The portion of the title shown in coral colour"}
-          - {label: "Subtitle", name: "subtitle", widget: "text", hint: "Short descriptor shown under the title"}
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Title Highlight", name: "titleHighlight", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "text"}
           - label: "Bottom CTA"
             name: "cta"
             widget: "object"
@@ -188,7 +274,7 @@ collections:
     slug: "{{fields.slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly, e.g. proactive-cardiovascular-risk-management"}
+      - {label: "Slug (URL)", name: "slug", widget: "string"}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
       - {label: "Short Title", name: "shortTitle", widget: "string"}
       - {label: "Teaser", name: "teaser", widget: "text"}
@@ -197,7 +283,7 @@ collections:
         name: "pathway"
         widget: "object"
         fields:
-          - {label: "Custom SVG image", name: "image", widget: "image", required: false, hint: "Upload a custom SVG (1200x400px, transparent background, navy #314969 + golden #F2AF4C). Leave empty to use the default generated illustration."}
+          - {label: "Custom SVG image", name: "image", widget: "image", required: false}
           - {label: "Image alt text", name: "alt", widget: "string", required: false, default: "Programme transformation pathway"}
       - label: "The Challenge"
         name: "challenge"
