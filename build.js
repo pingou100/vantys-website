@@ -650,6 +650,9 @@ function layoutTwoColumns(page) {
 }
 
 function layoutCards(page) {
+    // columns: "2", "3" (default), or "4"
+    const cols = parseInt(page.columns || '3', 10);
+    const minWidth = cols === 2 ? '440px' : cols === 4 ? '220px' : '300px';
     const cardsHtml = (page.cards || []).map(card => `
         <div class="fc-card">
             <h3 class="fc-card-title">${card.title}</h3>
@@ -659,7 +662,7 @@ function layoutCards(page) {
     return `
         <style>
             .fc-content{padding:60px 0 100px;background:var(--white)}
-            .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px}
+            .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(${minWidth},1fr));gap:32px}
             .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
             .fc-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
             .fc-card-title{font-size:1.2em;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
