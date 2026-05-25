@@ -10,6 +10,9 @@ function markdownToHtml(text) {
         .replace(/\*([^*]+)\*/g, '<em>$1</em>')
         .replace(/_([^_]+)_/g, '<em>$1</em>')
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
         .replace(/\n\n/g, '</p><p>')
         .replace(/\n/g, '<br>');
 }
@@ -276,13 +279,6 @@ function pathwayBlock(cs) {
     if (img) return `<img src="${img}" alt="${alt}" class="pathway-custom-img" width="1200" height="400"/>`;
     return FALLBACK_PATHWAY_SVG;
 }
-
-// ─── Animated Vantys-logo approach icons (inline SVG, CSS-animated) ─────────
-// Icon 1 — Sequential scan (Risk Stratification / Process Reengineering / Commercial Excellence)
-// Icon 2 — Wave pulse  (Patient Engagement / Open-Source Stack / MMM)
-// Icon 3 — Heartbeat   (Remote Monitoring / User Experience / Resource Optimisation)
-// Icon 4 — Build path  (Pathway Redesign / Compliance / Capability Building)
-// If a case study has only 3 items, icons 0-2 are used (icon 3 is omitted automatically).
 
 const APPROACH_ICON_STYLES = `<style>
 @keyframes vty-scan1{0%,15%{transform:scaleY(0)}50%,80%{transform:scaleY(1)}95%,100%{transform:scaleY(0)}}
@@ -593,6 +589,63 @@ ${footerHtml('../')}
 </html>`;
 }
 
+// ─── FREE PAGES ──────────────────────────────────────────────────────────────
+function buildFreePage(page) {
+    const blocksHtml = (page.blocks || []).map(block => `
+        <div class="fp-block">
+            ${block.heading ? `<h2 class="fp-block-heading">${block.heading}</h2>` : ''}
+            <div class="fp-block-body"><p>${markdownToHtml(block.body || '')}</p></div>
+        </div>`
+    ).join('');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${page.title} | VANTYS</title>
+${FAVICON_LINKS}
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .fp-content{padding:60px 0 100px;background:var(--white)}
+        .fp-intro{font-size:1.15em;color:var(--gray);line-height:1.8;max-width:720px;margin:0 auto 60px;position:relative;z-index:1}
+        .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+        .fp-block{border-left:3px solid var(--coral);padding-left:28px}
+        .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
+        .fp-block-body{color:var(--gray);line-height:1.8;font-size:1em}
+        .fp-block-body p{margin-bottom:12px}
+        .fp-block-body strong{color:var(--navy)}
+        .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
+        .fp-block-body li{margin-bottom:6px}
+        .fp-block-body a{color:var(--coral);text-decoration:none}
+        .fp-block-body a:hover{text-decoration:underline}
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('', '')}
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h1>${page.title}</h1>
+        ${page.intro ? `<p class="fp-intro">${page.intro}</p>` : ''}
+    </div>
+</section>
+<section class="fp-content">
+    <div class="container">
+        <div class="fp-blocks">
+            ${blocksHtml}
+        </div>
+    </div>
+</section>
+${footerHtml('')}
+<script src="script.js"></script>
+</body>
+</html>`;
+}
+
 // ─── Write all files ─────────────────────────────────────────────────────────
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml, 'utf8');
 fs.writeFileSync(path.join(__dirname, 'about-me.html'), aboutHtml, 'utf8');
@@ -603,6 +656,25 @@ caseStudies.forEach(cs => {
 });
 
 fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
+
+// ─── Generate free pages ─────────────────────────────────────────────────────
+const freePagesDir = path.join(__dirname, 'content', 'pages');
+if (fs.existsSync(freePagesDir)) {
+    const freePageFiles = fs.readdirSync(freePagesDir).filter(f => f.endsWith('.json'));
+    let count = 0;
+    freePageFiles.forEach(f => {
+        const page = JSON.parse(fs.readFileSync(path.join(freePagesDir, f), 'utf8'));
+        if (page.published === false) {
+            console.log(`  ⏭️  ${page.slug}.html (dépublié — ignoré)`);
+            return;
+        }
+        fs.writeFileSync(path.join(__dirname, `${page.slug}.html`), buildFreePage(page), 'utf8');
+        console.log(`  ✅ ${page.slug}.html`);
+        count++;
+    });
+    console.log(`✅ ${count} page(s) libre(s) générée(s)`);
+}
+
 console.log('✅ index.html');
 console.log('✅ about-me.html');
 console.log('✅ case-studies/index.html');
