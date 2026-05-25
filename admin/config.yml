@@ -9,6 +9,79 @@ public_folder: "/images/uploads"
 collections:
 
   # ─────────────────────────────────────────
+  # ARTICLES (BLOG)
+  # ─────────────────────────────────────────
+  - name: "articles"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "content/articles"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{fields.slug}}"
+    fields:
+      - label: "Publié"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Décochez pour sauvegarder en brouillon sans publier"
+
+      - label: "URL de l'article (slug)"
+        name: "slug"
+        widget: "string"
+        hint: "Exemple : mon-premier-article → accessible sur /blog/mon-premier-article.html. Minuscules, tirets, pas d'espaces."
+
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+
+      - label: "Date de publication"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        hint: "Par défaut : aujourd'hui. Modifiable librement."
+
+      - label: "Temps de lecture (minutes)"
+        name: "readingTime"
+        widget: "number"
+        default: 5
+        required: false
+        hint: "Affiché sous le titre de l'article"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Ex: IA, Stratégie commerciale, Life Sciences"
+
+      - label: "Résumé (extrait)"
+        name: "excerpt"
+        widget: "text"
+        hint: "Affiché dans la liste des articles. 1-2 phrases maximum."
+
+      - label: "Image principale (optionnelle)"
+        name: "heroImage"
+        widget: "image"
+        required: false
+        hint: "Affichée en haut de l'article, sous le titre"
+
+      - label: "Texte alternatif de l'image"
+        name: "heroImageAlt"
+        widget: "string"
+        required: false
+        default: ""
+
+      - label: "Contenu de l'article"
+        name: "body"
+        widget: "markdown"
+        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list", "heading-two", "heading-three"]
+        editor_components: []
+        modes: ["rich_text"]
+        hint: "Utilisez ## pour les titres de section, ### pour les sous-titres"
+
+  # ─────────────────────────────────────────
   # PAGES LIBRES
   # ─────────────────────────────────────────
   - name: "free-pages"
@@ -45,20 +118,31 @@ collections:
         name: "layout"
         widget: "select"
         default: "text-simple"
-        hint: "Choisissez la mise en page de votre page"
+        hint: "Choisissez la mise en page principale. Vous pouvez combiner plusieurs types en remplissant plusieurs sections ci-dessous."
         options:
           - { label: "📄 Texte simple (blocs titre + texte)", value: "text-simple" }
           - { label: "🖼️  Deux colonnes (texte + image)", value: "two-columns" }
           - { label: "🃏 Cards (grille de cartes)", value: "cards" }
           - { label: "🏠 Hero + Sections", value: "hero-sections" }
 
-      # ── Blocs — utilisés par text-simple ET two-columns ──────────────────
-      # Champs disponibles : heading, body (commun), image/imageAlt/imagePosition (two-columns uniquement)
+      - label: "Bouton CTA (optionnel)"
+        name: "ctaText"
+        widget: "string"
+        required: false
+        hint: "Texte du bouton affiché dans le hero (ex: Nous contacter)"
+
+      - label: "Lien du bouton CTA"
+        name: "ctaLink"
+        widget: "string"
+        required: false
+        hint: "Ex: /contact.html"
+
+      # ── Blocs — text-simple et two-columns ──────────────────────────────
       - label: "Blocs de contenu"
         name: "blocks"
         widget: "list"
         required: false
-        hint: "Layouts 'Texte simple' et 'Deux colonnes' — ajoutez autant de blocs que vous voulez"
+        hint: "Pour layout 'Texte simple' ou 'Deux colonnes'. Remplissez cette section ET une autre pour mixer les layouts."
         fields:
           - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
           - label: "Contenu"
@@ -77,13 +161,13 @@ collections:
               - { label: "Image à droite", value: "right" }
               - { label: "Image à gauche", value: "left" }
 
-      # ── Champs layout: cards ─────────────────────────────────────────────
+      # ── Cards ─────────────────────────────────────────────────────────────
       - label: "Colonnes par ligne"
         name: "columns"
         widget: "select"
         default: "3"
         required: false
-        hint: "Layout 'Cards' uniquement"
+        hint: "Pour le layout 'Cards'"
         options:
           - { label: "2 colonnes (cards larges)", value: "2" }
           - { label: "3 colonnes (défaut)", value: "3" }
@@ -93,7 +177,7 @@ collections:
         name: "cards"
         widget: "list"
         required: false
-        hint: "Layout 'Cards' — ajoutez autant de cartes que vous voulez"
+        hint: "Pour layout 'Cards'. Peut être combiné avec des blocs ou des sections."
         fields:
           - { label: "Titre de la carte", name: "title", widget: "string" }
           - label: "Contenu"
@@ -103,24 +187,12 @@ collections:
             editor_components: []
             modes: ["rich_text"]
 
-      # ── Champs layout: hero-sections ─────────────────────────────────────
-      - label: "Bouton CTA (optionnel)"
-        name: "ctaText"
-        widget: "string"
-        required: false
-        hint: "Layout 'Hero + Sections' — texte du bouton dans le hero"
-
-      - label: "Lien du bouton CTA"
-        name: "ctaLink"
-        widget: "string"
-        required: false
-        hint: "Ex: /contact.html"
-
+      # ── Sections ──────────────────────────────────────────────────────────
       - label: "Sections"
         name: "sections"
         widget: "list"
         required: false
-        hint: "Layout 'Hero + Sections' — ajoutez autant de sections que vous voulez"
+        hint: "Pour layout 'Hero + Sections'. Peut être combiné avec des blocs ou des cards."
         fields:
           - { label: "Titre de la section", name: "heading", widget: "string", required: false }
           - label: "Contenu"
