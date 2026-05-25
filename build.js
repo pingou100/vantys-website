@@ -26,9 +26,10 @@ function formatDate(dateStr) {
 }
 
 // ─── Read content JSON ──────────────────────────────────────────────────────
-const homepageContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
-const aboutContent      = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
-const csIndexContent    = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'case-studies-index.json'), 'utf8'));
+const homepageContent  = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
+const aboutContent     = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+const csIndexContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'case-studies-index.json'), 'utf8'));
+const navigationContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'navigation.json'), 'utf8'));
 
 // ─── Shared fragments ───────────────────────────────────────────────────────
 const LOGO_SVG = `<svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,17 +49,21 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
 const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
-function navHtml(activeHref, prefix = '') {
-    const links = [
-        { href: `${prefix}index.html#services`, label: 'Services' },
-        { href: `${prefix}index.html#approach`,  label: 'Approach' },
-        { href: `${prefix}case-studies/`,        label: 'Case Studies' },
-        { href: `${prefix}about-me.html`,        label: 'About Me' },
-        { href: `${prefix}contact.html`,         label: 'Contact' },
-    ];
-    const items = links.map(l =>
-        `<li><a href="${l.href}"${l.href === activeHref ? ' class="active"' : ''}>${l.label}</a></li>`
-    ).join('\n                ');
+// ─── Navigation dynamique ────────────────────────────────────────────────────
+// Lue depuis content/navigation.json, gérable via Decap CMS → Paramètres du site → Navigation
+function navHtml(prefix = '') {
+    const navItems = navigationContent.items || [];
+    const items = navItems.map(link => {
+        // Résoudre le href avec le prefix (pour les sous-dossiers comme case-studies/, blog/)
+        // Si href commence par / c'est un chemin absolu, on ajoute le prefix pour les ancres
+        let href = link.href;
+        if (href.startsWith('/')) {
+            // Chemin absolu : on adapte avec le prefix si nécessaire
+            href = prefix ? prefix + href.replace(/^\//, '') : href;
+        }
+        return `<li><a href="${href}">${link.label}</a></li>`;
+    }).join('\n                ');
+
     return `<header>
     <nav class="container">
         <div class="logo-container">
@@ -113,7 +118,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('', '')}
+${navHtml('')}
 <section class="hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -179,7 +184,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('about-me.html', '')}
+${navHtml('')}
 <section class="hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container" style="max-width:1200px">
@@ -431,7 +436,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('case-studies/', '../')}
+${navHtml('../')}
 <section class="cs-detail-hero">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
@@ -569,7 +574,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('case-studies/', '../')}
+${navHtml('../')}
 <section class="cs-hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
@@ -598,12 +603,8 @@ ${footerHtml('../')}
 }
 
 // ─── FREE PAGES — mode mixte ─────────────────────────────────────────────────
-// On affiche TOUT ce qui est rempli, dans l'ordre : blocks → cards → sections
-// Le champ "layout" est conservé pour compatibilité mais n'est plus le seul critère.
-
 const FREE_PAGE_SHARED_STYLES = `
     <style>
-        /* Blocs texte */
         .fp-content{padding:60px 0;background:var(--white)}
         .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
         .fp-block{border-left:3px solid var(--coral);padding-left:28px}
@@ -617,7 +618,6 @@ const FREE_PAGE_SHARED_STYLES = `
         .fp-block-body li{margin-bottom:6px}
         .fp-block-body a{color:var(--coral);text-decoration:none}
         .fp-block-body a:hover{text-decoration:underline}
-        /* Deux colonnes */
         .tc-content{padding:60px 0;background:var(--white)}
         .tc-rows{display:flex;flex-direction:column;gap:80px}
         .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -626,7 +626,6 @@ const FREE_PAGE_SHARED_STYLES = `
         .tc-body p{margin-bottom:12px}
         .tc-body strong{color:var(--navy)}
         .tc-body a{color:var(--coral);text-decoration:none}
-        /* Cards */
         .fc-content{padding:60px 0;background:var(--white)}
         .fc-grid{display:grid;gap:32px}
         .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
@@ -654,7 +653,6 @@ function renderBlocks(page) {
         }).join('');
         return `<section class="tc-content"><div class="container"><div class="tc-rows">${rowsHtml}</div></div></section>`;
     }
-    // text-simple (default)
     const blocksHtml = page.blocks.map(block => `
         <div class="fp-block">
             ${block.heading ? `<h2 class="fp-block-heading">${block.heading}</h2>` : ''}
@@ -692,8 +690,6 @@ function buildFreePage(page) {
     const ctaHtml = page.ctaText && page.ctaLink
         ? `<a href="${page.ctaLink}" class="cta-button" style="position:relative;z-index:1">${page.ctaText}</a>`
         : '';
-
-    // Mode mixte : on affiche tout ce qui est rempli, dans l'ordre
     const contentHtml = renderBlocks(page) + renderCards(page) + renderSections(page);
 
     return `<!DOCTYPE html>
@@ -708,7 +704,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('', '')}
+${navHtml('')}
 <section class="hero">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
@@ -737,11 +733,7 @@ function buildArticlePage(article, allArticles) {
     const heroImgHtml = article.heroImage && article.heroImage.trim()
         ? `<img src="${article.heroImage}" alt="${article.heroImageAlt || article.title}" style="width:100%;height:auto;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.1);margin-bottom:48px;display:block">`
         : '';
-
-    // Articles récents pour la sidebar (excl. article courant)
-    const recentArticles = allArticles
-        .filter(a => a.slug !== article.slug && a.published !== false)
-        .slice(0, 4);
+    const recentArticles = allArticles.filter(a => a.slug !== article.slug && a.published !== false).slice(0, 4);
     const recentHtml = recentArticles.length > 0
         ? recentArticles.map(a => `
             <a href="${a.slug}.html" class="sidebar-recent-item">
@@ -804,7 +796,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('blog/', '../')}
+${navHtml('../')}
 <section class="blog-hero">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
@@ -900,7 +892,7 @@ ${FAVICON_LINKS}
 </head>
 <body>
 ${BACK_TO_TOP}
-${navHtml('blog/', '../')}
+${navHtml('../')}
 <section class="hero blog-hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
@@ -929,32 +921,26 @@ caseStudies.forEach(cs => {
 });
 fs.writeFileSync(path.join(csOutDir, 'index.html'), buildListingPage(caseStudies), 'utf8');
 
-// ─── Free pages ───────────────────────────────────────────────────────────────
 const freePagesDir = path.join(__dirname, 'content', 'pages');
 if (fs.existsSync(freePagesDir)) {
     const freePageFiles = fs.readdirSync(freePagesDir).filter(f => f.endsWith('.json'));
     let count = 0;
     freePageFiles.forEach(f => {
         const page = JSON.parse(fs.readFileSync(path.join(freePagesDir, f), 'utf8'));
-        if (page.published === false) {
-            console.log(`  ⏭️  ${page.slug}.html (dépublié)`);
-            return;
-        }
+        if (page.published === false) { console.log(`  ⏭️  ${page.slug}.html (dépublié)`); return; }
         fs.writeFileSync(path.join(__dirname, `${page.slug}.html`), buildFreePage(page), 'utf8');
-        console.log(`  ✅ ${page.slug}.html (mixte)`);
+        console.log(`  ✅ ${page.slug}.html`);
         count++;
     });
     console.log(`✅ ${count} page(s) libre(s) générée(s)`);
 }
 
-// ─── Blog ─────────────────────────────────────────────────────────────────────
 if (fs.existsSync(blogCmsDir)) {
     const articleFiles = fs.readdirSync(blogCmsDir).filter(f => f.endsWith('.json'));
     const articles = articleFiles
         .map(f => JSON.parse(fs.readFileSync(path.join(blogCmsDir, f), 'utf8')))
         .filter(a => a.published !== false)
         .sort((a, b) => new Date(b.date) - new Date(a.date));
-
     articles.forEach(article => {
         fs.writeFileSync(path.join(blogOutDir, `${article.slug}.html`), buildArticlePage(article, articles), 'utf8');
         console.log(`  ✅ blog/${article.slug}.html`);
