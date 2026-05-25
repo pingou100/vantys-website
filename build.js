@@ -589,14 +589,116 @@ ${footerHtml('../')}
 </html>`;
 }
 
-// ─── FREE PAGES ──────────────────────────────────────────────────────────────
-function buildFreePage(page) {
+// ─── FREE PAGES — layouts ────────────────────────────────────────────────────
+
+function layoutTextSimple(page) {
     const blocksHtml = (page.blocks || []).map(block => `
         <div class="fp-block">
             ${block.heading ? `<h2 class="fp-block-heading">${block.heading}</h2>` : ''}
             <div class="fp-block-body"><p>${markdownToHtml(block.body || '')}</p></div>
         </div>`
     ).join('');
+    return `
+        <style>
+            .fp-content{padding:60px 0 100px;background:var(--white)}
+            .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+            .fp-block{border-left:3px solid var(--coral);padding-left:28px}
+            .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
+            .fp-block-body{color:var(--gray);line-height:1.8}
+            .fp-block-body p{margin-bottom:12px}
+            .fp-block-body strong{color:var(--navy)}
+            .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
+            .fp-block-body li{margin-bottom:6px}
+            .fp-block-body a{color:var(--coral);text-decoration:none}
+            .fp-block-body a:hover{text-decoration:underline}
+        </style>
+        <section class="fp-content">
+            <div class="container"><div class="fp-blocks">${blocksHtml}</div></div>
+        </section>`;
+}
+
+function layoutTwoColumns(page) {
+    const rowsHtml = (page.blocks || []).map(block => {
+        const imgSide = block.imagePosition === 'left' ? 'left' : 'right';
+        const imgHtml = block.image && block.image.trim()
+            ? `<img src="${block.image}" alt="${block.imageAlt || ''}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">`
+            : `<div style="width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9em;border:2px dashed rgba(49,73,105,.15)">Image à ajouter</div>`;
+        const textCol = `<div class="tc-text">
+            ${block.heading ? `<h2 class="tc-heading">${block.heading}</h2>` : ''}
+            <div class="tc-body"><p>${markdownToHtml(block.body || '')}</p></div>
+        </div>`;
+        const imgCol = `<div class="tc-img">${imgHtml}</div>`;
+        const cols = imgSide === 'left' ? `${imgCol}${textCol}` : `${textCol}${imgCol}`;
+        return `<div class="tc-row">${cols}</div>`;
+    }).join('');
+    return `
+        <style>
+            .tc-content{padding:60px 0 100px;background:var(--white)}
+            .tc-rows{display:flex;flex-direction:column;gap:80px}
+            .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+            .tc-heading{font-size:1.6em;font-weight:500;color:var(--navy);margin-bottom:20px;line-height:1.3}
+            .tc-body{color:var(--gray);line-height:1.8}
+            .tc-body p{margin-bottom:12px}
+            .tc-body strong{color:var(--navy)}
+            .tc-body a{color:var(--coral);text-decoration:none}
+            .tc-body a:hover{text-decoration:underline}
+            @media(max-width:768px){.tc-row{grid-template-columns:1fr}.tc-img{order:-1}}
+        </style>
+        <section class="tc-content">
+            <div class="container"><div class="tc-rows">${rowsHtml}</div></div>
+        </section>`;
+}
+
+function layoutCards(page) {
+    const cardsHtml = (page.cards || []).map(card => `
+        <div class="fc-card">
+            <h3 class="fc-card-title">${card.title}</h3>
+            <div class="fc-card-body"><p>${markdownToHtml(card.body || '')}</p></div>
+        </div>`
+    ).join('');
+    return `
+        <style>
+            .fc-content{padding:60px 0 100px;background:var(--white)}
+            .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px}
+            .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
+            .fc-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+            .fc-card-title{font-size:1.2em;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
+            .fc-card-body{color:var(--gray);line-height:1.7;font-size:.97em}
+            .fc-card-body p{margin-bottom:8px}
+            .fc-card-body strong{color:var(--navy)}
+            .fc-card-body a{color:var(--coral);text-decoration:none}
+            @media(max-width:768px){.fc-grid{grid-template-columns:1fr}}
+        </style>
+        <section class="fc-content">
+            <div class="container"><div class="fc-grid">${cardsHtml}</div></div>
+        </section>`;
+}
+
+function layoutHeroSections(page) {
+    const sectionsHtml = (page.sections || []).map(section => {
+        const bg = section.background === 'neutral' ? 'var(--warm-neutral)' : 'var(--white)';
+        return `
+        <section style="padding:60px 0;background:${bg}">
+            <div class="container" style="max-width:800px">
+                ${section.heading ? `<h2 style="font-size:1.7em;font-weight:400;color:var(--navy);margin-bottom:20px;line-height:1.3">${section.heading}</h2>` : ''}
+                <div style="color:var(--gray);line-height:1.8;font-size:1.05em"><p>${markdownToHtml(section.body || '')}</p></div>
+            </div>
+        </section>`;
+    }).join('');
+    return sectionsHtml;
+}
+
+function buildFreePage(page) {
+    const layout = page.layout || 'text-simple';
+    let contentHtml = '';
+    if (layout === 'two-columns')        contentHtml = layoutTwoColumns(page);
+    else if (layout === 'cards')         contentHtml = layoutCards(page);
+    else if (layout === 'hero-sections') contentHtml = layoutHeroSections(page);
+    else                                 contentHtml = layoutTextSimple(page);
+
+    const ctaHtml = (layout === 'hero-sections' && page.ctaText && page.ctaLink)
+        ? `<a href="${page.ctaLink}" class="cta-button" style="position:relative;z-index:1">${page.ctaText}</a>`
+        : '';
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -606,20 +708,6 @@ function buildFreePage(page) {
     <title>${page.title} | VANTYS</title>
 ${FAVICON_LINKS}
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .fp-content{padding:60px 0 100px;background:var(--white)}
-        .fp-intro{font-size:1.15em;color:var(--gray);line-height:1.8;max-width:720px;margin:0 auto 60px;position:relative;z-index:1}
-        .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
-        .fp-block{border-left:3px solid var(--coral);padding-left:28px}
-        .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
-        .fp-block-body{color:var(--gray);line-height:1.8;font-size:1em}
-        .fp-block-body p{margin-bottom:12px}
-        .fp-block-body strong{color:var(--navy)}
-        .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
-        .fp-block-body li{margin-bottom:6px}
-        .fp-block-body a{color:var(--coral);text-decoration:none}
-        .fp-block-body a:hover{text-decoration:underline}
-    </style>
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -630,16 +718,11 @@ ${navHtml('', '')}
     <div class="bg-shape bg-shape-3"></div>
     <div class="container">
         <h1>${page.title}</h1>
-        ${page.intro ? `<p class="fp-intro">${page.intro}</p>` : ''}
+        ${page.intro ? `<p style="font-size:1.15em;color:var(--gray);max-width:700px;position:relative;z-index:1">${page.intro}</p>` : ''}
+        ${ctaHtml}
     </div>
 </section>
-<section class="fp-content">
-    <div class="container">
-        <div class="fp-blocks">
-            ${blocksHtml}
-        </div>
-    </div>
-</section>
+${contentHtml}
 ${footerHtml('')}
 <script src="script.js"></script>
 </body>
@@ -669,7 +752,7 @@ if (fs.existsSync(freePagesDir)) {
             return;
         }
         fs.writeFileSync(path.join(__dirname, `${page.slug}.html`), buildFreePage(page), 'utf8');
-        console.log(`  ✅ ${page.slug}.html`);
+        console.log(`  ✅ ${page.slug}.html (layout: ${page.layout || 'text-simple'})`);
         count++;
     });
     console.log(`✅ ${count} page(s) libre(s) générée(s)`);
