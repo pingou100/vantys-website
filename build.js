@@ -22,7 +22,7 @@ function markdownToHtml(text) {
 function formatDate(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr);
-    return d.toLocaleDateString('fr-BE', { year: 'numeric', month: 'long', day: 'numeric' });
+    return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 // ─── Read content JSON ──────────────────────────────────────────────────────
@@ -30,6 +30,10 @@ const homepageContent  = JSON.parse(fs.readFileSync(path.join(__dirname, 'conten
 const aboutContent     = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
 const csIndexContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'case-studies-index.json'), 'utf8'));
 const navigationContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'navigation.json'), 'utf8'));
+const blogSettingsPath = path.join(__dirname, 'content', 'blog-settings.json');
+const blogSettings = fs.existsSync(blogSettingsPath)
+    ? JSON.parse(fs.readFileSync(blogSettingsPath, 'utf8'))
+    : { title: 'Insights & Perspectives', subtitle: 'Reflections on commercial strategy, operations and innovation in Life Sciences.' };
 
 // ─── Shared fragments ───────────────────────────────────────────────────────
 const LOGO_SVG = `<svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,15 +54,11 @@ const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
 // ─── Navigation dynamique ────────────────────────────────────────────────────
-// Lue depuis content/navigation.json, gérable via Decap CMS → Paramètres du site → Navigation
 function navHtml(prefix = '') {
     const navItems = navigationContent.items || [];
     const items = navItems.map(link => {
-        // Résoudre le href avec le prefix (pour les sous-dossiers comme case-studies/, blog/)
-        // Si href commence par / c'est un chemin absolu, on ajoute le prefix pour les ancres
         let href = link.href;
         if (href.startsWith('/')) {
-            // Chemin absolu : on adapte avec le prefix si nécessaire
             href = prefix ? prefix + href.replace(/^\//, '') : href;
         }
         return `<li><a href="${href}">${link.label}</a></li>`;
@@ -740,7 +740,7 @@ function buildArticlePage(article, allArticles) {
                 <span class="sidebar-recent-title">${a.title}</span>
                 <span class="sidebar-recent-date">${formatDate(a.date)}</span>
             </a>`).join('')
-        : '<p style="color:var(--gray);font-size:.9em">Aucun autre article pour le moment.</p>';
+        : '<p style="color:var(--gray);font-size:.9em">No other articles yet.</p>';
 
     const bodyHtml = (article.body || '').split('\n\n').map(p => {
         const trimmed = p.trim();
@@ -806,7 +806,7 @@ ${navHtml('../')}
         <h1>${article.title}</h1>
         <div class="blog-meta">
             ${dateStr ? `<span class="blog-date">${dateStr}</span>` : ''}
-            ${article.readingTime ? `<span class="blog-reading-time">${article.readingTime} min de lecture</span>` : ''}
+            ${article.readingTime ? `<span class="blog-reading-time">${article.readingTime} min read</span>` : ''}
         </div>
         <div class="blog-tags">${tagHtml}</div>
     </div>
@@ -820,7 +820,7 @@ ${navHtml('../')}
             </div>
             <aside class="blog-sidebar">
                 <div class="sidebar-card">
-                    <h4>Articles récents</h4>
+                    <h4>Recent articles</h4>
                     ${recentHtml}
                 </div>
             </aside>
@@ -831,7 +831,7 @@ ${navHtml('../')}
     <div class="container">
         <a href="./" class="blog-nav-link">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Tous les articles
+            All articles
         </a>
     </div>
 </div>
@@ -845,17 +845,25 @@ function buildBlogListingPage(articles) {
     const ARROW = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const cardsHtml = articles.map(a => {
         const tagHtml = (a.tags || []).slice(0, 2).map(t => `<span class="blog-tag-dark">${t}</span>`).join('');
+        const thumbHtml = a.heroImage && a.heroImage.trim()
+            ? `<div class="blog-card-thumb"><img src="${a.heroImage}" alt="${a.heroImageAlt || a.title}" loading="lazy"></div>`
+            : `<div class="blog-card-thumb blog-card-thumb--placeholder"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" rx="6" stroke="#697A92" stroke-width="1.5" opacity="0.3"/><path d="M4 28l8-8 6 6 5-5 9 9" stroke="#697A92" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/><circle cx="15" cy="15" r="3" stroke="#697A92" stroke-width="1.5" opacity="0.4"/></svg></div>`;
         return `
         <div class="blog-card">
-            <div class="blog-card-meta">
-                ${formatDate(a.date) ? `<span class="blog-card-date">${formatDate(a.date)}</span>` : ''}
-                ${a.readingTime ? `<span class="blog-card-rt">${a.readingTime} min</span>` : ''}
-            </div>
-            <h2 class="blog-card-title"><a href="${a.slug}.html">${a.title}</a></h2>
-            <p class="blog-card-excerpt">${a.excerpt || ''}</p>
-            <div class="blog-card-footer">
-                <div class="blog-card-tags">${tagHtml}</div>
-                <a href="${a.slug}.html" class="read-link">Lire l'article ${ARROW}</a>
+            <div class="blog-card-inner">
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        ${formatDate(a.date) ? `<span class="blog-card-date">${formatDate(a.date)}</span>` : ''}
+                        ${a.readingTime ? `<span class="blog-card-rt">${a.readingTime} min read</span>` : ''}
+                    </div>
+                    <h2 class="blog-card-title"><a href="${a.slug}.html">${a.title}</a></h2>
+                    <p class="blog-card-excerpt">${a.excerpt || ''}</p>
+                    <div class="blog-card-footer">
+                        <div class="blog-card-tags">${tagHtml}</div>
+                        <a href="${a.slug}.html" class="read-link">Read article ${ARROW}</a>
+                    </div>
+                </div>
+                ${thumbHtml}
             </div>
         </div>`;
     }).join('');
@@ -871,23 +879,28 @@ ${FAVICON_LINKS}
     <style>
         .blog-listing{padding:80px 0 100px;background:var(--white)}
         .blog-grid{display:flex;flex-direction:column;gap:40px;max-width:800px}
-        .blog-card{background:var(--warm-neutral);border-radius:20px;padding:40px;border-left:4px solid transparent;transition:all .3s}
+        .blog-card{background:var(--warm-neutral);border-radius:20px;padding:36px 40px;border-left:4px solid transparent;transition:all .3s}
         .blog-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
-        .blog-card-meta{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+        .blog-card-inner{display:flex;gap:28px;align-items:flex-start}
+        .blog-card-content{flex:1;min-width:0}
+        .blog-card-thumb{flex-shrink:0;width:120px;height:90px;border-radius:10px;overflow:hidden;background:rgba(49,73,105,.06)}
+        .blog-card-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+        .blog-card-thumb--placeholder{display:flex;align-items:center;justify-content:center}
+        .blog-card-meta{display:flex;gap:16px;align-items:center;margin-bottom:10px}
         .blog-card-date{font-size:.82em;color:var(--gray)}
         .blog-card-rt{font-size:.82em;color:var(--gray)}
         .blog-card-rt::before{content:'·';margin-right:16px}
-        .blog-card-title{font-size:1.4em;font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:12px}
+        .blog-card-title{font-size:1.25em;font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:10px}
         .blog-card-title a{text-decoration:none;color:inherit;transition:color .2s}
         .blog-card-title a:hover{color:var(--coral)}
-        .blog-card-excerpt{color:var(--gray);line-height:1.7;font-size:.97em;margin-bottom:20px}
+        .blog-card-excerpt{color:var(--gray);line-height:1.7;font-size:.95em;margin-bottom:16px}
         .blog-card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
         .blog-card-tags{display:flex;gap:8px;flex-wrap:wrap}
         .blog-tag-dark{display:inline-block;padding:4px 10px;border-radius:16px;font-size:.76em;font-weight:500;background:rgba(49,73,105,.08);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
         .read-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:.92em;color:var(--coral);transition:gap .3s}
         .read-link:hover{gap:12px}
         .blog-hero p{position:relative;z-index:1}
-        @media(max-width:768px){.blog-card{padding:28px}}
+        @media(max-width:768px){.blog-card{padding:24px}.blog-card-inner{flex-direction:column-reverse;gap:16px}.blog-card-thumb{width:100%;height:160px}}
     </style>
 </head>
 <body>
@@ -896,8 +909,8 @@ ${navHtml('../')}
 <section class="hero blog-hero">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
     <div class="container">
-        <h1>Insights & <strong>Perspectives</strong></h1>
-        <p>Réflexions sur la stratégie commerciale, les opérations et l'innovation en Life Sciences.</p>
+        <h1>${blogSettings.title.replace('Perspectives', '<strong>Perspectives</strong>')}</h1>
+        <p>${blogSettings.subtitle}</p>
     </div>
 </section>
 <section class="blog-listing">

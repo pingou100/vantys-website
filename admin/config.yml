@@ -253,6 +253,13 @@ collections:
               - {label: "Copyright Text", name: "copyright", widget: "string"}
               - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
 
+      - label: "Blog Page Settings"
+        name: "blog-settings"
+        file: "content/blog-settings.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", hint: "The main heading on the blog listing page."}
+          - {label: "Subtitle", name: "subtitle", widget: "text", hint: "The tagline shown under the heading."}
+
       - label: "Case Studies Page"
         name: "case-studies-index"
         file: "content/case-studies-index.json"
