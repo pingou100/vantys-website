@@ -1,12 +1,16 @@
 {
-  "published": true,
-  "slug": "premier-article",
-  "title": "Comment l'IA transforme la stratégie commerciale en Life Sciences",
-  "date": "2026-05-25",
-  "readingTime": 5,
-  "tags": ["IA", "Stratégie commerciale", "Life Sciences"],
-  "excerpt": "L'intelligence artificielle n'est plus un sujet futur pour les équipes commerciales pharma — c'est une réalité opérationnelle qui redessine les règles du jeu.",
-  "heroImage": "",
+  "excerpt": "AI promises change, but why do so many pharmaceutical projects fail before they even start?\nIt's not about budgets or technology. It's about misunderstandings.\n\nHere are my top 5 reasons AI projects flop in our industry:",
+  "heroImage": "/images/uploads/1765366113460.jpeg",
+  "body": "AI promises change, but why do so many pharmaceutical projects fail before they even start?\n\nIt's not about budgets or technology.\n\nIt's about misunderstandings. Here are my top 5 reasons AI projects flop in our industry:\n\n\n1. **No clear business problem**. Too many teams chase AI for AI's sake, without defining what it should actually solve.\n2. **Data chaos.** Pharma sits on mountains of data, but much of it is messy, siloed, or inaccessible. Without solid data foundations, AI is doomed from the start.\n3. **Siloed ownership**. When IT or data science teams run the show in isolation, commercial and medical leaders are left out. Without cross-functional buy-in, projects stall.\n4. **Change resistance.** Even brilliant AI solutions get ignored if people don’t trust or understand them. Culture eats algorithms for breakfast.\n5. **Chasing hype, skipping basics.** Everyone wants the next big thing...now, but skipping core processes and governance means initiatives unravel fast.\n\nIf these sound familiar, you’re not alone.\n\nThe truth: **AI isn’t magic. It’s just another tool**, and it only works when you fix the real business pains, build strong teams, and put basics before buzzwords.",
   "heroImageAlt": "",
-  "body": "L'intelligence artificielle n'est plus un sujet futur pour les équipes commerciales pharma — c'est une réalité opérationnelle qui redessine les règles du jeu.\n\n## Le constat\n\nLes équipes commerciales en Life Sciences font face à une complexité croissante : multiplication des canaux, données fragmentées, pressions réglementaires. L'IA offre une réponse structurée à ces défis.\n\n## Ce que change l'IA concrètement\n\nTrois domaines sont particulièrement impactés : la segmentation des HCP, l'orchestration omnicanale, et la prédiction de la performance terrain.\n\n## Comment démarrer\n\nLa clé n'est pas la technologie — c'est la donnée. Avant tout déploiement IA, l'audit de la qualité des données CRM est une étape non négociable."
+  "slug": "premier-article",
+  "published": true,
+  "date": "2026-01-25",
+  "title": "Comment l'IA transforme la stratégie commerciale en Life Sciences",
+  "tags": [
+    "Life Sciences",
+    "failure",
+    "AI"
+  ],
+  "readingTime": 2
 }
