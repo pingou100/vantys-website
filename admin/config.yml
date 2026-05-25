@@ -52,12 +52,13 @@ collections:
           - { label: "🃏 Cards (grille de cartes)", value: "cards" }
           - { label: "🏠 Hero + Sections", value: "hero-sections" }
 
-      # ── Champs layout: text-simple ──────────────────────────────────────
+      # ── Blocs — utilisés par text-simple ET two-columns ──────────────────
+      # Champs disponibles : heading, body (commun), image/imageAlt/imagePosition (two-columns uniquement)
       - label: "Blocs de contenu"
         name: "blocks"
         widget: "list"
         required: false
-        hint: "Layout 'Texte simple' — ajoutez autant de blocs que vous voulez"
+        hint: "Layouts 'Texte simple' et 'Deux colonnes' — ajoutez autant de blocs que vous voulez"
         fields:
           - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
           - label: "Contenu"
@@ -66,22 +67,7 @@ collections:
             buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
             editor_components: []
             modes: ["rich_text"]
-
-      # ── Champs layout: two-columns ───────────────────────────────────────
-      - label: "Blocs deux colonnes"
-        name: "blocks"
-        widget: "list"
-        required: false
-        hint: "Layout 'Deux colonnes' — chaque bloc = texte d'un côté, image de l'autre"
-        fields:
-          - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
-          - label: "Contenu"
-            name: "body"
-            widget: "markdown"
-            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-            editor_components: []
-            modes: ["rich_text"]
-          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Image (layout deux colonnes uniquement)", name: "image", widget: "image", required: false }
           - { label: "Texte alternatif de l'image", name: "imageAlt", widget: "string", required: false, default: "" }
           - label: "Position de l'image"
             name: "imagePosition"
@@ -92,6 +78,17 @@ collections:
               - { label: "Image à gauche", value: "left" }
 
       # ── Champs layout: cards ─────────────────────────────────────────────
+      - label: "Colonnes par ligne"
+        name: "columns"
+        widget: "select"
+        default: "3"
+        required: false
+        hint: "Layout 'Cards' uniquement"
+        options:
+          - { label: "2 colonnes (cards larges)", value: "2" }
+          - { label: "3 colonnes (défaut)", value: "3" }
+          - { label: "4 colonnes (cards compactes)", value: "4" }
+
       - label: "Cards"
         name: "cards"
         widget: "list"
