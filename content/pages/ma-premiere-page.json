@@ -1,0 +1,17 @@
+{
+  "layout": "text-simple",
+  "published": true,
+  "slug": "ma-premiere-page",
+  "title": "Ma première page",
+  "intro": "Ceci est une page de test créée via le système de pages libres.",
+  "blocks": [
+    {
+      "heading": "Première section",
+      "body": "Voici un premier bloc de texte. Vous pouvez mettre du **texte en gras**, de l'*italique*, et des [liens](https://vantys.be)."
+    },
+    {
+      "heading": "Deuxième section",
+      "body": "Et voici un deuxième bloc. Chaque bloc a son propre titre et son propre contenu."
+    }
+  ]
+}

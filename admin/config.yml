@@ -9,10 +9,56 @@ public_folder: "/images/uploads"
 collections:
 
   # ─────────────────────────────────────────
+  # PAGES LIBRES
+  # ─────────────────────────────────────────
+  - name: "free-pages"
+    label: "Pages"
+    label_singular: "Page"
+    folder: "content/pages"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{fields.slug}}"
+    fields:
+      - label: "Publié"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Décochez pour masquer cette page sans la supprimer"
+      - label: "URL de la page (slug)"
+        name: "slug"
+        widget: "string"
+        hint: "Exemple : nos-services → la page sera accessible sur /nos-services.html. Minuscules, tirets, pas d'espaces."
+      - label: "Titre de la page"
+        name: "title"
+        widget: "string"
+      - label: "Texte d'introduction"
+        name: "intro"
+        widget: "text"
+        required: false
+        hint: "Affiché sous le titre, dans la section hero"
+      - label: "Blocs de contenu"
+        name: "blocks"
+        widget: "list"
+        required: false
+        hint: "Ajoutez autant de blocs que vous voulez. Chaque bloc = un titre + un texte."
+        fields:
+          - label: "Titre du bloc"
+            name: "heading"
+            widget: "string"
+            required: false
+          - label: "Contenu"
+            name: "body"
+            widget: "markdown"
+            buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
+            editor_components: []
+            modes: ["rich_text"]
+
+  # ─────────────────────────────────────────
   # PAGES
   # ─────────────────────────────────────────
   - name: "pages"
-    label: "Pages"
+    label: "Pages fixes"
     files:
 
       - label: "Homepage"
