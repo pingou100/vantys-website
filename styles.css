@@ -105,6 +105,20 @@ body {
     50% { transform: scale(1.05) rotate(-22deg); opacity: 0.09; }
 }
 
+/* Blog article hero shapes */
+@keyframes breathe-blog-1 {
+    0%, 100% { transform: scale(1) rotate(-37deg); opacity: 0.08; }
+    50% { transform: scale(1.05) rotate(-37deg); opacity: 0.11; }
+}
+@keyframes breathe-blog-2 {
+    0%, 100% { transform: scale(1) rotate(19deg); opacity: 0.07; }
+    50% { transform: scale(1.05) rotate(19deg); opacity: 0.10; }
+}
+@keyframes breathe-blog-3 {
+    0%, 100% { transform: scale(1) rotate(-28deg); opacity: 0.06; }
+    50% { transform: scale(1.05) rotate(-28deg); opacity: 0.09; }
+}
+
 /* Decorative Background Shapes */
 .bg-shape {
     position: absolute;
@@ -285,6 +299,27 @@ body {
     bottom: -60px; left: -60px; opacity: 0.05;
     transform: scale(1) rotate(-18deg);
     animation: breathe-cs-1 8s ease-in-out infinite 4s;
+}
+
+/* ── Blog article hero (blog-hero) ── */
+.blog-hero { position: relative; overflow: hidden; }
+.blog-hero .bg-shape-1 {
+    width: 460px; height: 360px; background: var(--navy);
+    top: -140px; right: -90px; opacity: 0.08;
+    transform: scale(1) rotate(-37deg);
+    animation: breathe-blog-1 8s ease-in-out infinite;
+}
+.blog-hero .bg-shape-2 {
+    width: 300px; height: 400px; background: var(--light-blue);
+    top: -60px; right: 60px; opacity: 0.07;
+    transform: scale(1) rotate(19deg);
+    animation: breathe-blog-2 8s ease-in-out infinite 2.7s;
+}
+.blog-hero .bg-shape-3 {
+    width: 340px; height: 240px; background: var(--golden);
+    bottom: -40px; left: -70px; opacity: 0.06;
+    transform: scale(1) rotate(-28deg);
+    animation: breathe-blog-3 8s ease-in-out infinite 5.3s;
 }
 
 /* ======================================== */
