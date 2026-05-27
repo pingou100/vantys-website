@@ -45,16 +45,16 @@
     "title": "Results that speak for themselves",
     "items": [
       {
-        "stat": "−80%",
-        "label": "Reduction in HCP approval processing time across 10 European markets"
-      },
-      {
         "stat": "+7% NRx",
-        "label": "Sales uplift within 12 months of reallocating spend to higher-ROI channels"
+        "label": "Brand Sales uplift within 12 months of reallocating spend to higher-ROI channels"
       },
       {
         "stat": "+18%",
-        "label": "Increase in at-risk patient identification vs standard-of-care pathways"
+        "label": "Increase in at-risk cardiovascular patient identification vs standard-of-care pathways"
+      },
+      {
+        "stat": "−80%",
+        "label": "Reduction in Activity approval processing time across 10 European markets while smoothening compliance"
       }
     ]
   },
