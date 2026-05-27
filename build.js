@@ -106,6 +106,19 @@ const approachIcons = [
     `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
 ];
 
+// ─── Proof section HTML ──────────────────────────────────────────────────────
+const proofSectionHtml = homepageContent.proof ? `<section class="proof-section">
+    <div class="container">
+        <h2 class="proof-title">${homepageContent.proof.title}</h2>
+        <div class="proof-grid">
+            ${homepageContent.proof.items.map(item => `<div class="proof-stat">
+                <span class="proof-number">${item.stat}</span>
+                <span class="proof-label">${item.label}</span>
+            </div>`).join('\n            ')}
+        </div>
+    </div>
+</section>` : '';
+
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,6 +158,7 @@ ${navHtml('')}
         </div>
     </div>
 </section>
+${proofSectionHtml}
 <section class="approach" id="approach">
     <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
     <div class="container">
@@ -745,6 +759,7 @@ function buildArticlePage(article, allArticles) {
     const bodyHtml = (article.body || '').split('\n\n').map(p => {
         const trimmed = p.trim();
         if (trimmed.startsWith('## ') || trimmed.startsWith('### ')) return markdownToHtml(trimmed);
+        if (trimmed === '---') return `<hr style="border:none;border-top:1px solid var(--warm-neutral);margin:40px 0">`;
         return `<p>${markdownToHtml(trimmed)}</p>`;
     }).join('');
 

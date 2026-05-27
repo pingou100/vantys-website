@@ -536,3 +536,57 @@ footer a:hover { text-decoration: underline; }
     box-shadow: 0 8px 32px rgba(49,73,105,0.08);
     transform: translateY(-2px);
 }
+
+/* ========================================
+   PROOF SECTION — homepage metrics row
+   ======================================== */
+.proof-section {
+    padding: 80px 0;
+    background: var(--navy);
+}
+.proof-title {
+    font-size: 1.6em;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
+}
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.proof-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 32px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+}
+.proof-stat:last-child { border-right: none; }
+.proof-stat:hover { background: rgba(255,255,255,0.04); }
+.proof-number {
+    font-size: 3.2em;
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+}
+.proof-label {
+    font-size: 0.92em;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    max-width: 220px;
+}
+@media (max-width: 768px) {
+    .proof-grid { grid-template-columns: 1fr; gap: 0; }
+    .proof-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 32px 24px; }
+    .proof-stat:last-child { border-bottom: none; }
+    .proof-number { font-size: 2.6em; }
+}

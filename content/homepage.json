@@ -2,7 +2,7 @@
   "hero": {
     "title": " ",
     "titleHighlight": "Life Science Strategy, Executed ",
-    "description": "Delivering measurable results at the intersection of Life Science strategy and execution. By integrating innovative go-to-market models and differentiating healthcare partnerships, we help organisations build the operational agility needed to lead in increasingly complex business environments.",
+    "description": "Vantys is a senior-led advisory founded by Olivier Delannoy — three decades at the intersection of commercial ambition, operational reality, and emerging technology. Pioneering omnichannel when the industry was still figuring out what that meant. Working with health systems to redesign care pathways before it became a priority. The gap between strategic intent and actual execution is where most transformation efforts stall. We close it.",
     "ctaText": "Book a Call",
     "ctaLink": "contact.html"
   },
@@ -24,7 +24,7 @@
     ]
   },
   "services": {
-    "title": "Three Ways We Help",
+    "title": "Three Ways Vantys Helps",
     "subtitle": "Bridging Strategy and Execution",
     "items": [
       {
@@ -37,7 +37,24 @@
       },
       {
         "title": "Digital & AI Implementation for Business Excellence",
-        "description": "**Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing operations.** We translate strategic ambitions into operational capabilities that deliver measurable business impact."
+        "description": "**Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing operations** — delivered within the strict bounds of pharmaceutical compliance, data privacy, and medical-commercial firewalls. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
+      }
+    ]
+  },
+  "proof": {
+    "title": "Results that speak for themselves",
+    "items": [
+      {
+        "stat": "−80%",
+        "label": "Reduction in HCP approval processing time across 10 European markets"
+      },
+      {
+        "stat": "+7% NRx",
+        "label": "Sales uplift within 12 months of reallocating spend to higher-ROI channels"
+      },
+      {
+        "stat": "+18%",
+        "label": "Increase in at-risk patient identification vs standard-of-care pathways"
       }
     ]
   },
