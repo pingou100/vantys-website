@@ -20,26 +20,26 @@ collections:
     format: "json"
     slug: "{{fields.slug}}"
     fields:
-      - label: "Publié"
+      - label: "Published"
         name: "published"
         widget: "boolean"
         default: true
-        hint: "Décochez pour sauvegarder en brouillon sans publier"
-      - label: "URL de l'article (slug)"
+        hint: "Uncheck to save as draft without publishing"
+      - label: "Article URL (slug)"
         name: "slug"
         widget: "string"
-        hint: "Exemple : mon-premier-article → accessible sur /blog/mon-premier-article.html. Minuscules, tirets, pas d'espaces."
-      - label: "Titre"
+        hint: "Example: my-first-article → accessible at /blog/my-first-article.html. Lowercase, hyphens, no spaces."
+      - label: "Title"
         name: "title"
         widget: "string"
-      - label: "Date de publication"
+      - label: "Publication Date"
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
         date_format: "DD/MM/YYYY"
         time_format: false
-        hint: "Par défaut : aujourd'hui. Modifiable librement."
-      - label: "Temps de lecture (minutes)"
+        hint: "Default: today. Can be changed freely."
+      - label: "Reading Time (minutes)"
         name: "readingTime"
         widget: "number"
         default: 5
@@ -48,115 +48,137 @@ collections:
         name: "tags"
         widget: "list"
         required: false
-        hint: "Ex: IA, Stratégie commerciale, Life Sciences"
-      - label: "Résumé (extrait)"
+        hint: "E.g. AI, Commercial Strategy, Life Sciences"
+      - label: "Excerpt (summary)"
         name: "excerpt"
         widget: "text"
-        hint: "Affiché dans la liste des articles. 1-2 phrases maximum."
-      - label: "Image principale (optionnelle)"
+        hint: "Shown in the article listing. 1-2 sentences maximum."
+      - label: "Hero Image (optional)"
         name: "heroImage"
         widget: "image"
         required: false
-      - label: "Texte alternatif de l'image"
+      - label: "Image Alt Text"
         name: "heroImageAlt"
         widget: "string"
         required: false
         default: ""
-      - label: "Contenu de l'article"
+      - label: "Article Body"
         name: "body"
         widget: "markdown"
         buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list", "heading-two", "heading-three"]
         editor_components: []
         modes: ["rich_text"]
+        hint: "Tip: add a horizontal rule (---) followed by a call-to-action line at the end of the article to invite readers to get in touch."
+      - label: "Article CTA (optional)"
+        name: "articleCta"
+        widget: "object"
+        required: false
+        hint: "If filled, a styled call-to-action box is appended after the article body."
+        fields:
+          - label: "CTA Text"
+            name: "text"
+            widget: "string"
+            required: false
+            hint: "E.g. Starting an AI initiative? Let's audit your foundations first."
+          - label: "CTA Button Label"
+            name: "buttonLabel"
+            widget: "string"
+            required: false
+            default: "Let's talk →"
+          - label: "CTA Button Link"
+            name: "buttonLink"
+            widget: "string"
+            required: false
+            default: "../contact.html"
 
   # ─────────────────────────────────────────
-  # PAGES LIBRES
+  # FREE PAGES
   # ─────────────────────────────────────────
   - name: "free-pages"
-    label: "Pages libres"
-    label_singular: "Page libre"
+    label: "Free Pages"
+    label_singular: "Free Page"
     folder: "content/pages"
     create: true
     extension: "json"
     format: "json"
     slug: "{{fields.slug}}"
     fields:
-      - label: "Publié"
+      - label: "Published"
         name: "published"
         widget: "boolean"
         default: true
-        hint: "Décochez pour masquer cette page sans la supprimer"
-      - label: "URL de la page (slug)"
+        hint: "Uncheck to hide this page without deleting it"
+      - label: "Page URL (slug)"
         name: "slug"
         widget: "string"
-        hint: "Exemple : nos-services → accessible sur /nos-services.html. Minuscules, tirets, pas d'espaces."
-      - label: "Titre de la page"
+        hint: "Example: our-services → accessible at /our-services.html. Lowercase, hyphens, no spaces."
+      - label: "Page Title"
         name: "title"
         widget: "string"
-      - label: "Texte d'introduction"
+      - label: "Introduction Text"
         name: "intro"
         widget: "text"
         required: false
-        hint: "Affiché sous le titre, dans la section hero"
-      - label: "Layout principal"
+        hint: "Displayed under the title in the hero section"
+      - label: "Main Layout"
         name: "layout"
         widget: "select"
         default: "text-simple"
-        hint: "Définit comment sont affichés les 'Blocs de contenu'. Vous pouvez combiner avec des Cards et/ou des Sections."
+        hint: "Defines how 'Content Blocks' are displayed. You can combine with Cards and/or Sections."
         options:
-          - { label: "📄 Texte simple (blocs titre + texte)", value: "text-simple" }
-          - { label: "🖼️  Deux colonnes (texte + image)", value: "two-columns" }
-          - { label: "🃏 Cards (grille de cartes)", value: "cards" }
+          - { label: "📄 Simple Text (title + text blocks)", value: "text-simple" }
+          - { label: "🖼️  Two Columns (text + image)", value: "two-columns" }
+          - { label: "🃏 Cards (card grid)", value: "cards" }
           - { label: "🏠 Hero + Sections", value: "hero-sections" }
-      - label: "Bouton CTA (optionnel)"
+      - label: "CTA Button (optional)"
         name: "ctaText"
         widget: "string"
         required: false
-        hint: "Texte du bouton dans le hero (ex: Nous contacter)"
-      - label: "Lien du bouton CTA"
+        hint: "Button text in the hero (e.g. Contact us)"
+      - label: "CTA Button Link"
         name: "ctaLink"
         widget: "string"
         required: false
-        hint: "Ex: /contact.html"
-      - label: "Blocs de contenu"
+        hint: "E.g. /contact.html"
+      - label: "Content Blocks"
         name: "blocks"
         widget: "list"
         required: false
-        hint: "Texte simple ou Deux colonnes. Affiché en premier."
+        hint: "Simple text or Two columns. Displayed first."
         fields:
-          - { label: "Titre du bloc", name: "heading", widget: "string", required: false }
-          - label: "Contenu"
+          - { label: "Block Title", name: "heading", widget: "string", required: false }
+          - label: "Content"
             name: "body"
             widget: "markdown"
             buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
             editor_components: []
             modes: ["rich_text"]
-          - { label: "Image (deux colonnes uniquement)", name: "image", widget: "image", required: false }
-          - { label: "Texte alternatif de l'image", name: "imageAlt", widget: "string", required: false, default: "" }
-          - label: "Position de l'image"
+          - { label: "Image (two-column layout only)", name: "image", widget: "image", required: false }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false, default: "" }
+          - label: "Image Position"
             name: "imagePosition"
             widget: "select"
             default: "right"
             options:
-              - { label: "Image à droite", value: "right" }
-              - { label: "Image à gauche", value: "left" }
-      - label: "Colonnes par ligne (cards)"
+              - { label: "Image on the right", value: "right" }
+              - { label: "Image on the left", value: "left" }
+      - label: "Columns per Row (cards)"
         name: "columns"
         widget: "select"
         default: "3"
         required: false
         options:
-          - { label: "2 colonnes (cards larges)", value: "2" }
-          - { label: "3 colonnes (défaut)", value: "3" }
-          - { label: "4 colonnes (cards compactes)", value: "4" }
+          - { label: "2 columns (wide cards)", value: "2" }
+          - { label: "3 columns (default)", value: "3" }
+          - { label: "4 columns (compact cards)", value: "4" }
       - label: "Cards"
         name: "cards"
         widget: "list"
         required: false
-        hint: "Affiché après les blocs de contenu."
+        hint: "Displayed after content blocks."
         fields:
-          - { label: "Titre de la carte", name: "title", widget: "string" }
-          - label: "Contenu"
+          - { label: "Card Title", name: "title", widget: "string" }
+          - label: "Content"
             name: "body"
             widget: "markdown"
             buttons: ["bold", "italic", "link", "bulleted-list"]
@@ -166,28 +188,28 @@ collections:
         name: "sections"
         widget: "list"
         required: false
-        hint: "Affiché en dernier, après les cards."
+        hint: "Displayed last, after cards."
         fields:
-          - { label: "Titre de la section", name: "heading", widget: "string", required: false }
-          - label: "Contenu"
+          - { label: "Section Title", name: "heading", widget: "string", required: false }
+          - label: "Content"
             name: "body"
             widget: "markdown"
             buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
             editor_components: []
             modes: ["rich_text"]
-          - label: "Fond"
+          - label: "Background"
             name: "background"
             widget: "select"
             default: "white"
             options:
-              - { label: "Blanc", value: "white" }
-              - { label: "Beige neutre", value: "neutral" }
+              - { label: "White", value: "white" }
+              - { label: "Warm neutral (beige)", value: "neutral" }
 
   # ─────────────────────────────────────────
-  # PAGES FIXES
+  # FIXED PAGES
   # ─────────────────────────────────────────
   - name: "pages"
-    label: "Pages fixes"
+    label: "Fixed Pages"
     files:
 
       - label: "Homepage"
@@ -198,118 +220,132 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Title Highlight", name: "titleHighlight", widget: "string"}
-              - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-              - {label: "CTA Button Text", name: "ctaText", widget: "string"}
-              - {label: "CTA Button Link", name: "ctaLink", widget: "string"}
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Title Highlight (bold, coral)", name: "titleHighlight", widget: "string" }
+              - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
+              - { label: "CTA Button Text", name: "ctaText", widget: "string" }
+              - { label: "CTA Button Link", name: "ctaLink", widget: "string" }
           - label: "Challenge Section"
             name: "challenge"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string"}
-              - label: "Challenges"
+              - { label: "Section Title", name: "title", widget: "string" }
+              - label: "Challenge Items"
                 name: "items"
                 widget: "list"
                 fields:
-                  - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
           - label: "Services Section"
             name: "services"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string"}
-              - {label: "Section Subtitle", name: "subtitle", widget: "string"}
-              - label: "Services"
+              - { label: "Section Title", name: "title", widget: "string" }
+              - { label: "Section Subtitle", name: "subtitle", widget: "string" }
+              - label: "Service Items"
                 name: "items"
                 widget: "list"
                 fields:
-                  - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          - label: "Approach Section"
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
+          - label: "Proof / Results Section"
+            name: "proof"
+            widget: "object"
+            hint: "The dark navy metrics row displayed between Services and How We Work."
+            fields:
+              - { label: "Section Title", name: "title", widget: "string", hint: "E.g. Results that speak for themselves" }
+              - label: "Metrics"
+                name: "items"
+                widget: "list"
+                hint: "Up to 3 metrics. Each one shows a large number and a short label."
+                fields:
+                  - { label: "Stat / Number", name: "stat", widget: "string", hint: "E.g. −80% or +7% NRx or +18%" }
+                  - { label: "Label", name: "label", widget: "string", hint: "Short description shown below the number." }
+          - label: "How We Work Section"
             name: "approach"
             widget: "object"
             fields:
-              - {label: "Section Title", name: "title", widget: "string"}
-              - {label: "Section Subtitle", name: "subtitle", widget: "string"}
+              - { label: "Section Title", name: "title", widget: "string" }
+              - { label: "Section Subtitle", name: "subtitle", widget: "string" }
               - label: "Approach Items"
                 name: "items"
                 widget: "list"
                 fields:
-                  - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          - label: "CTA Section"
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
+          - label: "Bottom CTA Section"
             name: "cta"
             widget: "object"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-              - {label: "Button Text", name: "buttonText", widget: "string"}
-              - {label: "Button Link", name: "buttonLink", widget: "string"}
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
+              - { label: "Button Text", name: "buttonText", widget: "string" }
+              - { label: "Button Link", name: "buttonLink", widget: "string" }
           - label: "Footer"
             name: "footer"
             widget: "object"
             fields:
-              - {label: "Copyright Text", name: "copyright", widget: "string"}
-              - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
+              - { label: "Copyright Text", name: "copyright", widget: "string" }
+              - { label: "LinkedIn URL", name: "linkedinUrl", widget: "string" }
 
       - label: "Blog Page Settings"
         name: "blog-settings"
         file: "content/blog-settings.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string", hint: "The main heading on the blog listing page."}
-          - {label: "Subtitle", name: "subtitle", widget: "text", hint: "The tagline shown under the heading."}
+          - { label: "Page Title", name: "title", widget: "string", hint: "Main heading on the blog listing page." }
+          - { label: "Subtitle", name: "subtitle", widget: "text", hint: "Tagline shown under the heading." }
 
       - label: "Case Studies Page"
         name: "case-studies-index"
         file: "content/case-studies-index.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Title Highlight", name: "titleHighlight", widget: "string"}
-          - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Title Highlight (bold, coral)", name: "titleHighlight", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
           - label: "Bottom CTA"
             name: "cta"
             widget: "object"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "string"}
-              - {label: "Button Text", name: "buttonText", widget: "string"}
-              - {label: "Button Link", name: "buttonLink", widget: "string"}
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Button Text", name: "buttonText", widget: "string" }
+              - { label: "Button Link", name: "buttonLink", widget: "string" }
 
       - label: "About Me Page"
         name: "about"
         file: "content/about-me.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Profile Photo", name: "photo", widget: "image"}
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Profile Photo", name: "photo", widget: "image" }
           - label: "Content Paragraphs"
             name: "paragraphs"
             widget: "list"
+            hint: "Each paragraph is a separate block of text. Supports bold, italic, and links."
             fields:
-              - {label: "Paragraph", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+              - { label: "Paragraph", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
 
       - label: "Contact Page"
         name: "contact"
         file: "content/contact.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "LinkedIn URL", name: "linkedinUrl", widget: "string"}
-          - {label: "Response Time Note", name: "responseNote", widget: "string"}
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedinUrl", widget: "string" }
+          - { label: "Response Time Note", name: "responseNote", widget: "string" }
 
       - label: "Privacy Policy"
         name: "privacy"
         file: "content/privacy-policy.json"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Last Updated", name: "lastUpdated", widget: "string"}
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Last Updated", name: "lastUpdated", widget: "string" }
           - label: "Sections"
             name: "sections"
             widget: "list"
             fields:
-              - {label: "Heading", name: "heading", widget: "string"}
-              - {label: "Content", name: "content", widget: "text"}
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
 
   # ─────────────────────────────────────────
   # CASE STUDIES
@@ -323,85 +359,86 @@ collections:
     format: "json"
     slug: "{{fields.slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Slug (URL)", name: "slug", widget: "string"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false}
-      - {label: "Short Title", name: "shortTitle", widget: "string"}
-      - {label: "Teaser", name: "teaser", widget: "text"}
-      - {label: "Tags", name: "tags", widget: "list"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug (URL)", name: "slug", widget: "string", hint: "Lowercase, hyphens, no spaces. E.g. hcp-approval-platform" }
+      - { label: "Featured (shown first on listing page)", name: "featured", widget: "boolean", default: false }
+      - { label: "Short Title (for breadcrumb)", name: "shortTitle", widget: "string" }
+      - { label: "Teaser (shown on listing page)", name: "teaser", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "list" }
       - label: "Pathway Illustration"
         name: "pathway"
         widget: "object"
         fields:
-          - {label: "Custom SVG image", name: "image", widget: "image", required: false}
-          - {label: "Image alt text", name: "alt", widget: "string", required: false, default: "Programme transformation pathway"}
+          - { label: "Custom SVG image", name: "image", widget: "image", required: false }
+          - { label: "Image alt text", name: "alt", widget: "string", required: false, default: "Programme transformation pathway" }
       - label: "The Challenge"
         name: "challenge"
         widget: "object"
         fields:
-          - {label: "Section Heading", name: "heading", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"]}
+          - { label: "Section Heading", name: "heading", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
       - label: "Our Approach"
         name: "approach"
         widget: "object"
         fields:
-          - {label: "Section Heading", name: "heading", widget: "string"}
-          - {label: "Intro sentence", name: "intro", widget: "string"}
-          - label: "Approach Items"
+          - { label: "Section Heading", name: "heading", widget: "string" }
+          - { label: "Intro sentence", name: "intro", widget: "string" }
+          - label: "Approach Steps"
             name: "items"
             widget: "list"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
       - label: "The Outcomes"
         name: "outcomes"
         widget: "object"
         fields:
-          - {label: "Section Heading", name: "heading", widget: "string"}
+          - { label: "Section Heading", name: "heading", widget: "string" }
           - label: "Stats (up to 3)"
             name: "stats"
             widget: "list"
             fields:
-              - {label: "Number / Metric", name: "number", widget: "string"}
-              - {label: "Label", name: "label", widget: "string"}
-          - {label: "Outcome Detail Bullets", name: "details", widget: "list"}
+              - { label: "Number / Metric", name: "number", widget: "string", hint: "E.g. −80% or +7% NRx" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Outcome Detail Bullets", name: "details", widget: "list", required: false }
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"
         fields:
-          - {label: "At a Glance items", name: "atAGlance", widget: "list"}
-          - {label: "Capabilities Deployed", name: "capabilities", widget: "list"}
+          - { label: "At a Glance items", name: "atAGlance", widget: "list" }
+          - { label: "Capabilities Deployed", name: "capabilities", widget: "list" }
 
   # ─────────────────────────────────────────
   # NAVIGATION + SITE SETTINGS
   # ─────────────────────────────────────────
   - name: "settings"
-    label: "Paramètres du site"
+    label: "Site Settings"
     files:
 
       - label: "Navigation"
         name: "navigation"
         file: "content/navigation.json"
         fields:
-          - label: "Liens du menu"
+          - label: "Menu Links"
             name: "items"
             widget: "list"
-            hint: "Ordre d'affichage dans la barre de navigation. Ajoutez, supprimez ou réordonnez librement."
+            hint: "Display order in the navigation bar. Add, remove or reorder freely."
             fields:
-              - { label: "Texte du lien", name: "label", widget: "string", hint: "Ex: Blog, Services, À propos" }
-              - { label: "URL", name: "href", widget: "string", hint: "Ex: /blog/ ou /contact.html ou /index.html#services" }
+              - { label: "Link Text", name: "label", widget: "string", hint: "E.g. Blog, Services, About" }
+              - { label: "URL", name: "href", widget: "string", hint: "E.g. /blog/ or /contact.html or /index.html#services" }
 
-      - label: "Paramètres généraux"
+      - label: "General Settings"
         name: "general"
         file: "content/settings.json"
         fields:
-          - {label: "Titre du site", name: "siteTitle", widget: "string"}
-          - label: "Couleurs"
+          - { label: "Site Title", name: "siteTitle", widget: "string" }
+          - label: "Brand Colours"
             name: "colors"
             widget: "object"
+            hint: "Hex values for the Vantys design system. Change with care."
             fields:
-              - {label: "Navy", name: "navy", widget: "string", default: "#314969"}
-              - {label: "Coral", name: "coral", widget: "string", default: "#F07B4A"}
-              - {label: "Golden", name: "golden", widget: "string", default: "#F2AF4C"}
-              - {label: "Gray", name: "gray", widget: "string", default: "#697A92"}
-              - {label: "Warm Neutral", name: "warmNeutral", widget: "string", default: "#F5F3F0"}
+              - { label: "Navy", name: "navy", widget: "string", default: "#314969" }
+              - { label: "Coral", name: "coral", widget: "string", default: "#F07B4A" }
+              - { label: "Golden", name: "golden", widget: "string", default: "#F2AF4C" }
+              - { label: "Gray", name: "gray", widget: "string", default: "#697A92" }
+              - { label: "Warm Neutral", name: "warmNeutral", widget: "string", default: "#F5F3F0" }
