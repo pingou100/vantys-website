@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// ─── Markdown → HTML ───────────────────────────────────────────────────────
+// ─── Markdown → HTML ──────────────────────────────────────────────────────
 function markdownToHtml(text) {
     if (!text) return '';
     return text
@@ -28,6 +28,7 @@ function formatDate(dateStr) {
 // ─── Read content JSON ──────────────────────────────────────────────────────
 const homepageContent  = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'homepage.json'), 'utf8'));
 const aboutContent     = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'about-me.json'), 'utf8'));
+const contactContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'contact.json'), 'utf8'));
 const csIndexContent   = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'case-studies-index.json'), 'utf8'));
 const navigationContent = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'navigation.json'), 'utf8'));
 const blogSettingsPath = path.join(__dirname, 'content', 'blog-settings.json');
@@ -53,7 +54,7 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
 const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
-// ─── Navigation dynamique ────────────────────────────────────────────────────
+// ─── Navigation ───────────────────────────────────────────────────────
 function navHtml(prefix = '') {
     const navItems = navigationContent.items || [];
     const items = navItems.map(link => {
@@ -106,7 +107,6 @@ const approachIcons = [
     `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
 ];
 
-// ─── Proof section HTML ──────────────────────────────────────────────────────
 const proofSectionHtml = homepageContent.proof ? `<section class="proof-section">
     <div class="container">
         <h2 class="proof-title">${homepageContent.proof.title}</h2>
@@ -219,6 +219,129 @@ ${navHtml('')}
 </section>
 ${footerHtml('')}
 <script src="script.js"></script>
+</body>
+</html>`;
+
+// ─── PAGE: contact.html ────────────────────────────────────────────────────
+// Address block: only render if at least street or city has a non-empty value
+const addr = contactContent.address || {};
+const hasAddress = [addr.street, addr.city, addr.country].some(v => v && v.trim());
+const addrHtml = hasAddress ? `
+            <div class="address-section">
+                <h3>Our Address</h3>
+                <address>
+                    ${addr.companyName && addr.companyName.trim() ? `<strong>${addr.companyName.trim()}</strong><br>` : ''}
+                    ${addr.street && addr.street.trim() ? `${addr.street.trim()}<br>` : ''}
+                    ${addr.city && addr.city.trim() ? `${addr.city.trim()}<br>` : ''}
+                    ${addr.country && addr.country.trim() ? addr.country.trim() : ''}
+                </address>
+            </div>` : '';
+
+const contactHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${contactContent.title} | VANTYS</title>
+${FAVICON_LINKS}
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        .contact-form-container { max-width: 700px; margin: 60px auto 0; padding: 48px; background: var(--warm-neutral); border-radius: 24px; }
+        .address-section { max-width: 700px; margin: 40px auto 0; padding: 48px; background: var(--warm-neutral); border-radius: 24px; }
+        .address-section h3 { margin-bottom: 24px; color: var(--navy); font-size: 1.3em; }
+        .address-section address { font-style: normal; color: var(--gray); line-height: 1.8; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--navy); font-weight: 500; font-size: 0.95em; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; font-family: inherit; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--coral); }
+        .form-group textarea { resize: vertical; min-height: 150px; }
+        .privacy-notice { font-size: 0.85em; color: var(--gray); margin-bottom: 24px; }
+        .privacy-notice a { color: var(--coral); text-decoration: none; }
+        .privacy-notice a:hover { text-decoration: underline; }
+        .submit-button { background: var(--coral); color: var(--white); padding: 16px 48px; border: none; border-radius: 32px; font-weight: 500; font-size: 1em; cursor: pointer; transition: all 0.3s; }
+        .submit-button:hover { background: #E8622A; transform: translateY(-2px); }
+        .submit-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .success-message { display: none; padding: 24px; background: #4CAF50; color: white; border-radius: 8px; margin-bottom: 24px; }
+        .success-message.show { display: block; }
+        .error-message { display: none; padding: 24px; background: #f44336; color: white; border-radius: 8px; margin-bottom: 24px; }
+        .error-message.show { display: block; }
+        .ohnohoney { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
+    </style>
+</head>
+<body>
+${BACK_TO_TOP}
+${navHtml('')}
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h1>${contactContent.title}</h1>
+        <p style="max-width:700px">${markdownToHtml(contactContent.description)}</p>
+        <div class="contact-form-container">
+            <div class="success-message" id="successMessage">Thank you for your message! ${contactContent.responseNote || "We'll get back to you shortly."}</div>
+            <div class="error-message" id="errorMessage">Oops! Something went wrong. Please try again or email us directly.</div>
+            <form id="contactForm" novalidate>
+                <div class="ohnohoney" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
+                <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
+                <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
+                <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required></textarea></div>
+                <p class="privacy-notice">By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We'll use your information only to respond to your inquiry and provide information about our services.</p>
+                <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
+            </form>
+        </div>
+        ${addrHtml}
+    </div>
+</section>
+${footerHtml('')}
+<script src="script.js"></script>
+<script>
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        successMessage.classList.remove('show');
+        errorMessage.classList.remove('show');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const payload = {
+            website: document.getElementById('website').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value,
+            message: document.getElementById('message').value,
+        };
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            if (res.ok) {
+                successMessage.classList.add('show');
+                form.reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                errorMessage.classList.add('show');
+            }
+        } catch {
+            errorMessage.classList.add('show');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+</script>
 </body>
 </html>`;
 
@@ -616,7 +739,7 @@ ${footerHtml('../')}
 </html>`;
 }
 
-// ─── FREE PAGES — mode mixte ─────────────────────────────────────────────────
+// ─── FREE PAGES ────────────────────────────────────────────────────────────────────
 const FREE_PAGE_SHARED_STYLES = `
     <style>
         .fp-content{padding:60px 0;background:var(--white)}
@@ -659,7 +782,7 @@ function renderBlocks(page) {
             const imgSide = block.imagePosition === 'left' ? 'left' : 'right';
             const imgHtml = block.image && block.image.trim()
                 ? `<img src="${block.image}" alt="${block.imageAlt || ''}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.1);display:block">`
-                : `<div style="width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9em;border:2px dashed rgba(49,73,105,.15)">Image à ajouter</div>`;
+                : `<div style="width:100%;aspect-ratio:4/3;border-radius:12px;background:var(--warm-neutral);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9em;border:2px dashed rgba(49,73,105,.15)">Image placeholder</div>`;
             const textCol = `<div class="tc-text">${block.heading ? `<h2 class="tc-heading">${block.heading}</h2>` : ''}<div class="tc-body"><p>${markdownToHtml(block.body || '')}</p></div></div>`;
             const imgCol = `<div class="tc-img">${imgHtml}</div>`;
             const cols = imgSide === 'left' ? `${imgCol}${textCol}` : `${textCol}${imgCol}`;
@@ -945,6 +1068,7 @@ ${footerHtml('../')}
 // ─── Write all files ─────────────────────────────────────────────────────────
 fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml, 'utf8');
 fs.writeFileSync(path.join(__dirname, 'about-me.html'), aboutHtml, 'utf8');
+fs.writeFileSync(path.join(__dirname, 'contact.html'), contactHtml, 'utf8');
 
 caseStudies.forEach(cs => {
     fs.writeFileSync(path.join(csOutDir, `${cs.slug}.html`), buildDetailPage(cs), 'utf8');
@@ -958,12 +1082,12 @@ if (fs.existsSync(freePagesDir)) {
     let count = 0;
     freePageFiles.forEach(f => {
         const page = JSON.parse(fs.readFileSync(path.join(freePagesDir, f), 'utf8'));
-        if (page.published === false) { console.log(`  ⏭️  ${page.slug}.html (dépublié)`); return; }
+        if (page.published === false) { console.log(`  ⏭️  ${page.slug}.html (unpublished)`); return; }
         fs.writeFileSync(path.join(__dirname, `${page.slug}.html`), buildFreePage(page), 'utf8');
         console.log(`  ✅ ${page.slug}.html`);
         count++;
     });
-    console.log(`✅ ${count} page(s) libre(s) générée(s)`);
+    console.log(`✅ ${count} free page(s) generated`);
 }
 
 if (fs.existsSync(blogCmsDir)) {
@@ -982,5 +1106,6 @@ if (fs.existsSync(blogCmsDir)) {
 
 console.log('✅ index.html');
 console.log('✅ about-me.html');
+console.log('✅ contact.html');
 console.log('✅ case-studies/index.html');
 console.log(`✅ ${caseStudies.length} case study detail page(s) generated`);
