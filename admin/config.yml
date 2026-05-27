@@ -8,9 +8,7 @@ public_folder: "/images/uploads"
 
 collections:
 
-  # ─────────────────────────────────────────
   # ARTICLES (BLOG)
-  # ─────────────────────────────────────────
   - name: "articles"
     label: "Articles"
     label_singular: "Article"
@@ -91,9 +89,7 @@ collections:
             required: false
             default: "../contact.html"
 
-  # ─────────────────────────────────────────
   # FREE PAGES
-  # ─────────────────────────────────────────
   - name: "free-pages"
     label: "Free Pages"
     label_singular: "Free Page"
@@ -205,9 +201,7 @@ collections:
               - { label: "White", value: "white" }
               - { label: "Warm neutral (beige)", value: "neutral" }
 
-  # ─────────────────────────────────────────
   # FIXED PAGES
-  # ─────────────────────────────────────────
   - name: "pages"
     label: "Fixed Pages"
     files:
@@ -332,7 +326,16 @@ collections:
           - { label: "Description", name: "description", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], modes: ["rich_text"] }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "LinkedIn URL", name: "linkedinUrl", widget: "string" }
-          - { label: "Response Time Note", name: "responseNote", widget: "string" }
+          - { label: "Response Time Note", name: "responseNote", widget: "string", hint: "E.g. We typically respond within 24 hours. Shown in the success message after form submission." }
+          - label: "Company Address"
+            name: "address"
+            widget: "object"
+            hint: "Displayed in a card below the contact form. Leave all fields empty to hide the address block."
+            fields:
+              - { label: "Company Name", name: "companyName", widget: "string", required: false, hint: "E.g. Vantys SRL" }
+              - { label: "Street Address", name: "street", widget: "string", required: false, hint: "E.g. 27, rue F\u00e9licien Mosray" }
+              - { label: "City / Postcode", name: "city", widget: "string", required: false, hint: "E.g. 1300 Limal" }
+              - { label: "Country", name: "country", widget: "string", required: false, hint: "E.g. Belgium" }
 
       - label: "Privacy Policy"
         name: "privacy"
@@ -347,9 +350,7 @@ collections:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Content", name: "content", widget: "text" }
 
-  # ─────────────────────────────────────────
   # CASE STUDIES
-  # ─────────────────────────────────────────
   - name: "case-studies"
     label: "Case Studies"
     label_singular: "Case Study"
@@ -408,9 +409,7 @@ collections:
           - { label: "At a Glance items", name: "atAGlance", widget: "list" }
           - { label: "Capabilities Deployed", name: "capabilities", widget: "list" }
 
-  # ─────────────────────────────────────────
   # NAVIGATION + SITE SETTINGS
-  # ─────────────────────────────────────────
   - name: "settings"
     label: "Site Settings"
     files:

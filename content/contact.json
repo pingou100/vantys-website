@@ -1,7 +1,13 @@
 {
   "title": "Get In Touch",
-  "description": "Ready to transform your business operations? Let's discuss how we can help.",
+  "description": "Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.",
   "email": "contact@vantys.com",
-  "linkedinUrl": "https://www.linkedin.com/in/olivierdelannoy/",
-  "responseNote": "We typically respond within 24 hours."
+  "linkedinUrl": "https://linkedin.com/in/your-profile",
+  "responseNote": "We typically respond within 24 hours.",
+  "address": {
+    "companyName": "Vantys SRL",
+    "street": "27, rue F\u00e9licien Mosray",
+    "city": "1300 Limal",
+    "country": "Belgium"
+  }
 }
