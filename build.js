@@ -83,10 +83,23 @@ function navHtml(prefix = '') {
 
 function footerHtml(prefix = '') {
     return `<footer>
-    <div class="container">
-        <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-        <p>All rights reserved.</p>
-        <p><a href="${homepageContent.footer.linkedinUrl}">LinkedIn</a> | <a href="${prefix}privacy-policy.html">Privacy Policy</a></p>
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            ${LOGO_SVG}
+            <span class="footer-brand-name">vantys</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="${prefix}index.html#services">Services</a>
+            <a href="${prefix}index.html#approach">Approach</a>
+            <a href="${prefix}case-studies/">Case Studies</a>
+            <a href="${prefix}blog/">Blog</a>
+            <a href="${prefix}about-me.html">About</a>
+            <a href="${prefix}contact.html">Contact</a>
+        </nav>
+        <div class="footer-meta">
+            <p>&copy; 2026 Vantys SRL &mdash; Life Science Business Consulting</p>
+            <p class="footer-links"><a href="${homepageContent.footer.linkedinUrl}" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">&middot;</span> <a href="${prefix}privacy-policy.html">Privacy Policy</a></p>
+        </div>
     </div>
 </footer>`;
 }
@@ -127,6 +140,14 @@ const indexHtml = `<!DOCTYPE html>
     <title>VANTYS | Pharmaceutical Operations Consulting</title>
 ${FAVICON_LINKS}
     <link rel="stylesheet" href="styles.css">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="VANTYS | Life Science Strategy, Executed">
+    <meta property="og:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices. 30 years of experience, measurable outcomes.">
+    <meta property="og:url" content="https://vantys.be">
+    <meta property="og:site_name" content="Vantys">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VANTYS | Life Science Strategy, Executed">
+    <meta name="twitter:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices.">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -223,7 +244,6 @@ ${footerHtml('')}
 </html>`;
 
 // ─── PAGE: contact.html ────────────────────────────────────────────────────
-// Address block: only render if at least street or city has a non-empty value
 const addr = contactContent.address || {};
 const hasAddress = [addr.street, addr.city, addr.country].some(v => v && v.trim());
 const addrHtml = hasAddress ? `

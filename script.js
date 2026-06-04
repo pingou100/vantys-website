@@ -57,7 +57,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ── Count-up animation for proof stats ──────────────────────────────────────────
+// ── Count-up animation for proof stats ──────────────────────────────────────
 function parseStatValue(text) {
     const clean = text.trim();
     const sign   = clean.startsWith('+') ? '+' : clean.startsWith('−') || clean.startsWith('-') ? '−' : '';
@@ -82,7 +82,6 @@ function animateCountUp(el) {
     function step(now) {
         const elapsed  = now - start;
         const progress = Math.min(elapsed / duration, 1);
-        // ease-out cubic
         const eased    = 1 - Math.pow(1 - progress, 3);
         const current  = parsed.number * eased;
         const display  = isFloat ? current.toFixed(1) : Math.round(current);
