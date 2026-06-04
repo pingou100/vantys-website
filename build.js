@@ -82,10 +82,17 @@ function navHtml(prefix = '') {
 }
 
 function footerHtml(prefix = '') {
+    const LOGO_SVG_WHITE = `<svg width="44" height="36" viewBox="0 0 220 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0"   y="37" width="36" height="94"  rx="18"   fill="#F27B41"/>
+        <rect x="45"  y="0"  width="41" height="168" rx="20.5" fill="white"/>
+        <rect x="94"  y="13" width="41" height="142" rx="20.5" fill="#F27B41"/>
+        <rect x="142" y="0"  width="41" height="168" rx="20.5" fill="#F4B041"/>
+        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="white"/>
+    </svg>`;
     return `<footer>
     <div class="container footer-inner">
         <div class="footer-brand">
-            ${LOGO_SVG}
+            ${LOGO_SVG_WHITE}
             <span class="footer-brand-name">vantys</span>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
@@ -97,7 +104,7 @@ function footerHtml(prefix = '') {
             <a href="${prefix}contact.html">Contact</a>
         </nav>
         <div class="footer-meta">
-            <p>&copy; 2026 Vantys SRL &mdash; Life Science Business Consulting</p>
+            <p>&copy; 2026 Vantys SRL</p>
             <p class="footer-links"><a href="${homepageContent.footer.linkedinUrl}" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">&middot;</span> <a href="${prefix}privacy-policy.html">Privacy Policy</a></p>
         </div>
     </div>
@@ -122,7 +129,10 @@ const approachIcons = [
 
 const proofSectionHtml = homepageContent.proof ? `<section class="proof-section">
     <div class="container">
-        <h2 class="proof-title">${homepageContent.proof.title}</h2>
+        <div class="section-header section-header--light">
+            <h2 class="proof-title">${homepageContent.proof.title}</h2>
+            <p class="proof-subtitle">(More details in the use cases)</p>
+        </div>
         <div class="proof-grid">
             ${homepageContent.proof.items.map(item => `<div class="proof-stat">
                 <span class="proof-number">${item.stat}</span>
@@ -148,6 +158,8 @@ ${FAVICON_LINKS}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="VANTYS | Life Science Strategy, Executed">
     <meta name="twitter:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices.">
+    <meta property="og:image" content="https://vantys.be/images/og-image.png">
+    <meta name="twitter:image" content="https://vantys.be/images/og-image.png">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
