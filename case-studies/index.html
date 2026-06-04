@@ -5,125 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies | VANTYS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
-        .cs-section { padding: 80px 0 100px; background: var(--white); }
-        .featured-label { display: inline-block; font-size: 0.75em; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
-        .cs-featured { background: var(--navy); border-radius: 24px; padding: 56px; margin-bottom: 60px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 24px; }
-        .cs-featured::before { content: ''; position: absolute; width: 340px; height: 340px; background: var(--coral); border-radius: 60px; top: -120px; right: -80px; opacity: 0.08; transform: rotate(22deg); }
-        .cs-featured::after { content: ''; position: absolute; width: 280px; height: 360px; background: var(--golden); border-radius: 60px; bottom: -100px; right: 60px; opacity: 0.06; transform: rotate(-15deg); }
-        .cs-featured .featured-label { color: var(--golden); }
-        .cs-featured h2 { font-size: 1.9em; font-weight: 400; color: var(--white); line-height: 1.3; max-width: 700px; position: relative; z-index: 1; }
-        .cs-featured h2 strong { font-weight: 600; color: var(--golden); }
-        .cs-featured p { color: rgba(255,255,255,0.75); font-size: 1.05em; line-height: 1.7; max-width: 680px; position: relative; z-index: 1; }
-        .cs-featured .cs-meta { display: flex; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1; }
-        .cs-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.82em; font-weight: 500; }
-        .cs-tag-light { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
-        .cs-tag-dark { background: rgba(49,73,105,0.08); color: var(--navy); border: 1px solid rgba(49,73,105,0.12); }
-        .cs-featured .read-link { display: inline-flex; align-items: center; gap: 8px; color: var(--golden); text-decoration: none; font-weight: 500; font-size: 0.95em; position: relative; z-index: 1; transition: gap 0.3s; }
-        .cs-featured .read-link:hover { gap: 14px; }
-        .read-link svg { transition: transform 0.3s; }
-        .cs-featured .read-link:hover svg { transform: translateX(4px); }
-        .cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
-        .cs-card { background: var(--warm-neutral); border-radius: 20px; padding: 40px 36px; border-left: 4px solid transparent; transition: all 0.3s; display: flex; flex-direction: column; gap: 16px; }
-        .cs-card:hover { border-left-color: var(--coral); background: var(--white); box-shadow: 0 8px 32px rgba(49,73,105,0.08); }
-        .cs-card h3 { font-size: 1.2em; font-weight: 500; color: var(--navy); line-height: 1.4; }
-        .cs-card p { color: var(--gray); font-size: 0.95em; line-height: 1.7; flex: 1; }
-        .cs-card .read-link { display: inline-flex; align-items: center; gap: 8px; color: var(--coral); text-decoration: none; font-weight: 500; font-size: 0.9em; transition: gap 0.3s; }
-        .cs-card .read-link:hover { gap: 14px; }
-        .coming-soon { opacity: 0.55; pointer-events: none; }
-        .coming-soon .cs-tag-dark { background: rgba(105,122,146,0.08); color: var(--gray); border-color: rgba(105,122,146,0.15); }
-        @media (max-width: 768px) { .cs-featured { padding: 36px 28px; } .cs-featured h2 { font-size: 1.5em; } .cs-grid { grid-template-columns: 1fr; } }
+        .cs-section{padding:80px 0 100px;background:var(--white)}
+        .featured-label{display:inline-block;font-size:.75em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--golden);margin-bottom:20px}
+        .cs-featured{background:var(--navy);border-radius:24px;padding:56px;margin-bottom:60px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:24px}
+        .cs-featured::before{content:'';position:absolute;width:340px;height:340px;background:var(--coral);border-radius:60px;top:-120px;right:-80px;opacity:.08;transform:rotate(22deg)}
+        .cs-featured h2{font-size:1.9em;font-weight:400;color:var(--white);line-height:1.3;max-width:700px;position:relative;z-index:1}
+        .cs-featured p{color:rgba(255,255,255,.75);font-size:1.05em;line-height:1.7;max-width:680px;position:relative;z-index:1}
+        .cs-meta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+        .cs-tag{display:inline-block;padding:6px 14px;border-radius:20px;font-size:.82em;font-weight:500}
+        .cs-tag-light{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15)}
+        .cs-tag-dark{background:rgba(49,73,105,.08);color:var(--navy);border:1px solid rgba(49,73,105,.12)}
+        .read-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:.95em;transition:gap .3s;position:relative;z-index:1}
+        .cs-featured .read-link{color:var(--golden)}
+        .cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
+        .cs-card{background:var(--warm-neutral);border-radius:20px;padding:40px 36px;border-left:4px solid transparent;transition:all .3s;display:flex;flex-direction:column;gap:16px}
+        .cs-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+        .cs-card h3{font-size:1.2em;font-weight:500;color:var(--navy);line-height:1.4}
+        .cs-card p{color:var(--gray);font-size:.95em;line-height:1.7;flex:1}
+        .cs-card .read-link{color:var(--coral)}
+        .coming-soon{opacity:.55;pointer-events:none}
+        .cs-hero p{position:relative;z-index:1}
+        .cs-hero h1{position:relative;z-index:1}
+        @media(max-width:768px){.cs-featured{padding:36px 28px}.cs-featured h2{font-size:1.5em}.cs-grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
-    <div class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none">
-                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
-                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
-                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
-                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                </svg>
-                <a href="../index.html" style="text-decoration:none" class="logo">vantys</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-            <ul class="nav-links">
-                <li><a href="../index.html#services">Services</a></li>
+<div class="back-to-top" id="backToTop">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<header>
+    <nav class="container">
+        <div class="logo-container">
+            <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+    <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
+    <rect x="16" y="6"  width="5" height="20" rx="2.5" fill="#F07B4A"/>
+    <rect x="23" y="6"  width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+</svg>
+            <a href="../index.html" style="text-decoration:none" class="logo">vantys</a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="../index.html#services">Services</a></li>
                 <li><a href="../index.html#approach">Approach</a></li>
-                <li><a href="index.html" class="active">Case Studies</a></li>
-                <li><a href="../about-me.html">About Me</a></li>
+                <li><a href="../case-studies/">Case Studies</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                <li><a href="../about-me.html">About</a></li>
                 <li><a href="../contact.html">Contact</a></li>
-            </ul>
+        </ul>
+    </nav>
+</header>
+<section class="cs-hero">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div>
+    <div class="container">
+        <h1>From Strategy to <strong>Measurable Impact</strong></h1>
+        <p>How we help Life Science Companies and biotech companies bridge the gap between strategic ambition and operational results.</p>
+    </div>
+</section>
+<section class="cs-section">
+    <div class="container">
+        
+    <div class="cs-featured">
+        <span class="featured-label">Featured Case Study</span>
+        <h2>Healthcare Pathway Transformation: Proactive Cardiovascular Risk Management</h2>
+        <p>An emerging European biotech needed to demonstrate real-world evidence of their cardiovascular therapies in a preventive care model. We designed a data-driven population health programme that identified high-risk patients earlier and reduced hospitalisations — within 18 months.</p>
+        <div class="cs-meta"><span class="cs-tag cs-tag-light">Healthcare System Partnership</span><span class="cs-tag cs-tag-light">Cardiovascular</span><span class="cs-tag cs-tag-light">Remote Patient Monitoring</span><span class="cs-tag cs-tag-light">European Biotech</span></div>
+        <a href="proactive-cardiovascular-risk-management.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+        <div class="cs-grid">
+        <div class="cs-card">
+            <div class="cs-meta"><span class="cs-tag cs-tag-dark">Business Operations Transformation</span><span class="cs-tag cs-tag-dark">Compliance</span><span class="cs-tag cs-tag-dark">open-source</span><span class="cs-tag cs-tag-dark">Efficiency</span></div>
+            <h3>HCP Engagement Activity Approval Platform</h3>
+            <p>Eliminating operational bottlenecks across 10 European markets — reducing approval time by 80% through process reengineering and user-centric technology deployment.</p>
+            <a href="activity-approval-platform.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="cs-card">
+            <div class="cs-meta"><span class="cs-tag cs-tag-dark">Global Biopharmaceutical</span><span class="cs-tag cs-tag-dark">Multi-channel Optimisation</span><span class="cs-tag cs-tag-dark">Advanced Analytics</span><span class="cs-tag cs-tag-dark">Capability Building</span></div>
+            <h3>Marketing Mix Modelling in Life Sciences</h3>
+            <p>Transforming how a global biopharmaceutical company allocates promotional spend — from legacy and organisation-driven budgeting to a self-sustaining, MMM-powered planning capability that changed how senior leaders think about resource decisions.</p>
+            <a href="marketing-mix-modelling.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div></div>
+    </div>
+</section>
+<section class="cta-section">
+    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h2>Ready to Transform Your Operations?</h2>
+        <p>Let us discuss how we can help.</p>
+        <a href="../contact.html" class="cta-button">Get in Touch</a>
+    </div>
+</section>
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <svg width="44" height="36" viewBox="0 0 220 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0"   y="37" width="36" height="94"  rx="18"   fill="#F27B41"/>
+        <rect x="45"  y="0"  width="41" height="168" rx="20.5" fill="white"/>
+        <rect x="94"  y="13" width="41" height="142" rx="20.5" fill="#F27B41"/>
+        <rect x="142" y="0"  width="41" height="168" rx="20.5" fill="#F4B041"/>
+        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="white"/>
+    </svg>
+            <span class="footer-brand-name">vantys</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#approach">Approach</a>
+            <a href="../case-studies/">Case Studies</a>
+            <a href="../blog/">Blog</a>
+            <a href="../about-me.html">About</a>
+            <a href="../contact.html">Contact</a>
         </nav>
-    </header>
-    <section class="cs-hero">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="container">
-            <h1>From Strategy to <strong>Measurable Impact</strong></h1>
-            <p>How we help Life Science Companies and biotech companies bridge the gap between strategic ambition and operational results.</p>
+        <div class="footer-meta">
+            <p>&copy; 2026 Vantys SRL</p>
+            <p class="footer-links"><a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">&middot;</span> <a href="../privacy-policy.html">Privacy Policy</a></p>
         </div>
-    </section>
-    <section class="cs-section">
-        <div class="container">
-            <div class="cs-featured">
-                <span class="featured-label">Featured Case Study</span>
-                <h2>Healthcare Pathway Transformation: <strong>Proactive Cardiovascular Risk Management</strong></h2>
-                <p>An emerging European biotech needed to demonstrate real-world evidence of their cardiovascular therapies in a preventive care model. We designed a data-driven population health programme that identified high-risk patients earlier and reduced hospitalisations &mdash; within 18 months.</p>
-                <div class="cs-meta">
-                    <span class="cs-tag cs-tag-light">Healthcare System Partnership</span>
-                    <span class="cs-tag cs-tag-light">Spain</span>
-                    <span class="cs-tag cs-tag-light">Cardiovascular</span>
-                    <span class="cs-tag cs-tag-light">18 months</span>
-                </div>
-                <a href="proactive-cardiovascular-risk-management.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-            <div class="cs-grid">
-                <div class="cs-card">
-                    <div class="cs-meta"><span class="cs-tag cs-tag-dark">Operations</span><span class="cs-tag cs-tag-dark">Europe-Wide</span></div>
-                    <h3>HCP Engagement Activity Approval Platform</h3>
-                    <p>Eliminating operational bottlenecks across 10 European markets &mdash; reducing approval time by 80% through process reengineering and user-centric technology deployment.</p>
-                    <a href="activity-approval-platform.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                </div>
-                <div class="cs-card">
-                    <div class="cs-meta"><span class="cs-tag cs-tag-dark">Commercial Analytics</span><span class="cs-tag cs-tag-dark">Global Biopharma</span></div>
-                    <h3>Marketing Mix Modelling in Life Sciences</h3>
-                    <p>Transforming how a global biopharmaceutical company allocates promotional spend &mdash; building a self-sustaining MMM capability that changed how senior leaders make resource decisions.</p>
-                    <a href="marketing-mix-modelling.html" class="read-link">Read full story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                </div>
-                <div class="cs-card coming-soon">
-                    <div class="cs-meta"><span class="cs-tag cs-tag-dark">Coming soon</span></div>
-                    <h3>AI-Enabled Omnichannel Orchestration for a Specialty Biotech</h3>
-                    <p>Implementing a practical omnichannel capability that moved beyond channel management to genuine HCP engagement orchestration &mdash; with measurable improvements in reach and quality.</p>
-                    <span class="read-link" style="color:var(--gray)">Coming soon <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="cta-section">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <h2>Ready to Transform Your Operations?</h2>
-            <p>Let us discuss how we can help you connect strategy to execution.</p>
-            <a href="../contact.html" class="cta-button">Get in Touch</a>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-            <p>All rights reserved.</p>
-            <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="../privacy-policy.html">Privacy Policy</a></p>
-        </div>
-    </footer>
-    <script src="../script.js"></script>
+    </div>
+</footer>
+<script src="../script.js"></script>
 </body>
 </html>

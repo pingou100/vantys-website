@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - VANTYS</title>
+    <title>Get In Touch | VANTYS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
@@ -28,120 +28,134 @@
         .success-message.show { display: block; }
         .error-message { display: none; padding: 24px; background: #f44336; color: white; border-radius: 8px; margin-bottom: 24px; }
         .error-message.show { display: block; }
-        /* Honeypot — hidden from humans, visible to bots */
         .ohnohoney { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
     </style>
 </head>
 <body>
-    <div class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="back-to-top" id="backToTop">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<header>
+    <nav class="container">
+        <div class="logo-container">
+            <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+    <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
+    <rect x="16" y="6"  width="5" height="20" rx="2.5" fill="#F07B4A"/>
+    <rect x="23" y="6"  width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+</svg>
+            <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="/index.html#services">Services</a></li>
+                <li><a href="/index.html#approach">Approach</a></li>
+                <li><a href="/case-studies/">Case Studies</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about-me.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h1>Get In Touch</h1>
+        <p style="max-width:700px">Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.</p>
+        <div class="contact-form-container">
+            <div class="success-message" id="successMessage">Thank you for your message! We typically respond within 24 hours.</div>
+            <div class="error-message" id="errorMessage">Oops! Something went wrong. Please try again or email us directly.</div>
+            <form id="contactForm" novalidate>
+                <div class="ohnohoney" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
+                <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
+                <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
+                <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required></textarea></div>
+                <p class="privacy-notice">By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We'll use your information only to respond to your inquiry and provide information about our services.</p>
+                <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
+            </form>
+        </div>
+        
     </div>
-    <header>
-        <nav class="container">
-            <div class="logo-container">
-                <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none">
-                    <rect x="2" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                    <rect x="9" y="4" width="5" height="24" rx="2.5" fill="#314969"/>
-                    <rect x="16" y="6" width="5" height="20" rx="2.5" fill="#F07B4A"/>
-                    <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#F2AF4C"/>
-                    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
-                </svg>
-                <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-            <ul class="nav-links">
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#approach">Approach</a></li>
-                <li><a href="case-studies/">Case Studies</a></li>
-                <li><a href="about-me.html">About Me</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+</section>
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <svg width="44" height="36" viewBox="0 0 220 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0"   y="37" width="36" height="94"  rx="18"   fill="#F27B41"/>
+        <rect x="45"  y="0"  width="41" height="168" rx="20.5" fill="white"/>
+        <rect x="94"  y="13" width="41" height="142" rx="20.5" fill="#F27B41"/>
+        <rect x="142" y="0"  width="41" height="168" rx="20.5" fill="#F4B041"/>
+        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="white"/>
+    </svg>
+            <span class="footer-brand-name">vantys</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html#services">Services</a>
+            <a href="index.html#approach">Approach</a>
+            <a href="case-studies/">Case Studies</a>
+            <a href="blog/">Blog</a>
+            <a href="about-me.html">About</a>
+            <a href="contact.html">Contact</a>
         </nav>
-    </header>
-    <section class="hero">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="bg-shape bg-shape-3"></div>
-        <div class="container">
-            <h1>Get In Touch</h1>
-            <p style="max-width:700px">Ready to transform your pharmaceutical operations? Let's discuss how we can help you bridge strategy and execution.</p>
-            <div class="contact-form-container">
-                <div class="success-message" id="successMessage">Thank you for your message! We'll get back to you within 24 hours.</div>
-                <div class="error-message" id="errorMessage">Oops! Something went wrong. Please try again or email us directly.</div>
-                <form id="contactForm" novalidate>
-                    <!-- Honeypot field — bots fill this, humans don't see it -->
-                    <div class="ohnohoney" aria-hidden="true">
-                        <label for="website">Website</label>
-                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
-                    <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
-                    <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company"></div>
-                    <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required></textarea></div>
-                    <p class="privacy-notice">By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We'll use your information only to respond to your inquiry and provide information about our services.</p>
-                    <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
-                </form>
-            </div>
-            <div class="address-section">
-                <h3>Our Address</h3>
-                <address><strong>Vantys SRL</strong><br>27, rue F&eacute;licien Mosray<br>1300 Limal<br>Belgium</address>
-            </div>
+        <div class="footer-meta">
+            <p>&copy; 2026 Vantys SRL</p>
+            <p class="footer-links"><a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">&middot;</span> <a href="privacy-policy.html">Privacy Policy</a></p>
         </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vantys SRL. Life Science Business Consulting.</p>
-            <p>All rights reserved.</p>
-            <p><a href="https://linkedin.com/in/your-profile">LinkedIn</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
-        </div>
-    </footer>
-    <script src="script.js"></script>
-    <script>
-        const form = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const submitBtn = document.getElementById('submitBtn');
+    </div>
+</footer>
+<script src="script.js"></script>
+<script>
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const submitBtn = document.getElementById('submitBtn');
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        successMessage.classList.remove('show');
+        errorMessage.classList.remove('show');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
 
-            // Reset messages
-            successMessage.classList.remove('show');
-            errorMessage.classList.remove('show');
+        const payload = {
+            website: document.getElementById('website').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value,
+            message: document.getElementById('message').value,
+        };
 
-            // Disable button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            const payload = {
-                website: document.getElementById('website').value, // honeypot
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value,
-            };
-
-            try {
-                const res = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                });
-
-                if (res.ok) {
-                    successMessage.classList.add('show');
-                    form.reset();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    errorMessage.classList.add('show');
-                }
-            } catch {
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            if (res.ok) {
+                successMessage.classList.add('show');
+                form.reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
                 errorMessage.classList.add('show');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
             }
-        });
-    </script>
+        } catch {
+            errorMessage.classList.add('show');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+</script>
 </body>
 </html>

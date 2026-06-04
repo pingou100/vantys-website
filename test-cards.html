@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services | VANTYS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .fp-content{padding:60px 0;background:var(--white)}
+        .fp-blocks{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+        .fp-block{border-left:3px solid var(--coral);padding-left:28px}
+        .fp-block-heading{font-size:1.4em;font-weight:500;color:var(--navy);margin-bottom:16px;line-height:1.3}
+        .fp-block-body{color:var(--gray);line-height:1.8}
+        .fp-block-body p{margin-bottom:12px}
+        .fp-block-body h2{font-size:1.3em;font-weight:500;color:var(--navy);margin:24px 0 12px}
+        .fp-block-body h3{font-size:1.1em;font-weight:600;color:var(--navy);margin:20px 0 8px}
+        .fp-block-body strong{color:var(--navy)}
+        .fp-block-body ul,.fp-block-body ol{padding-left:20px;margin-bottom:12px}
+        .fp-block-body li{margin-bottom:6px}
+        .fp-block-body a{color:var(--coral);text-decoration:none}
+        .fp-block-body a:hover{text-decoration:underline}
+        .tc-content{padding:60px 0;background:var(--white)}
+        .tc-rows{display:flex;flex-direction:column;gap:80px}
+        .tc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .tc-heading{font-size:1.6em;font-weight:500;color:var(--navy);margin-bottom:20px;line-height:1.3}
+        .tc-body{color:var(--gray);line-height:1.8}
+        .tc-body p{margin-bottom:12px}
+        .tc-body strong{color:var(--navy)}
+        .tc-body a{color:var(--coral);text-decoration:none}
+        .fc-content{padding:60px 0;background:var(--white)}
+        .fc-grid{display:grid;gap:32px}
+        .fc-card{background:var(--warm-neutral);border-radius:20px;padding:36px;border-left:4px solid transparent;transition:all .3s}
+        .fc-card:hover{border-left-color:var(--coral);background:var(--white);box-shadow:0 8px 32px rgba(49,73,105,.08)}
+        .fc-card-title{font-size:1.2em;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
+        .fc-card-body{color:var(--gray);line-height:1.7;font-size:.97em}
+        .fc-card-body p{margin-bottom:8px}
+        .fc-card-body strong{color:var(--navy)}
+        @media(max-width:768px){.tc-row{grid-template-columns:1fr}.tc-img{order:-1}.fc-grid{grid-template-columns:1fr!important}}
+    </style>
+</head>
+<body>
+<div class="back-to-top" id="backToTop">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<header>
+    <nav class="container">
+        <div class="logo-container">
+            <svg class="logo-icon" width="50" height="40" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2"  y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+    <rect x="9"  y="4"  width="5" height="24" rx="2.5" fill="#314969"/>
+    <rect x="16" y="6"  width="5" height="20" rx="2.5" fill="#F07B4A"/>
+    <rect x="23" y="6"  width="5" height="20" rx="2.5" fill="#F2AF4C"/>
+    <rect x="30" y="10" width="5" height="14" rx="2.5" fill="#F07B4A"/>
+</svg>
+            <a href="index.html" style="text-decoration:none" class="logo">vantys</a>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="/index.html#services">Services</a></li>
+                <li><a href="/index.html#approach">Approach</a></li>
+                <li><a href="/case-studies/">Case Studies</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about-me.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="hero">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+    <div class="container">
+        <h1>Nos Services</h1>
+        <p style="font-size:1.15em;color:var(--gray);max-width:700px;position:relative;z-index:1">Une page exemple avec le layout cards.</p>
+        
+    </div>
+</section>
+<section class="fc-content"><div class="container"><div class="fc-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+        <div class="fc-card">
+            <h3 class="fc-card-title">Stratégie de lancement</h3>
+            <div class="fc-card-body"><p>Définir et exécuter une stratégie de lancement produit adaptée aux réalités du marché pharmaceutique.</p></div>
+        </div>
+        <div class="fc-card">
+            <h3 class="fc-card-title">Optimisation des opérations</h3>
+            <div class="fc-card-body"><p>Identifier les inefficacités et redesigner les processus pour maximiser l'impact terrain.</p></div>
+        </div>
+        <div class="fc-card">
+            <h3 class="fc-card-title">Formation des équipes</h3>
+            <div class="fc-card-body"><p>Développer les compétences de vos équipes commerciales et médicales avec des programmes sur mesure.</p></div>
+        </div>
+        <div class="fc-card">
+            <h3 class="fc-card-title">Analyse de marché</h3>
+            <div class="fc-card-body"><p>Comprendre votre positionnement concurrentiel et identifier les opportunités de croissance.</p></div>
+        </div></div></div></section>
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <svg width="44" height="36" viewBox="0 0 220 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0"   y="37" width="36" height="94"  rx="18"   fill="#F27B41"/>
+        <rect x="45"  y="0"  width="41" height="168" rx="20.5" fill="white"/>
+        <rect x="94"  y="13" width="41" height="142" rx="20.5" fill="#F27B41"/>
+        <rect x="142" y="0"  width="41" height="168" rx="20.5" fill="#F4B041"/>
+        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="white"/>
+    </svg>
+            <span class="footer-brand-name">vantys</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html#services">Services</a>
+            <a href="index.html#approach">Approach</a>
+            <a href="case-studies/">Case Studies</a>
+            <a href="blog/">Blog</a>
+            <a href="about-me.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-meta">
+            <p>&copy; 2026 Vantys SRL</p>
+            <p class="footer-links"><a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">&middot;</span> <a href="privacy-policy.html">Privacy Policy</a></p>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
