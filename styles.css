@@ -164,7 +164,7 @@ nav {
 @keyframes breathe-approach-1{ 0%,100%{transform:scale(1) rotate(34deg);opacity:.05;} 50%{transform:scale(1.05) rotate(34deg);opacity:.08;} }
 @keyframes breathe-approach-2{ 0%,100%{transform:scale(1) rotate(-25deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-25deg);opacity:.09;} }
 @keyframes breathe-approach-3{ 0%,100%{transform:scale(1) rotate(42deg);opacity:.03;} 50%{transform:scale(1.05) rotate(42deg);opacity:.06;} }
-@keyframes breathe-challenge-1{ 0%,100%{transform:scale(1) rotate(29deg);opacity:.04;} 50%{transform:scale(1.05) rotate(29deg);opacity:.06;} }
+@keyframes breathe-challenge-1{ 0%,100%{transform:scale(1) rotate(29deg);opacity:1;} 50%{transform:scale(1.05) rotate(29deg);opacity:1;} }
 @keyframes breathe-challenge-2{ 0%,100%{transform:scale(1) rotate(-37deg);opacity:.05;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.08;} }
 @keyframes breathe-cta-1     { 0%,100%{transform:scale(1) rotate(18deg);opacity:.06;} 50%{transform:scale(1.05) rotate(18deg);opacity:.09;} }
 @keyframes breathe-cta-2     { 0%,100%{transform:scale(1) rotate(-33deg);opacity:.04;} 50%{transform:scale(1.05) rotate(-33deg);opacity:.07;} }
@@ -175,7 +175,7 @@ nav {
     border-radius: 60px;
     pointer-events: none;
     will-change: transform, opacity;
-    opacity: 0;
+    animation-fill-mode: both;
 }
 
 .hero .bg-shape-1 {
@@ -216,7 +216,7 @@ nav {
 .challenge .bg-shape-1 {
     width: 350px;
     height: 350px;
-    background: var(--coral);
+    background: rgba(255,255,255,0.08);
     top: -80px;
     right: -60px;
     animation: breathe-challenge-1 8s ease-in-out infinite;
@@ -346,7 +346,7 @@ nav {
 }
 
 .service-card {
-    background: var(--white);
+    background: var(--warm-neutral);
     border-radius: 20px;
     padding: 40px 36px;
     transition: all 0.3s;
@@ -357,7 +357,7 @@ nav {
     border-left-color: var(--coral);
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(49, 73, 105, 0.1);
-    background: var(--warm-neutral);
+    background: var(--white);
 }
 
 .icon-container {
