@@ -1229,12 +1229,11 @@ footer a:hover { text-decoration: underline; }
     background: var(--navy);
 }
 .proof-title {
-    font-size: 1.6em;
+    font-size: 2.2em;
     font-weight: 300;
-    color: rgba(255,255,255,0.6);
+    color: var(--white);
     text-align: center;
-    margin-bottom: 56px;
-    letter-spacing: 0.02em;
+    margin-bottom: 8px;
 }
 .proof-grid {
     display: grid;
