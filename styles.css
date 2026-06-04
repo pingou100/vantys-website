@@ -279,7 +279,7 @@ nav {
 /* ─── Services Section ───────────────────────────────────────────────────── */
 .services {
     padding: 100px 0;
-    background: var(--warm-neutral);
+    background: var(--white);
     position: relative;
     overflow: hidden;
 }
