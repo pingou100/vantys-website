@@ -155,51 +155,53 @@ nav {
 }
 
 /* Background shapes */
-@keyframes breathe {
-    0%, 100% { transform: scale(1); opacity: var(--shape-opacity-min, 0.06); }
-    50% { transform: scale(1.05); opacity: var(--shape-opacity-max, 0.10); }
-}
+@keyframes breathe-hero-1    { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.09;} }
+@keyframes breathe-hero-2    { 0%,100%{transform:scale(1) rotate(19deg);opacity:.04;} 50%{transform:scale(1.05) rotate(19deg);opacity:.07;} }
+@keyframes breathe-hero-3    { 0%,100%{transform:scale(1) rotate(-28deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.11;} }
+@keyframes breathe-services-1{ 0%,100%{transform:scale(1) rotate(23deg);opacity:.04;} 50%{transform:scale(1.05) rotate(23deg);opacity:.07;} }
+@keyframes breathe-services-2{ 0%,100%{transform:scale(1) rotate(-41deg);opacity:.03;} 50%{transform:scale(1.05) rotate(-41deg);opacity:.06;} }
+@keyframes breathe-services-3{ 0%,100%{transform:scale(1) rotate(15deg);opacity:.06;} 50%{transform:scale(1.05) rotate(15deg);opacity:.09;} }
+@keyframes breathe-approach-1{ 0%,100%{transform:scale(1) rotate(34deg);opacity:.05;} 50%{transform:scale(1.05) rotate(34deg);opacity:.08;} }
+@keyframes breathe-approach-2{ 0%,100%{transform:scale(1) rotate(-25deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-25deg);opacity:.09;} }
+@keyframes breathe-approach-3{ 0%,100%{transform:scale(1) rotate(42deg);opacity:.03;} 50%{transform:scale(1.05) rotate(42deg);opacity:.06;} }
+@keyframes breathe-challenge-1{ 0%,100%{transform:scale(1) rotate(29deg);opacity:.04;} 50%{transform:scale(1.05) rotate(29deg);opacity:.06;} }
+@keyframes breathe-challenge-2{ 0%,100%{transform:scale(1) rotate(-37deg);opacity:.05;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.08;} }
+@keyframes breathe-cta-1     { 0%,100%{transform:scale(1) rotate(18deg);opacity:.06;} 50%{transform:scale(1.05) rotate(18deg);opacity:.09;} }
+@keyframes breathe-cta-2     { 0%,100%{transform:scale(1) rotate(-33deg);opacity:.04;} 50%{transform:scale(1.05) rotate(-33deg);opacity:.07;} }
+@keyframes breathe-cta-3     { 0%,100%{transform:scale(1) rotate(26deg);opacity:.07;} 50%{transform:scale(1.05) rotate(26deg);opacity:.10;} }
 
 .bg-shape {
     position: absolute;
     border-radius: 60px;
     pointer-events: none;
-    animation: breathe 8s ease-in-out infinite;
     will-change: transform, opacity;
 }
-
-.bg-shape-1 { animation-delay: 0s; }
-.bg-shape-2 { animation-delay: 2.7s; }
-.bg-shape-3 { animation-delay: 5.3s; }
 
 .hero .bg-shape-1 {
     width: 400px;
     height: 400px;
     background: var(--coral);
-    opacity: 0.06;
     top: -100px;
     right: -80px;
-    transform: rotate(22deg);
+    animation: breathe-hero-1 8s ease-in-out infinite;
 }
 
 .hero .bg-shape-2 {
     width: 300px;
     height: 300px;
     background: var(--navy);
-    opacity: 0.04;
     bottom: -80px;
     right: 200px;
-    transform: rotate(-15deg);
+    animation: breathe-hero-2 8s ease-in-out infinite 2.7s;
 }
 
 .hero .bg-shape-3 {
     width: 200px;
     height: 200px;
     background: var(--golden);
-    opacity: 0.08;
     top: 60px;
     right: 300px;
-    transform: rotate(40deg);
+    animation: breathe-hero-3 8s ease-in-out infinite 5.3s;
 }
 
 /* ─── Challenge Section ──────────────────────────────────────────────────── */
@@ -214,20 +216,18 @@ nav {
     width: 350px;
     height: 350px;
     background: var(--coral);
-    opacity: 0.05;
     top: -80px;
     right: -60px;
-    transform: rotate(30deg);
+    animation: breathe-challenge-1 8s ease-in-out infinite;
 }
 
 .challenge .bg-shape-2 {
     width: 250px;
     height: 250px;
     background: var(--golden);
-    opacity: 0.04;
     bottom: -60px;
     left: -40px;
-    transform: rotate(-20deg);
+    animation: breathe-challenge-2 8s ease-in-out infinite 2.7s;
 }
 
 .challenge h2 {
@@ -278,7 +278,7 @@ nav {
 /* ─── Services Section ───────────────────────────────────────────────────── */
 .services {
     padding: 100px 0;
-    background: var(--white);
+    background: var(--warm-neutral);
     position: relative;
     overflow: hidden;
 }
@@ -287,30 +287,27 @@ nav {
     width: 300px;
     height: 300px;
     background: var(--coral);
-    opacity: 0.04;
     top: -60px;
     right: -60px;
-    transform: rotate(22deg);
+    animation: breathe-services-1 8s ease-in-out infinite;
 }
 
 .services .bg-shape-2 {
     width: 250px;
     height: 250px;
     background: var(--navy);
-    opacity: 0.03;
     bottom: -60px;
     left: -40px;
-    transform: rotate(-15deg);
+    animation: breathe-services-2 8s ease-in-out infinite 2.7s;
 }
 
 .services .bg-shape-3 {
     width: 180px;
     height: 180px;
     background: var(--golden);
-    opacity: 0.06;
     top: 100px;
     left: 80px;
-    transform: rotate(40deg);
+    animation: breathe-services-3 8s ease-in-out infinite 5.3s;
 }
 
 .section-header {
@@ -452,30 +449,27 @@ nav {
     width: 300px;
     height: 300px;
     background: var(--coral);
-    opacity: 0.05;
     bottom: -60px;
     right: -60px;
-    transform: rotate(22deg);
+    animation: breathe-approach-1 8s ease-in-out infinite;
 }
 
 .approach .bg-shape-2 {
     width: 200px;
     height: 200px;
     background: var(--golden);
-    opacity: 0.06;
     top: -40px;
     left: 100px;
-    transform: rotate(-30deg);
+    animation: breathe-approach-2 8s ease-in-out infinite 2.7s;
 }
 
 .approach .bg-shape-3 {
     width: 250px;
     height: 250px;
     background: var(--navy);
-    opacity: 0.03;
     top: 100px;
     right: 200px;
-    transform: rotate(15deg);
+    animation: breathe-approach-3 8s ease-in-out infinite 5.3s;
 }
 
 /* ─── CTA Section ────────────────────────────────────────────────────────── */
@@ -491,30 +485,27 @@ nav {
     width: 350px;
     height: 350px;
     background: var(--coral);
-    opacity: 0.06;
     top: -80px;
     right: -60px;
-    transform: rotate(22deg);
+    animation: breathe-cta-1 8s ease-in-out infinite;
 }
 
 .cta-section .bg-shape-2 {
     width: 250px;
     height: 250px;
     background: var(--navy);
-    opacity: 0.04;
     bottom: -60px;
     left: -40px;
-    transform: rotate(-15deg);
+    animation: breathe-cta-2 8s ease-in-out infinite 2.7s;
 }
 
 .cta-section .bg-shape-3 {
     width: 180px;
     height: 180px;
     background: var(--golden);
-    opacity: 0.07;
     bottom: 40px;
     right: 200px;
-    transform: rotate(40deg);
+    animation: breathe-cta-3 8s ease-in-out infinite 5.3s;
 }
 
 .cta-section h2 {
