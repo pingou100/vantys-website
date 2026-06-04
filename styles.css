@@ -155,20 +155,20 @@ nav {
 }
 
 /* Background shapes */
-@keyframes breathe-hero-1    { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.09;} }
-@keyframes breathe-hero-2    { 0%,100%{transform:scale(1) rotate(19deg);opacity:.04;} 50%{transform:scale(1.05) rotate(19deg);opacity:.07;} }
-@keyframes breathe-hero-3    { 0%,100%{transform:scale(1) rotate(-28deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.11;} }
-@keyframes breathe-services-1{ 0%,100%{transform:scale(1) rotate(23deg);opacity:.04;} 50%{transform:scale(1.05) rotate(23deg);opacity:.07;} }
-@keyframes breathe-services-2{ 0%,100%{transform:scale(1) rotate(-41deg);opacity:.03;} 50%{transform:scale(1.05) rotate(-41deg);opacity:.06;} }
-@keyframes breathe-services-3{ 0%,100%{transform:scale(1) rotate(15deg);opacity:.06;} 50%{transform:scale(1.05) rotate(15deg);opacity:.09;} }
-@keyframes breathe-approach-1{ 0%,100%{transform:scale(1) rotate(34deg);opacity:.05;} 50%{transform:scale(1.05) rotate(34deg);opacity:.08;} }
-@keyframes breathe-approach-2{ 0%,100%{transform:scale(1) rotate(-25deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-25deg);opacity:.09;} }
-@keyframes breathe-approach-3{ 0%,100%{transform:scale(1) rotate(42deg);opacity:.03;} 50%{transform:scale(1.05) rotate(42deg);opacity:.06;} }
-@keyframes breathe-challenge-1{ 0%,100%{transform:scale(1) rotate(29deg);opacity:1;} 50%{transform:scale(1.05) rotate(29deg);opacity:1;} }
-@keyframes breathe-challenge-2{ 0%,100%{transform:scale(1) rotate(-37deg);opacity:.05;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.08;} }
-@keyframes breathe-cta-1     { 0%,100%{transform:scale(1) rotate(18deg);opacity:.06;} 50%{transform:scale(1.05) rotate(18deg);opacity:.09;} }
-@keyframes breathe-cta-2     { 0%,100%{transform:scale(1) rotate(-33deg);opacity:.04;} 50%{transform:scale(1.05) rotate(-33deg);opacity:.07;} }
-@keyframes breathe-cta-3     { 0%,100%{transform:scale(1) rotate(26deg);opacity:.07;} 50%{transform:scale(1.05) rotate(26deg);opacity:.10;} }
+@keyframes breathe-hero-1    { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-37deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.09;} }
+@keyframes breathe-hero-2    { from{opacity:0;} 0%,100%{transform:scale(1) rotate(19deg);opacity:.04;} 50%{transform:scale(1.05) rotate(19deg);opacity:.07;} }
+@keyframes breathe-hero-3    { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-28deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.11;} }
+@keyframes breathe-services-1{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(23deg);opacity:.04;} 50%{transform:scale(1.05) rotate(23deg);opacity:.07;} }
+@keyframes breathe-services-2{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(-41deg);opacity:.03;} 50%{transform:scale(1.05) rotate(-41deg);opacity:.06;} }
+@keyframes breathe-services-3{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(15deg);opacity:.06;} 50%{transform:scale(1.05) rotate(15deg);opacity:.09;} }
+@keyframes breathe-approach-1{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(34deg);opacity:.05;} 50%{transform:scale(1.05) rotate(34deg);opacity:.08;} }
+@keyframes breathe-approach-2{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(-25deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-25deg);opacity:.09;} }
+@keyframes breathe-approach-3{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(42deg);opacity:.03;} 50%{transform:scale(1.05) rotate(42deg);opacity:.06;} }
+@keyframes breathe-challenge-1{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(29deg);opacity:1;} 50%{transform:scale(1.05) rotate(29deg);opacity:1;} }
+@keyframes breathe-challenge-2{ from{opacity:0;} 0%,100%{transform:scale(1) rotate(-37deg);opacity:.05;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.08;} }
+@keyframes breathe-cta-1     { from{opacity:0;} 0%,100%{transform:scale(1) rotate(18deg);opacity:.06;} 50%{transform:scale(1.05) rotate(18deg);opacity:.09;} }
+@keyframes breathe-cta-2     { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-33deg);opacity:.04;} 50%{transform:scale(1.05) rotate(-33deg);opacity:.07;} }
+@keyframes breathe-cta-3     { from{opacity:0;} 0%,100%{transform:scale(1) rotate(26deg);opacity:.07;} 50%{transform:scale(1.05) rotate(26deg);opacity:.10;} }
 
 .bg-shape {
     position: absolute;
@@ -441,7 +441,7 @@ nav {
 /* ─── Approach Section ───────────────────────────────────────────────────── */
 .approach {
     padding: 100px 0;
-    background: var(--warm-neutral);
+    background: var(--white);
     position: relative;
     overflow: hidden;
 }
@@ -449,7 +449,7 @@ nav {
 .approach .bg-shape-1 {
     width: 300px;
     height: 300px;
-    background: var(--coral);
+    background: var(--navy);
     bottom: -60px;
     right: -60px;
     animation: breathe-approach-1 8s ease-in-out infinite;
@@ -467,7 +467,7 @@ nav {
 .approach .bg-shape-3 {
     width: 250px;
     height: 250px;
-    background: var(--navy);
+    background: var(--coral);
     top: 100px;
     right: 200px;
     animation: breathe-approach-3 8s ease-in-out infinite 5.3s;
@@ -715,11 +715,11 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* ─── Additional keyframes ───────────────────────────────────────────────── */
-@keyframes breathe-cs-1 { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.07;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.10;} }
-@keyframes breathe-cs-2 { 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
-@keyframes breathe-blog-1 { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.11;} }
-@keyframes breathe-blog-2 { 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
-@keyframes breathe-blog-3 { 0%,100%{transform:scale(1) rotate(-28deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.09;} }
+@keyframes breathe-cs-1 { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-37deg);opacity:.07;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.10;} }
+@keyframes breathe-cs-2 { from{opacity:0;} 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
+@keyframes breathe-blog-1 { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-37deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.11;} }
+@keyframes breathe-blog-2 { from{opacity:0;} 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
+@keyframes breathe-blog-3 { from{opacity:0;} 0%,100%{transform:scale(1) rotate(-28deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.09;} }
 
 /* ─── Case Studies Hero ──────────────────────────────────────────────────── */
 .cs-hero {
