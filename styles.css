@@ -175,6 +175,7 @@ nav {
     border-radius: 60px;
     pointer-events: none;
     will-change: transform, opacity;
+    opacity: 0;
 }
 
 .hero .bg-shape-1 {
@@ -711,4 +712,57 @@ footer a:hover { text-decoration: underline; }
     .proof-number {
         font-size: 2.8em;
     }
+}
+
+/* ─── Additional keyframes ───────────────────────────────────────────────── */
+@keyframes breathe-cs-1 { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.07;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.10;} }
+@keyframes breathe-cs-2 { 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
+@keyframes breathe-blog-1 { 0%,100%{transform:scale(1) rotate(-37deg);opacity:.08;} 50%{transform:scale(1.05) rotate(-37deg);opacity:.11;} }
+@keyframes breathe-blog-2 { 0%,100%{transform:scale(1) rotate(19deg);opacity:.07;} 50%{transform:scale(1.05) rotate(19deg);opacity:.10;} }
+@keyframes breathe-blog-3 { 0%,100%{transform:scale(1) rotate(-28deg);opacity:.06;} 50%{transform:scale(1.05) rotate(-28deg);opacity:.09;} }
+
+/* ─── Case Studies Hero ──────────────────────────────────────────────────── */
+.cs-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 60px;
+    background: linear-gradient(135deg, var(--warm-neutral) 0%, var(--white) 100%);
+}
+.cs-hero .bg-shape-1 {
+    width: 480px; height: 380px; background: var(--navy);
+    top: -150px; right: -100px;
+    animation: breathe-cs-1 8s ease-in-out infinite;
+}
+.cs-hero .bg-shape-2 {
+    width: 300px; height: 380px; background: var(--golden);
+    bottom: -80px; left: -60px;
+    animation: breathe-cs-2 8s ease-in-out infinite 3s;
+}
+.cs-hero h1 {
+    font-size: 3em; font-weight: 300; color: var(--navy);
+    margin-bottom: 16px; line-height: 1.2;
+    position: relative; z-index: 1;
+}
+.cs-hero h1 strong { font-weight: 600; color: var(--coral); }
+.cs-hero p {
+    font-size: 1.15em; color: var(--gray);
+    max-width: 620px; position: relative; z-index: 1;
+}
+
+/* ─── Blog Hero ──────────────────────────────────────────────────────────── */
+.blog-hero { position: relative; overflow: hidden; }
+.blog-hero .bg-shape-1 {
+    width: 460px; height: 360px; background: var(--navy);
+    top: -140px; right: -90px;
+    animation: breathe-blog-1 8s ease-in-out infinite;
+}
+.blog-hero .bg-shape-2 {
+    width: 300px; height: 400px; background: var(--golden);
+    top: -60px; right: 60px;
+    animation: breathe-blog-2 8s ease-in-out infinite 2.7s;
+}
+.blog-hero .bg-shape-3 {
+    width: 340px; height: 240px; background: var(--coral);
+    bottom: -40px; left: -70px;
+    animation: breathe-blog-3 8s ease-in-out infinite 5.3s;
 }
