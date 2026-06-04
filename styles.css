@@ -155,11 +155,22 @@ nav {
 }
 
 /* Background shapes */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: var(--shape-opacity-min, 0.06); }
+    50% { transform: scale(1.05); opacity: var(--shape-opacity-max, 0.10); }
+}
+
 .bg-shape {
     position: absolute;
     border-radius: 60px;
     pointer-events: none;
+    animation: breathe 8s ease-in-out infinite;
+    will-change: transform, opacity;
 }
+
+.bg-shape-1 { animation-delay: 0s; }
+.bg-shape-2 { animation-delay: 2.7s; }
+.bg-shape-3 { animation-delay: 5.3s; }
 
 .hero .bg-shape-1 {
     width: 400px;
@@ -337,7 +348,7 @@ nav {
 }
 
 .service-card {
-    background: var(--warm-neutral);
+    background: var(--white);
     border-radius: 20px;
     padding: 40px 36px;
     transition: all 0.3s;
@@ -348,6 +359,7 @@ nav {
     border-left-color: var(--coral);
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(49, 73, 105, 0.1);
+    background: var(--warm-neutral);
 }
 
 .icon-container {
