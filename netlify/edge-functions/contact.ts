@@ -61,8 +61,8 @@ export default async function handler(req: Request, context: Context) {
       "api-key": apiKey,
     },
     body: JSON.stringify({
-      sender: { name: "Vantys Contact Form", email: "delannoy.olivier@gmail.com" },
-      to: [{ email: "delannoy.olivier@gmail.com", name: "Olivier Delannoy" }],
+      sender: { name: "Vantys Contact Form", email: "olivier.delannoy@vantys.be" },
+      to: [{ email: "olivier.delannoy@vantys.be", name: "Olivier Delannoy" }],
       replyTo: { email: email, name: name },
       subject: `New contact from ${name}${company ? ` (${company})` : ""}`,
       textContent: emailBody,
