@@ -54,6 +54,44 @@ const BACK_TO_TOP = `<div class="back-to-top" id="backToTop">
 const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
+const BASE_URL = 'https://www.vantys.be';
+
+// ─── SEO helpers ────────────────────────────────────────────────────────────
+function seoHead({ description, canonical, schema } = {}) {
+    const parts = [];
+    if (description) parts.push(`    <meta name="description" content="${description}">`);
+    if (canonical)   parts.push(`    <link rel="canonical" href="${BASE_URL}${canonical}">`);
+    if (schema)      parts.push(`    <script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n    </script>`);
+    return parts.join('\n');
+}
+
+const SCHEMA_ORG_BASE = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Vantys",
+    "legalName": "Vantys SRL",
+    "url": BASE_URL,
+    "logo": `${BASE_URL}/favicon.svg`,
+    "description": "Senior-led life science advisory specialising in commercial transformation, digital & AI implementation, and healthcare system navigation for pharma, biotech, and medical devices.",
+    "founder": {
+        "@type": "Person",
+        "name": "Olivier Delannoy",
+        "jobTitle": "Founder & Managing Director",
+        "sameAs": "https://www.linkedin.com/in/olivierdelannoy/"
+    },
+    "areaServed": "Europe",
+    "knowsAbout": [
+        "Pharmaceutical commercial strategy",
+        "Life science digital transformation",
+        "Omnichannel HCP engagement",
+        "AI implementation in pharma",
+        "Healthcare system navigation",
+        "Medical affairs operations"
+    ],
+    "address": { "@type": "PostalAddress", "addressCountry": "BE" },
+    "sameAs": ["https://www.linkedin.com/company/vantys"]
+};
+
 // ─── Navigation ───────────────────────────────────────────────────────
 function navHtml(prefix = '') {
     const navItems = navigationContent.items || [];
@@ -142,24 +180,27 @@ const proofSectionHtml = homepageContent.proof ? `<section class="proof-section"
     </div>
 </section>` : '';
 
+const INDEX_DESC = 'Senior-led life science advisory helping pharma, biotech and medical devices companies bridge strategy and execution. 30 years of experience. Measurable outcomes.';
+
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTYS | Pharmaceutical Operations Consulting</title>
+    <title>VANTYS | Life Science Strategy, Executed</title>
 ${FAVICON_LINKS}
+${seoHead({ description: INDEX_DESC, canonical: '/', schema: SCHEMA_ORG_BASE })}
     <link rel="stylesheet" href="styles.css">
     <meta property="og:type" content="website">
     <meta property="og:title" content="VANTYS | Life Science Strategy, Executed">
-    <meta property="og:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices. 30 years of experience, measurable outcomes.">
-    <meta property="og:url" content="https://vantys.be">
+    <meta property="og:description" content="${INDEX_DESC}">
+    <meta property="og:url" content="${BASE_URL}">
     <meta property="og:site_name" content="Vantys">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="VANTYS | Life Science Strategy, Executed">
     <meta name="twitter:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices.">
-    <meta property="og:image" content="https://vantys.be/images/og-image.png">
-    <meta name="twitter:image" content="https://vantys.be/images/og-image.png">
+    <meta property="og:image" content="${BASE_URL}/images/og-image.png">
+    <meta name="twitter:image" content="${BASE_URL}/images/og-image.png">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -220,6 +261,7 @@ ${footerHtml('')}
 </html>`;
 
 // ─── PAGE: about-me.html ────────────────────────────────────────────────────
+const ABOUT_DESC = 'Olivier Delannoy — 30 years in life sciences including senior roles at AstraZeneca and Amarin. Founder of Vantys, a strategic advisory firm for pharma, biotech and medtech transformation.';
 const aboutHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -227,6 +269,7 @@ const aboutHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${aboutContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: ABOUT_DESC, canonical: '/about-me.html' })}
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -269,6 +312,7 @@ const addrHtml = hasAddress ? `
                 </address>
             </div>` : '';
 
+const CONTACT_DESC = 'Get in touch with Vantys. Book a call with Olivier Delannoy to discuss your life science transformation challenges.';
 const contactHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,6 +320,7 @@ const contactHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${contactContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: CONTACT_DESC, canonical: '/contact.html' })}
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
@@ -545,6 +590,7 @@ function buildDetailPage(cs) {
     const capHtml    = (cs.sidebar.capabilities || []).map(x => `<li>${typeof x === 'object' ? x.capability : x}</li>`).join('');
     const hasCustomImg = cs.pathway && cs.pathway.image && cs.pathway.image.trim();
     const pathwayImgStyle = hasCustomImg ? `<style>.pathway-custom-img{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto}</style>` : '';
+    const csDesc = cs.teaser || `${cs.shortTitle} — a Vantys life science case study.`;
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -553,6 +599,7 @@ function buildDetailPage(cs) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${cs.title} | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: csDesc, canonical: `/case-studies/${cs.slug}.html` })}
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
     ${APPROACH_ICON_STYLES}
@@ -715,6 +762,7 @@ function buildListingPage(studies) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: 'Real-world life science transformation case studies by Vantys. Measurable outcomes in commercial operations, healthcare system partnerships, and digital AI implementation.', canonical: '/case-studies/' })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .cs-section{padding:80px 0 100px;background:var(--white)}
@@ -868,6 +916,7 @@ function buildFreePage(page) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${page.title} | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: page.intro || '', canonical: `/${page.slug}.html` })}
     <link rel="stylesheet" href="styles.css">
     ${FREE_PAGE_SHARED_STYLES}
 </head>
@@ -918,6 +967,10 @@ function buildArticlePage(article, allArticles) {
         return `<p>${markdownToHtml(trimmed)}</p>`;
     }).join('');
 
+    const articleDesc = article.excerpt
+        ? article.excerpt.replace(/\n/g, ' ').substring(0, 155)
+        : article.title;
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -925,6 +978,7 @@ function buildArticlePage(article, allArticles) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${article.title} | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: articleDesc, canonical: `/blog/${article.slug}.html` })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
@@ -1048,6 +1102,7 @@ function buildBlogListingPage(articles) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | VANTYS</title>
 ${FAVICON_LINKS}
+${seoHead({ description: 'Insights on life science commercial strategy, digital transformation, AI implementation, and omnichannel excellence. By Olivier Delannoy, Vantys.', canonical: '/blog/' })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-listing{padding:80px 0 100px;background:var(--white)}
@@ -1122,6 +1177,19 @@ if (fs.existsSync(freePagesDir)) {
     console.log(`✅ ${count} free page(s) generated`);
 }
 
+// ─── Collect all pages for sitemap ──────────────────────────────────────────
+const sitemapUrls = [
+    { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
+    { loc: `${BASE_URL}/about-me.html`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${BASE_URL}/contact.html`, priority: '0.7', changefreq: 'yearly' },
+    { loc: `${BASE_URL}/case-studies/`, priority: '0.9', changefreq: 'monthly' },
+    { loc: `${BASE_URL}/blog/`, priority: '0.8', changefreq: 'weekly' },
+];
+
+caseStudies.forEach(cs => {
+    sitemapUrls.push({ loc: `${BASE_URL}/case-studies/${cs.slug}.html`, priority: '0.8', changefreq: 'monthly' });
+});
+
 if (fs.existsSync(blogCmsDir)) {
     const articleFiles = fs.readdirSync(blogCmsDir).filter(f => f.endsWith('.json'));
     const articles = articleFiles
@@ -1131,10 +1199,25 @@ if (fs.existsSync(blogCmsDir)) {
     articles.forEach(article => {
         fs.writeFileSync(path.join(blogOutDir, `${article.slug}.html`), buildArticlePage(article, articles), 'utf8');
         console.log(`  ✅ blog/${article.slug}.html`);
+        sitemapUrls.push({ loc: `${BASE_URL}/blog/${article.slug}.html`, priority: '0.7', changefreq: 'yearly' });
     });
     fs.writeFileSync(path.join(blogOutDir, 'index.html'), buildBlogListingPage(articles), 'utf8');
     console.log(`✅ blog/index.html (${articles.length} article(s))`);
 }
+
+// ─── Generate sitemap.xml ────────────────────────────────────────────────────
+const today = new Date().toISOString().split('T')[0];
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapXml, 'utf8');
+console.log('✅ sitemap.xml');
 
 console.log('✅ index.html');
 console.log('✅ about-me.html');
