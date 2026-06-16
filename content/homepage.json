@@ -2,7 +2,7 @@
   "hero": {
     "title": " ",
     "titleHighlight": "Life Science Strategy, Executed ",
-    "description": "Vantys is a senior-led advisory founded by Olivier Delannoy — three decades at the intersection of commercial ambition, operational reality, and emerging technology. Pioneering omnichannel when the industry was still figuring out what that meant. Working with health systems to redesign care pathways before it became a priority. The gap between strategic intent and actual execution is where most transformation efforts stall. We close it.",
+    "description": "Vantys is a senior-led advisory founded by Olivier Delannoy — three decades at the intersection of commercial ambition, operational reality, and emerging technology. Pioneering omnichannel and aligned Healthcare Professionals (HCP) engagement when the industry was still figuring out what that meant. Working with health systems to redesign care pathways before it became a priority. The gap between strategic intent and actual execution is where most transformation efforts stall. We close it.",
     "ctaText": "Book a Call",
     "ctaLink": "contact.html"
   },
@@ -84,6 +84,6 @@
   },
   "footer": {
     "copyright": "© 2026 Vantys SRL. Life Science Business Consulting.",
-    "linkedinUrl": "https://linkedin.com/in/your-profile"
+    "linkedinUrl": "https://www.linkedin.com/in/olivierdelannoy/"
   }
 }
