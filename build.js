@@ -56,7 +56,7 @@ const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.
 
 const BASE_URL = 'https://www.vantys.be';
 // ─── Cloudflare Web Analytics ────────────────────────────────────────────────
-const CF_ANALYTICS = `    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "55aec42f28a049b1bab66746f46bed36"}'></script><!-- End Cloudflare Web Analytics -->`;
+const CF_ANALYTICS = `    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "da816b01ffb04a1cbd4e6b36a83e22ed"}'></script><!-- End Cloudflare Web Analytics -->`;
 // ─── SEO helpers ────────────────────────────────────────────────────────────
 function seoHead({ description, canonical, schema } = {}) {
     const parts = [];
