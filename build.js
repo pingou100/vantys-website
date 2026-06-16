@@ -55,7 +55,8 @@ const FAVICON_LINKS = `    <link rel="icon" type="image/svg+xml" href="/favicon.
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`;
 
 const BASE_URL = 'https://www.vantys.be';
-
+// ─── Cloudflare Web Analytics ────────────────────────────────────────────────
+const CF_ANALYTICS = `    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "55aec42f28a049b1bab66746f46bed36"}'></script><!-- End Cloudflare Web Analytics -->`;
 // ─── SEO helpers ────────────────────────────────────────────────────────────
 function seoHead({ description, canonical, schema } = {}) {
     const parts = [];
@@ -202,6 +203,7 @@ ${seoHead({ description: INDEX_DESC, canonical: '/', schema: SCHEMA_ORG_BASE })}
     <meta property="og:image" content="${BASE_URL}/images/og-image.png">
     <meta name="twitter:image" content="${BASE_URL}/images/og-image.png">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -271,6 +273,7 @@ const aboutHtml = `<!DOCTYPE html>
 ${FAVICON_LINKS}
 ${seoHead({ description: ABOUT_DESC, canonical: '/about-me.html' })}
     <link rel="stylesheet" href="styles.css">
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -345,6 +348,7 @@ ${seoHead({ description: CONTACT_DESC, canonical: '/contact.html' })}
         .error-message.show { display: block; }
         .ohnohoney { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; }
     </style>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -649,6 +653,7 @@ ${seoHead({ description: csDesc, canonical: `/case-studies/${cs.slug}.html` })}
         @media(max-width:960px){.cs-layout{grid-template-columns:1fr;gap:48px}.cs-sidebar{position:static}.outcome-stats{grid-template-columns:1fr 1fr}}
         @media(max-width:768px){.cs-detail-hero h1{font-size:1.9em}.outcome-stats{grid-template-columns:1fr}}
     </style>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -788,6 +793,7 @@ ${seoHead({ description: 'Real-world life science transformation case studies by
         .cs-hero h1{position:relative;z-index:1}
         @media(max-width:768px){.cs-featured{padding:36px 28px}.cs-featured h2{font-size:1.5em}.cs-grid{grid-template-columns:1fr}}
     </style>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -919,6 +925,7 @@ ${FAVICON_LINKS}
 ${seoHead({ description: page.intro || '', canonical: `/${page.slug}.html` })}
     <link rel="stylesheet" href="styles.css">
     ${FREE_PAGE_SHARED_STYLES}
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -1017,6 +1024,7 @@ ${seoHead({ description: articleDesc, canonical: `/blog/${article.slug}.html` })
         @media(max-width:960px){.blog-layout{grid-template-columns:1fr;gap:48px}.blog-sidebar{position:static}}
         @media(max-width:768px){.blog-hero h1{font-size:1.8em}}
     </style>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
@@ -1130,6 +1138,7 @@ ${seoHead({ description: 'Insights on life science commercial strategy, digital 
         .blog-hero p{position:relative;z-index:1}
         @media(max-width:768px){.blog-card{padding:24px}.blog-card-inner{flex-direction:column-reverse;gap:16px}.blog-card-thumb{width:100%;height:160px}}
     </style>
+${CF_ANALYTICS}
 </head>
 <body>
 ${BACK_TO_TOP}
