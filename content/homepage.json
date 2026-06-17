@@ -2,7 +2,7 @@
   "hero": {
     "title": " ",
     "titleHighlight": "Life Science Strategy, Executed ",
-    "description": "Vantys is a senior-led advisory founded by Olivier Delannoy — three decades at the intersection of commercial ambition, operational reality, and emerging technology. Pioneering omnichannel and aligned Healthcare Professionals (HCP) engagement when the industry was still figuring out what that meant. Working with health systems to redesign care pathways before it became a priority. The gap between strategic intent and actual execution is where most transformation efforts stall. We close it.",
+    "description": "Vantys is a senior-led advisory founded by [Olivier Delannoy](https://vantys.be/about-me) — three decades at the intersection of commercial ambition, operational reality, and emerging technology. Pioneering omnichannel and aligned Healthcare Professionals (HCP) engagement when the industry was still figuring out what that meant. Working with health systems to redesign care pathways before it became a priority. The gap between strategic intent and actual execution is where most transformation efforts stall. **We close it**.",
     "ctaText": "Book a Call",
     "ctaLink": "contact.html"
   },
@@ -11,11 +11,11 @@
     "items": [
       {
         "title": "Evolving Healthcare Professionals Needs",
-        "description": "While traditional field-based models face increasing challenges, HCP expectations have reached a new peak. Today's professionals demand **seamless, scientifically rigorous experiences and value-based partnerships** the Life Science industry has yet to fully deliver."
+        "description": "While traditional field-based models face increasing challenges, HCPs expectations have reached a new peak. Today's professionals demand **seamless, scientifically rigorous experiences and value-based partnerships** the Life Science industry has yet to fully deliver."
       },
       {
         "title": "Complex Healthcare Systems to Navigate",
-        "description": "Market Access increasingly depends on demonstrating value to healthcare systems, not just individual prescribers. Payers, hospital networks, and integrated delivery systems drive healthcare and patient value through protocols, formularies and clinical pathways. **Our approach must evolve to reflect the reality of the customers, not the constraints of our legacy models**."
+        "description": "Market Access increasingly depends on demonstrating value to healthcare systems, not just individual prescribers. Payers, hospital networks, Integrated Delivery Systems drive healthcare and patient value through protocols, formularies and clinical pathways. **Our approach must evolve to reflect the reality of the customers, not the constraints of our legacy models**."
       },
       {
         "title": "Siloed Operations, broken Customer Experience",
@@ -29,15 +29,15 @@
     "items": [
       {
         "title": "Integrated Commercial & Medical Operations Transformation",
-        "description": "**Redesigning operating models to align Commercial and Medical Affairs around HCP needs.** From integrated channel strategies to cross-functional governance, we build practical solutions that respect relevant boundaries while eliminating unnecessary friction."
+        "description": "**Redesigning operating models to align Commercial and Medical Affairs around HCP needs.** From integrated channel strategies to smooth governance, we build practical solutions that respect relevant boundaries while eliminating unnecessary friction."
       },
       {
         "title": "Healthcare System Navigation & Partnership Development",
-        "description": "**Developing partnership models that create mutual value for healthcare systems and Life Science companies.** We help you identify the right stakeholders, understand local healthcare dynamics, and design collaboration frameworks that deliver results."
+        "description": "**Developing partnership models that create mutual value for healthcare systems, Life Science companies and patients.** We help you identify the right stakeholders, understand local healthcare dynamics, and design collaboration frameworks that deliver results."
       },
       {
         "title": "Digital & AI Implementation for Business Excellence",
-        "description": "**Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing operations** — delivered within the strict bounds of pharmaceutical compliance, data privacy, and medical-commercial firewalls. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
+        "description": "**Practical digital enablement focused on omnichannel orchestration and AI implementation that augments rather than disrupts existing operations** — delivered within the strict boundaries of pharmaceutical compliance, data privacy, and medical-commercial peculiarities. We translate strategic ambitions into operational capabilities that deliver measurable business impact."
       }
     ]
   },
@@ -50,7 +50,7 @@
       },
       {
         "stat": "+18%",
-        "label": "Increase in at-risk cardiovascular patient identification vs standard-of-care pathways"
+        "label": "Increase in at-risk cardiovascular patient identification vs standard care pathways"
       },
       {
         "stat": "−80%",
