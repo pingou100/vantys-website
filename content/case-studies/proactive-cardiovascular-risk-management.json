@@ -1,17 +1,17 @@
 {
   "outcomes": {
-    "heading": "Measurable improvements within 18 months",
+    "heading": "Measurable improvements within 24 months",
     "stats": [
       {
         "number": "+18%",
         "label": "Increase in identification of at-risk patients vs standard-of-care pathways"
       },
       {
-        "number": "−7%",
+        "number": "−8%",
         "label": "Reduction in cardiovascular-related hospitalisations within the targeted population"
       },
       {
-        "number": "18mo",
+        "number": "24mo",
         "label": "Sustainable partnership model established demonstrating value to all stakeholders"
       }
     ],
@@ -19,7 +19,7 @@
   },
   "challenge": {
     "heading": "Transitioning from reactive treatment to proactive risk management",
-    "body": "An emerging European biotech company sought to establish a value-based partnership with a Spanish regional health system to transition from reactive cardiovascular disease treatment to proactive risk management.\n\nThe health system faced rising hospitalisation costs and delayed diagnosis of high-risk patients, while the biotech needed to demonstrate real-world evidence of their innovative cardiovascular therapies in a preventive care model."
+    "body": "A pharmaceutical company company sought to establish a value-based partnership with a Spanish regional health system to transition from reactive cardiovascular disease treatment to proactive risk management.\n\nThe health system faced rising hospitalisation costs and delayed diagnosis of high-risk patients, while the company needed to demonstrate real-world evidence of their innovative cardiovascular therapies in a preventive care model."
   },
   "approach": {
     "heading": "A data-driven population health management programme",
@@ -39,7 +39,7 @@
       },
       {
         "title": "Pathway Redesign",
-        "description": "Reengineered the care pathway from diagnosis through treatment, integrating the biotech's novel therapies as part of guideline-concordant care for identified high-risk patients."
+        "description": "Reengineered the care pathway from diagnosis through treatment, integrating the novel therapies as part of guideline-concordant care for identified high-risk patients."
       }
     ]
   },
@@ -49,21 +49,19 @@
   },
   "slug": "proactive-cardiovascular-risk-management",
   "featured": true,
-  "teaser": "An emerging European biotech needed to demonstrate real-world evidence of their cardiovascular therapies in a preventive care model. We designed a data-driven population health programme that identified high-risk patients earlier and reduced hospitalisations — within 18 months.",
+  "teaser": "A pharmaceutical company needed to demonstrate real-world evidence of their cardiovascular therapies in a preventive care model. We designed a data-driven population health programme that identified high-risk patients earlier and reduced hospitalisations — within 24 months.",
   "title": "Healthcare Pathway Transformation: Proactive Cardiovascular Risk Management",
   "tags": [
     "Healthcare System Partnership",
     "Cardiovascular",
-    "Remote Patient Monitoring",
-    "European Biotech"
+    "Remote Patient Monitoring"
   ],
   "shortTitle": "Proactive Cardiovascular Risk Management",
   "sidebar": {
     "atAGlance": [
-      "European biotech",
       "Regional Health System",
       "Cardiovascular Indication",
-      "18-month collaborative programme",
+      "24-month collaborative programme",
       "Value-based partnership model"
     ],
     "capabilities": [
