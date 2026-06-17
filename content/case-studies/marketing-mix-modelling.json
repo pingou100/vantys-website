@@ -4,11 +4,11 @@
     "stats": [
       {
         "number": "+7% NRx",
-        "label": "Sales uplift within 12 months of reallocating promotional spend toward higher-ROI channels"
+        "label": "Sales uplift within 12 months of reallocating promotional spend toward higher ROI channels"
       },
       {
         "number": "23 FTEs",
-        "label": "Redeployed from overcalled low-potential segments to high-value accounts, with no increase in total field force headcount"
+        "label": "Redeployed from overcalled low-potential segments to high-value accounts, with no increase in total EU field force headcount"
       },
       {
         "number": "2,7 MUSD",
@@ -19,7 +19,7 @@
   },
   "challenge": {
     "heading": "When budget decisions are driven by legacy and organisation in place",
-    "body": "A global biopharmaceutical company operating across multiple therapeutic areas was investing heavily across sales force, digital and events — but had no reliable way to know which channels were actually driving impact. Budget decisions were made on historical precedent and organisational design rather than evidence. Senior leaders disagreed on the value of the different channels, yet most continued to be funded at similar levels with little data to arbitrate.\n\nAs the organisation moved towards omnichannel engagement, attribution became harder. Field teams were overcalling certain HCP segments, underfunding high-potential accounts, and Marketing was deploying digital channels with no plans to measure return. Each annual planning cycle reopened the same unresolved debate: where should we invest to deliver our ambition?\n\nWhat was missing was not ambition or investment — it was the analytical infrastructure to connect commercial spend to commercial outcomes, and a shared language for leaders to make resource decisions with confidence."
+    "body": "A global biopharmaceutical company operating across multiple therapeutic areas was investing heavily across traditional sales force, digital and events — but had no reliable way to know which channels were actually driving impact. Budget decisions were made on historical precedent and organisational design rather than data or evidences. Senior leaders disagreed on the value of the different channels, yet most continued to be funded at similar levels with little data to arbitrate.\n\nAs the organisation moved towards omnichannel engagement, attribution became harder. Field teams were overcalling certain HCP segments, underfunding high-potential accounts, and Marketing was deploying digital channels with suboptimal plans to measure return. Each annual planning cycle reopened the same unresolved debate: where should we invest to deliver our ambition?\n\nWhat was missing was not ambition or investment — it was the analytical infrastructure to connect commercial spend to commercial outcomes, and a shared language for leaders to make resource decisions with confidence."
   },
   "approach": {
     "heading": "Building the analytical engine behind smarter commercial decisions",
@@ -31,7 +31,7 @@
       },
       {
         "title": "Marketing Mix Modelling",
-        "description": "We deployed a multi-channel attribution model that decomposed sales into their constituent drivers: field force detailing, meetings and events, digital engagement, seasonality, and competitor activity. The model revealed various patterns depending on the analysed brand, with sometimes a significant mismatch between where budget was concentrated and where sales were actually being generated."
+        "description": "We deployed an omnichannel attribution model that decomposed sales into their constituent drivers: field force detailing, meetings and events, digital engagement, seasonality, and competitor activity. The model revealed various patterns depending on the analysed brands, with sometimes a significant mismatch between where budget was concentrated and where sales were actually being generated."
       },
       {
         "title": "Resource Optimisation",
@@ -45,16 +45,17 @@
   },
   "pathway": {
     "image": "/images/uploads/mmm.svg",
-    "alt": "MMM transformation pathway showing Commercial Excellence Foundation, Marketing Mix Modelling, Response Curves and ROI Analysis, and Capability Building"
+    "alt": "MMM transformation showing Commercial Excellence Foundation, Marketing Mix Modelling, Response Curves and ROI Analysis, and Capability Building"
   },
-  "slug": "marketing-mix-modelling",
+  "slug": "Marketing-Mix-Modelling",
   "featured": false,
   "teaser": "Transforming how a global biopharmaceutical company allocates promotional spend — from legacy and organisation-driven budgeting to a self-sustaining, MMM-powered planning capability that changed how senior leaders think about resource decisions.",
-  "title": "From legacy to Data-Driven Decisions: Marketing Mix Modelling in Life Sciences",
+  "title": "From legacy to Data-Driven Decisions: Marketing Mix Modelling (MMM) in Life Sciences",
   "tags": [
     "Global Biopharmaceutical",
-    "Multi-channel Optimisation",
+    "omnichannel Optimisation",
     "Advanced Analytics",
+    "Data-driven decision making",
     "Capability Building"
   ],
   "shortTitle": "Marketing Mix Modelling in Life Sciences",
