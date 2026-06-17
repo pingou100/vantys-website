@@ -7,12 +7,12 @@
         "label": "Reduction in approval processing time from submission to final decision"
       },
       {
-        "number": " 9 FTE",
+        "number": " 9 FTEs",
         "label": "Estimated number of Full-Time Equivalent that could be reinvested into other added value tasks and engagement time with Healthcare Professionals"
       },
       {
         "number": "55KUSD",
-        "label": "Total cost of development and ownership, leveraging in-house resources and open-source model"
+        "label": "Total cost of development and ownership, leveraging in-house resources and open-source platforms"
       }
     ],
     "details": []
@@ -31,11 +31,11 @@
       },
       {
         "title": "Open-Source Technology Stack",
-        "description": "Deployed a modern, open-source platform that automated routing, notifications, compliance checks and documentation. The system integrated seamlessly with an external HCP payment platform and the internal contract management system, eliminating manual data re-entry and reducing errors."
+        "description": "Deployed a modern, open-source platform on top of existing enterprise capabilities that automated routing, notifications, compliance checks and documentation. The system integrated seamlessly with an external HCP payment platform and the internal contract management system, eliminating manual data re-entry and reducing errors."
       },
       {
         "title": "User Experience Focus",
-        "description": "Designed interfaces that field teams could navigate intuitively on computer or mobile phone without extensive training. Progressive disclosure ensured users only saw fields relevant to their activity type, while built-in validation caught common errors immediately rather than after approval submission."
+        "description": "Designed interfaces that field teams could navigate intuitively on computer or mobile phone without extensive training. Progressive disclosure ensured users only saw fields relevant to their activity type, while built-in validation caught common errors or potential risks immediately rather than after approval submission."
       },
       {
         "title": "Embedded Compliance & Efficiency",
@@ -55,7 +55,7 @@
     "Business Operations Transformation",
     "Compliance",
     "open-source",
-    "Efficiency"
+    "Field-based employees efficiency"
   ],
   "shortTitle": "HCP Engagement Activity Approval Platform",
   "sidebar": {
