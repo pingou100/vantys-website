@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -732,6 +733,7 @@ footer {
     gap: 10px;
 }
 .footer-brand-name {
+    font-family: 'Hanken Grotesk', Arial, sans-serif;
     font-size: 1.3em;
     font-weight: 600;
     color: var(--white);
@@ -1281,6 +1283,47 @@ footer a:hover { text-decoration: underline; }
     line-height: 1.5;
     max-width: 220px;
 }
+/* ========================================
+   HERO WAVEFORM (living equalizer mark) — replaces hero breathing blocks
+   ======================================== */
+.hero-wave {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+}
+.hero .container { position: relative; z-index: 1; }
+
+/* ========================================
+   ICON MOTION (Three Ways / How We Work)
+   ======================================== */
+@keyframes vty-ripple { 0% { transform: scale(0.45); opacity: 0; } 18% { opacity: 0.85; } 100% { transform: scale(1.08); opacity: 0; } }
+@keyframes vty-ping   { 0% { transform: scale(0.3);  opacity: 0; } 18% { opacity: 0.85; } 100% { transform: scale(1.12); opacity: 0; } }
+@keyframes vty-lens   { 0%, 100% { opacity: 0.3; transform: scale(0.94); } 50% { opacity: 0.95; transform: scale(1); } }
+@keyframes vty-build  { 0% { transform: scale(0); opacity: 0; } 12% { opacity: 1; } 28% { transform: scale(1); opacity: 1; } 85% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.05); opacity: 0; } }
+@keyframes vty-grow   { 0%, 100% { transform: scaleY(0.82); } 50% { transform: scaleY(1.06); } }
+@keyframes vty-barA   { 0%, 55%, 100% { stroke: #697A92; } 20% { stroke: #F07B4A; } }
+@keyframes vty-barB   { 0%, 70%, 100% { stroke: #314969; } 38% { stroke: #F07B4A; } }
+
+.vty-ripple { transform-box: fill-box; transform-origin: center; animation: vty-ripple 3.2s ease-out infinite; }
+.vty-ping   { transform-box: fill-box; transform-origin: center; animation: vty-ping 3s ease-out infinite; }
+.vty-lens   { transform-box: fill-box; transform-origin: center; animation: vty-lens 3s ease-in-out infinite; }
+.vty-build  { transform-box: fill-box; transform-origin: top left; animation: vty-build 3.6s ease-in-out infinite; }
+.vty-build.d1 { animation-delay: 0.22s; }
+.vty-build.d2 { animation-delay: 0.44s; }
+.vty-bar1 { transform-box: fill-box; transform-origin: bottom; animation: vty-grow 2.4s ease-in-out infinite, vty-barA 2.6s ease-in-out infinite; }
+.vty-bar2 { transform-box: fill-box; transform-origin: bottom; animation: vty-grow 2.4s ease-in-out infinite 0.18s, vty-barB 2.6s ease-in-out infinite 0.18s; }
+.vty-bar3 { transform-box: fill-box; transform-origin: bottom; animation: vty-grow 2.4s ease-in-out infinite 0.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .vty-ripple, .vty-ping, .vty-lens, .vty-build, .vty-bar1, .vty-bar2, .vty-bar3 { animation: none !important; }
+    .vty-ripple, .vty-ping { opacity: 1 !important; transform: none !important; }
+    .vty-lens { opacity: 0.9 !important; transform: none !important; }
+}
+
 @media (max-width: 768px) {
     .proof-grid { grid-template-columns: 1fr; gap: 0; }
     .proof-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 32px 24px; }

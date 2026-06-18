@@ -126,7 +126,7 @@ function footerHtml(prefix = '') {
         <rect x="45"  y="0"  width="41" height="168" rx="20.5" fill="white"/>
         <rect x="94"  y="13" width="41" height="142" rx="20.5" fill="#F27B41"/>
         <rect x="142" y="0"  width="41" height="168" rx="20.5" fill="#F4B041"/>
-        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="white"/>
+        <rect x="190" y="37" width="36" height="94"  rx="18"   fill="#F27B41"/>
     </svg>`;
     return `<footer>
     <div class="container footer-inner">
@@ -156,14 +156,14 @@ let heroTitle = homepageContent.hero.title && homepageContent.hero.title.trim()
     : `<strong>${homepageContent.hero.titleHighlight}</strong>`;
 
 const serviceIcons = [
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><defs><clipPath id="lc"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rc"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rc)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><line x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.4"/><line x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.7"/><line x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle cx="80" cy="35" r="3" fill="#F07B4A"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="30" y="30" width="40" height="40" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.3"/><rect x="25" y="25" width="50" height="50" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.6"/><rect class="vty-ripple" x="20" y="20" width="60" height="60" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><defs><clipPath id="lc"><circle cx="40" cy="50" r="25"/></clipPath><clipPath id="rc"><circle cx="60" cy="50" r="25"/></clipPath></defs><circle class="vty-lens" cx="40" cy="50" r="25" fill="#F07B4A" clip-path="url(#rc)"/><circle cx="40" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/><circle cx="60" cy="50" r="25" fill="none" stroke="#314969" stroke-width="2"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><line id="vtyI3Bottom" x1="20" y1="65" x2="60" y2="65" stroke="#697A92" stroke-width="1.5" opacity="0.7"/><line id="vtyI3Mid" x1="20" y1="50" x2="70" y2="50" stroke="#314969" stroke-width="1.5" opacity="0.85"/><line id="vtyI3Top" x1="20" y1="35" x2="80" y2="35" stroke="#F07B4A" stroke-width="2.5"/><circle id="vtyI3Dot" cx="80" cy="35" r="3.4" fill="#F07B4A" style="transform-box:fill-box;transform-origin:center"/></svg>`,
 ];
 const approachIcons = [
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
-    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect class="vty-build" x="30" y="30" width="20" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><rect class="vty-build d1" x="30" y="30" width="35" height="35" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><rect class="vty-build d2" x="30" y="30" width="50" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="15" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="50" cy="50" r="25" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.7"/><circle class="vty-ping" cx="50" cy="50" r="35" stroke="#F07B4A" stroke-width="2.5" fill="none"/></svg>`,
+    `<svg width="100" height="100" viewBox="0 0 100 100" fill="none"><rect class="vty-bar1" x="25" y="60" width="15" height="20" stroke="#697A92" stroke-width="1.5" fill="none" opacity="0.6"/><rect class="vty-bar2" x="45" y="50" width="15" height="30" stroke="#314969" stroke-width="1.5" fill="none" opacity="0.8"/><rect class="vty-bar3" x="65" y="30" width="15" height="50" stroke="#F07B4A" stroke-width="2.5" fill="none"/><line x1="20" y1="80" x2="85" y2="80" stroke="#314969" stroke-width="1.5" opacity="0.3"/></svg>`,
 ];
 
 const proofSectionHtml = homepageContent.proof ? `<section class="proof-section">
@@ -209,7 +209,7 @@ ${CF_ANALYTICS}
 ${BACK_TO_TOP}
 ${navHtml('')}
 <section class="hero">
-    <div class="bg-shape bg-shape-1"></div><div class="bg-shape bg-shape-2"></div><div class="bg-shape bg-shape-3"></div>
+    <canvas class="hero-wave" id="heroWave" aria-hidden="true"></canvas>
     <div class="container">
         <h1>${heroTitle}</h1>
         <p>${markdownToHtml(homepageContent.hero.description)}</p>
