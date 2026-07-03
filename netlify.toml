@@ -15,6 +15,27 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Test/dev pages — block from indexing
+[[headers]]
+  for = "/ma-premiere-page.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/test-cards.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/test-deux-colonnes.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/test-hero-sections.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Let sub-paths work without the catch-all redirect eating them
 [[redirects]]
   from = "/case-studies"

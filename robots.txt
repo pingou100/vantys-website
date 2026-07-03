@@ -3,6 +3,10 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /ma-premiere-page.html
+Disallow: /test-cards.html
+Disallow: /test-deux-colonnes.html
+Disallow: /test-hero-sections.html
 
 # Sitemap
 Sitemap: https://www.vantys.be/sitemap.xml
