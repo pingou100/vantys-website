@@ -380,7 +380,7 @@ ${navHtml('')}
                 <p class="privacy-notice">By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We'll use your information only to respond to your inquiry and provide information about our services.</p>
                 <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
             </form>
-            ${contactContent.vat && contactContent.vat.trim() ? `<p style="margin-top:24px;text-align:center"><strong>Vantys SRL</strong><br>VAT: ${contactContent.vat.trim()}</p>` : ''}
+            ${contactContent.vat && contactContent.vat.trim() ? `<p style="margin-top:48px;text-align:left"><strong>Vantys SRL</strong><br>VAT: ${contactContent.vat.trim()}</p>` : ''}
         </div>
         ${addrHtml}
     </div>
