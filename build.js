@@ -271,7 +271,7 @@ const aboutHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${aboutContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: ABOUT_DESC, canonical: '/about-me.html' })}
+${seoHead({ description: ABOUT_DESC, canonical: '/about-me' })}
     <link rel="stylesheet" href="styles.css">
 ${CF_ANALYTICS}
 </head>
@@ -323,7 +323,7 @@ const contactHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${contactContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: CONTACT_DESC, canonical: '/contact.html' })}
+${seoHead({ description: CONTACT_DESC, canonical: '/contact' })}
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
@@ -603,7 +603,7 @@ function buildDetailPage(cs) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${cs.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: csDesc, canonical: `/case-studies/${cs.slug}.html` })}
+${seoHead({ description: csDesc, canonical: `/case-studies/${cs.slug}` })}
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
     ${APPROACH_ICON_STYLES}
@@ -922,7 +922,7 @@ function buildFreePage(page) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${page.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: page.intro || '', canonical: `/${page.slug}.html` })}
+${seoHead({ description: page.intro || '', canonical: `/${page.slug}` })}
     <link rel="stylesheet" href="styles.css">
     ${FREE_PAGE_SHARED_STYLES}
 ${CF_ANALYTICS}
@@ -985,7 +985,7 @@ function buildArticlePage(article, allArticles) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${article.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: articleDesc, canonical: `/blog/${article.slug}.html` })}
+${seoHead({ description: articleDesc, canonical: `/blog/${article.slug}` })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
@@ -1196,7 +1196,7 @@ const sitemapUrls = [
 ];
 
 caseStudies.forEach(cs => {
-    sitemapUrls.push({ loc: `${BASE_URL}/case-studies/${cs.slug}.html`, priority: '0.8', changefreq: 'monthly' });
+    sitemapUrls.push({ loc: `${BASE_URL}/case-studies/${cs.slug}`, priority: '0.8', changefreq: 'monthly' });
 });
 
 if (fs.existsSync(blogCmsDir)) {
@@ -1208,7 +1208,7 @@ if (fs.existsSync(blogCmsDir)) {
     articles.forEach(article => {
         fs.writeFileSync(path.join(blogOutDir, `${article.slug}.html`), buildArticlePage(article, articles), 'utf8');
         console.log(`  ✅ blog/${article.slug}.html`);
-        sitemapUrls.push({ loc: `${BASE_URL}/blog/${article.slug}.html`, priority: '0.7', changefreq: 'yearly' });
+        sitemapUrls.push({ loc: `${BASE_URL}/blog/${article.slug}`, priority: '0.7', changefreq: 'yearly' });
     });
     fs.writeFileSync(path.join(blogOutDir, 'index.html'), buildBlogListingPage(articles), 'utf8');
     console.log(`✅ blog/index.html (${articles.length} article(s))`);
