@@ -121,6 +121,23 @@ const prefersReducedMotion = window.matchMedia &&
     const navy = [49, 73, 105], coral = [240, 123, 74], golden = [242, 175, 76];
     const intensity = 3, speed = 1, accents = true;
 
+    // Wave frequency/speed drift to new random targets periodically during the
+    // same session, smoothly interpolating between them so the pattern keeps
+    // changing character for a reader watching the same page load.
+    function randomWaveParams() {
+        return {
+            freq1: 0.24 + Math.random() * 0.18,
+            freq2: 0.07 + Math.random() * 0.09,
+            speed1: (0.7 + Math.random() * 0.5) * speed,
+            speed2: (0.3 + Math.random() * 0.4) * speed,
+        };
+    }
+    const waveCurrent = randomWaveParams();
+    let waveTarget = randomWaveParams();
+    let nextWaveShiftAt = 6 + Math.random() * 6;
+    const jitterCount = 240;
+    const barJitter = Array.from({ length: jitterCount }, () => (Math.random() - 0.5) * 0.9);
+
     function resize() {
         const r = canvas.getBoundingClientRect();
         canvas.width = Math.max(1, Math.round(r.width * dpr));
@@ -146,14 +163,28 @@ const prefersReducedMotion = window.matchMedia &&
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, W, H);
 
-        const step = 30, barW = 12;
+        // Every 6-12s, pick a new random target for the wave's character and
+        // start drifting toward it; lerp rate is tuned so the shift is gradual
+        // and never looks like a jump cut.
+        if (t > nextWaveShiftAt) {
+            waveTarget = randomWaveParams();
+            nextWaveShiftAt = t + 6 + Math.random() * 6;
+        }
+        const lerpRate = 0.004;
+        waveCurrent.freq1  += (waveTarget.freq1  - waveCurrent.freq1)  * lerpRate;
+        waveCurrent.freq2  += (waveTarget.freq2  - waveCurrent.freq2)  * lerpRate;
+        waveCurrent.speed1 += (waveTarget.speed1 - waveCurrent.speed1) * lerpRate;
+        waveCurrent.speed2 += (waveTarget.speed2 - waveCurrent.speed2) * lerpRate;
+
+        const step = 24, barW = 19;
         const n = Math.ceil(W / step) + 1;
         const baseFrac = 0.16, ampFrac = 0.12 + intensity * 0.07;
 
         for (let i = 0; i < n; i++) {
             const x = i * step;
-            const w1 = Math.sin(i * 0.32 - t * 0.9 * speed);
-            const w2 = Math.sin(i * 0.11 + t * 0.5 * speed);
+            const jitter = barJitter[i % jitterCount];
+            const w1 = Math.sin(i * waveCurrent.freq1 - t * waveCurrent.speed1 + jitter);
+            const w2 = Math.sin(i * waveCurrent.freq2 + t * waveCurrent.speed2 + jitter * 0.5);
             const nrm = w1 * 0.6 + w2 * 0.4;
             const h = H * (baseFrac + (nrm * 0.5 + 0.5) * ampFrac);
             let col = navy, a = 0.07;
