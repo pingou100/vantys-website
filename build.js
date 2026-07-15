@@ -58,10 +58,25 @@ const BASE_URL = 'https://www.vantys.be';
 // ─── Cloudflare Web Analytics ────────────────────────────────────────────────
 const CF_ANALYTICS = `    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "da816b01ffb04a1cbd4e6b36a83e22ed"}'></script><!-- End Cloudflare Web Analytics -->`;
 // ─── SEO helpers ────────────────────────────────────────────────────────────
-function seoHead({ description, canonical, schema } = {}) {
+function seoHead({ title, description, canonical, schema, image, type = 'website' } = {}) {
     const parts = [];
     if (description) parts.push(`    <meta name="description" content="${description}">`);
     if (canonical)   parts.push(`    <link rel="canonical" href="${BASE_URL}${canonical}">`);
+    const ogTitle = title || 'VANTYS';
+    const ogUrl = canonical ? `${BASE_URL}${canonical}` : BASE_URL;
+    const ogImage = image
+        ? (image.startsWith('http') ? image : `${BASE_URL}${image}`)
+        : `${BASE_URL}/images/og-image.png`;
+    parts.push(`    <meta property="og:type" content="${type}">`);
+    parts.push(`    <meta property="og:title" content="${ogTitle}">`);
+    if (description) parts.push(`    <meta property="og:description" content="${description}">`);
+    parts.push(`    <meta property="og:url" content="${ogUrl}">`);
+    parts.push(`    <meta property="og:site_name" content="Vantys">`);
+    parts.push(`    <meta property="og:image" content="${ogImage}">`);
+    parts.push(`    <meta name="twitter:card" content="summary_large_image">`);
+    parts.push(`    <meta name="twitter:title" content="${ogTitle}">`);
+    if (description) parts.push(`    <meta name="twitter:description" content="${description}">`);
+    parts.push(`    <meta name="twitter:image" content="${ogImage}">`);
     if (schema)      parts.push(`    <script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n    </script>`);
     return parts.join('\n');
 }
@@ -190,18 +205,8 @@ const indexHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANTYS | Life Science Strategy, Executed</title>
 ${FAVICON_LINKS}
-${seoHead({ description: INDEX_DESC, canonical: '/', schema: SCHEMA_ORG_BASE })}
+${seoHead({ title: 'VANTYS | Life Science Strategy, Executed', description: INDEX_DESC, canonical: '/', schema: SCHEMA_ORG_BASE })}
     <link rel="stylesheet" href="styles.css">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="VANTYS | Life Science Strategy, Executed">
-    <meta property="og:description" content="${INDEX_DESC}">
-    <meta property="og:url" content="${BASE_URL}">
-    <meta property="og:site_name" content="Vantys">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VANTYS | Life Science Strategy, Executed">
-    <meta name="twitter:description" content="Senior-led advisory bridging commercial strategy and operational execution in pharma, biotech, and medical devices.">
-    <meta property="og:image" content="${BASE_URL}/images/og-image.png">
-    <meta name="twitter:image" content="${BASE_URL}/images/og-image.png">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 ${CF_ANALYTICS}
 </head>
@@ -271,7 +276,7 @@ const aboutHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${aboutContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: ABOUT_DESC, canonical: '/about-me' })}
+${seoHead({ title: `${aboutContent.title} | VANTYS`, description: ABOUT_DESC, canonical: '/about-me', image: aboutContent.photo })}
     <link rel="stylesheet" href="styles.css">
 ${CF_ANALYTICS}
 </head>
@@ -323,7 +328,7 @@ const contactHtml = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${contactContent.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: CONTACT_DESC, canonical: '/contact' })}
+${seoHead({ title: `${contactContent.title} | VANTYS`, description: CONTACT_DESC, canonical: '/contact' })}
     <link rel="stylesheet" href="styles.css">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
@@ -603,7 +608,7 @@ function buildDetailPage(cs) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${cs.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: csDesc, canonical: `/case-studies/${cs.slug}` })}
+${seoHead({ title: `${cs.title} | VANTYS`, description: csDesc, canonical: `/case-studies/${cs.slug}`, image: (cs.pathway && cs.pathway.image) || undefined })}
     <link rel="stylesheet" href="../styles.css">
     ${pathwayImgStyle}
     ${APPROACH_ICON_STYLES}
@@ -767,7 +772,7 @@ function buildListingPage(studies) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Studies | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: 'Real-world life science transformation case studies by Vantys. Measurable outcomes in commercial operations, healthcare system partnerships, and digital AI implementation.', canonical: '/case-studies/' })}
+${seoHead({ title: 'Case Studies | VANTYS', description: 'Real-world life science transformation case studies by Vantys. Measurable outcomes in commercial operations, healthcare system partnerships, and digital AI implementation.', canonical: '/case-studies/' })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .cs-section{padding:80px 0 100px;background:var(--white)}
@@ -922,7 +927,7 @@ function buildFreePage(page) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${page.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: page.intro || '', canonical: `/${page.slug}` })}
+${seoHead({ title: `${page.title} | VANTYS`, description: page.intro || '', canonical: `/${page.slug}` })}
     <link rel="stylesheet" href="styles.css">
     ${FREE_PAGE_SHARED_STYLES}
 ${CF_ANALYTICS}
@@ -985,7 +990,7 @@ function buildArticlePage(article, allArticles) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${article.title} | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: articleDesc, canonical: `/blog/${article.slug}` })}
+${seoHead({ title: `${article.title} | VANTYS`, description: articleDesc, canonical: `/blog/${article.slug}`, image: article.heroImage || undefined })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-hero{padding:80px 0 60px;background:linear-gradient(135deg,var(--warm-neutral) 0%,var(--white) 100%)}
@@ -1110,7 +1115,7 @@ function buildBlogListingPage(articles) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | VANTYS</title>
 ${FAVICON_LINKS}
-${seoHead({ description: 'Insights on life science commercial strategy, digital transformation, AI implementation, and omnichannel excellence. By Olivier Delannoy, Vantys.', canonical: '/blog/' })}
+${seoHead({ title: 'Blog | VANTYS', description: 'Insights on life science commercial strategy, digital transformation, AI implementation, and omnichannel excellence. By Olivier Delannoy, Vantys.', canonical: '/blog/' })}
     <link rel="stylesheet" href="../styles.css">
     <style>
         .blog-listing{padding:80px 0 100px;background:var(--white)}
